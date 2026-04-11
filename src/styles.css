@@ -1,0 +1,239 @@
+﻿:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #5b6475;
+  --primary: #0f766e;
+  --danger: #be123c;
+  --border: #dbe3f1;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+}
+
+h1, h2, h3, p { margin: 0; }
+
+.center-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.login-wrap { background: linear-gradient(180deg, #ecfdf5, #f8fafc 45%); }
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.topbar {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.main-content {
+  padding: 14px;
+  padding-bottom: 84px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 10px;
+}
+
+.bottom-link {
+  text-align: center;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 10px 4px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.bottom-link.active {
+  color: white;
+  background: var(--primary);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.form { width: min(100%, 420px); }
+
+label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn.danger {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.btn.ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.row.between { justify-content: space-between; }
+
+.stack { display: grid; gap: 12px; }
+.stack-sm { display: grid; gap: 8px; }
+
+.grid.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat .value {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.muted { color: var(--muted); font-size: 13px; }
+.alert {
+  background: #e0f2fe;
+  color: #0c4a6e;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+.alert.danger {
+  background: #ffe4e6;
+  color: #881337;
+}
+
+.options {
+  display: grid;
+  gap: 8px;
+}
+
+.option-btn {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px;
+  font-size: 15px;
+}
+.option-btn.selected {
+  border-color: #0ea5e9;
+  background: #f0f9ff;
+}
+.option-btn.correct {
+  border-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.question {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 8px;
+}
+
+.list-item {
+  display: grid !important;
+  justify-content: stretch !important;
+}
+
+.mini-chart { display: grid; gap: 8px; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 26px;
+  gap: 8px;
+  align-items: center;
+}
+.bar {
+  background: #e2e8f0;
+  height: 10px;
+  border-radius: 99px;
+}
+.fill {
+  background: linear-gradient(90deg, #14b8a6, #06b6d4);
+  height: 100%;
+  border-radius: inherit;
+}
+
+@media (min-width: 860px) {
+  .main-content { max-width: 860px; margin: 0 auto; width: 100%; }
+  .topbar { display: flex; justify-content: center; }
+}

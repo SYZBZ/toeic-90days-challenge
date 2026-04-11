@@ -1,0 +1,19 @@
+node_modules/
+dist/
+config.local.json
+.env
+.env.local
+.env.*.local
+coverage/
+legacy/data/raw/
+legacy/scripts/__pycache__/
+# 舊版殘留目錄（OneDrive 權限限制導致無法刪除）
+assets/
+css/
+data/
+js/
+pages/
+scripts/
+.claude/
+*.pyc
+.DS_Store

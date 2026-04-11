@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOEIC 875 衝刺 — 首頁</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="container">
+  <h1>歡迎回來 👋</h1>
+  <p class="muted">目標：90 天考到 TOEIC L&R 875 分</p>
+
+  <div class="card-grid mt-20">
+    <div class="card stat-card">
+      <div class="stat-value" id="stat-day">—</div>
+      <div class="stat-label">學習第幾天</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value" id="stat-streak">—</div>
+      <div class="stat-label">連續天數</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value" id="stat-learned">—</div>
+      <div class="stat-label">已學單字</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value" id="stat-due">—</div>
+      <div class="stat-label">今日待複習</div>
+    </div>
+  </div>
+
+  <div class="card mt-20">
+    <h2>今日任務</h2>
+    <div id="today-tasks" class="empty">載入中…</div>
+  </div>
+
+  <div class="card">
+    <h2>快速進入</h2>
+    <div class="row gap-20 mt-12">
+      <a class="btn" href="pages/daily.html">今日學習</a>
+      <a class="btn secondary" href="pages/vocabulary.html">單字庫</a>
+      <a class="btn secondary" href="pages/grammar.html">語法教學</a>
+      <a class="btn secondary" href="pages/exam.html">模擬考</a>
+      <a class="btn secondary" href="pages/review.html">複習錯題</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>資料備份</h2>
+    <p class="muted">所有進度存在瀏覽器本機。建議每週匯出備份，換電腦或清快取前也要匯出。</p>
+    <div class="row mt-12">
+      <button class="btn small secondary" id="btn-export">匯出進度</button>
+      <label class="btn small secondary" style="cursor:pointer;">
+        匯入進度
+        <input type="file" id="file-import" accept="application/json" style="display:none">
+      </label>
+      <button class="btn small danger" id="btn-reset">重置全部</button>
+    </div>
+  </div>
+</div>
+
+<script src="data/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/app.js"></script>
+<script>
+App.init('index.html');
+
+function daysSince(isoStart) {
+  const start = new Date(isoStart + 'T00:00:00');
+  const now = new Date();
+  return Math.floor((now - start) / 86400000) + 1;
+}
+
+async function loadDashboard() {
+  const stats = Storage.getStats();
+  const settings = Storage.getSettings();
+  const start = settings.startDate || new Date().toISOString().slice(0, 10);
+  const day = daysSince(start);
+
+  document.getElementById('stat-day').textContent = 'Day ' + Math.min(day, 90);
+  document.getElementById('stat-streak').textContent = stats.streak || 0;
+  document.getElementById('stat-learned').textContent = stats.totalLearned || 0;
+  document.getElementById('stat-due').textContent = Storage.getDueVocab().length;
+
+  // 載入今日任務
+  const plan = await App.loadJSON('study-plan.json');
+  const vocab = await App.loadJSON('vocabulary.json');
+  const tasksEl = document.getElementById('today-tasks');
+
+  if (!plan || !vocab) {
+    tasksEl.innerHTML = '<div class="empty">尚未建立資料。請先執行 <code>scripts/01_download_wordlists.py</code> 與後續腳本。</div>';
+    return;
+  }
+
+  const todayPlan = plan.days[Math.min(day - 1, plan.days.length - 1)];
+  if (!todayPlan) {
+    tasksEl.innerHTML = '<div class="empty">🎉 已完成 90 天計畫！繼續複習錯題，上考場吧。</div>';
+    return;
+  }
+
+  const dueCount = Storage.getDueVocab().length;
+  const newCount = todayPlan.newWords ? todayPlan.newWords.length : 0;
+
+  tasksEl.innerHTML = `
+    <div class="row gap-20">
+      <div class="stat-card" style="flex:1;">
+        <div class="stat-value">${newCount}</div>
+        <div class="stat-label">今日新字</div>
+      </div>
+      <div class="stat-card" style="flex:1;">
+        <div class="stat-value">${dueCount}</div>
+        <div class="stat-label">複習卡片</div>
+      </div>
+      <div class="stat-card" style="flex:1;">
+        <div class="stat-value">20</div>
+        <div class="stat-label">建議題數</div>
+      </div>
+    </div>
+    <div class="row mt-20">
+      <a class="btn" href="pages/daily.html">開始今日學習 →</a>
+    </div>
+  `;
+}
+
+// 備份功能
+document.getElementById('btn-export').addEventListener('click', () => {
+  const data = JSON.stringify(Storage.exportAll(), null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `toeic-backup-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  App.toast('進度已匯出');
+});
+
+document.getElementById('file-import').addEventListener('change', async (e) => {
+  const f = e.target.files[0];
+  if (!f) return;
+  const text = await f.text();
+  try {
+    Storage.importAll(JSON.parse(text));
+    App.toast('匯入成功，重新整理中…');
+    setTimeout(() => location.reload(), 800);
+  } catch (err) {
+    App.toast('匯入失敗：' + err.message);
+  }
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (confirm('確定要重置所有進度嗎？這無法復原。')) {
+    Storage.clearAll();
+    location.reload();
+  }
+});
+
+loadDashboard();
+</script>
+</body>
+</html>

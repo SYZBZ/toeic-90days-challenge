@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function validUserDoc() {
+      return request.resource.data.keys().hasOnly([
+        "email",
+        "geminiApiKey",
+        "settings",
+        "createdAt",
+        "updatedAt"
+      ])
+      && request.resource.data.email is string
+      && request.resource.data.geminiApiKey is string
+      && request.resource.data.settings is map;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create, update: if isOwner(uid) && validUserDoc();
+      allow delete: if false;
+
+      match /{subCollection=**}/{docId} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
