@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>考試進行中 — TOEIC 875</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="timer" id="timer">--:--</div>
+
+<div class="container">
+  <h1 id="exam-title">考試進行中</h1>
+  <p class="muted" id="exam-sub">載入中…</p>
+
+  <div id="exam-body"></div>
+
+  <div class="row mt-20" id="action-row">
+    <button class="btn success" id="btn-submit">交卷</button>
+    <a class="btn secondary" href="exam.html">放棄返回</a>
+  </div>
+</div>
+
+<script src="../data/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/srs.js"></script>
+<script src="../js/app.js"></script>
+<script>
+App.init('exam.html');
+
+const params = new URLSearchParams(location.search);
+const reviewId = params.get('review');          // 若存在 → 回顧模式
+const isReview = !!reviewId;
+const mode = params.get('mode') || 'part5';
+const count = parseInt(params.get('count') || '20');
+const timeMin = parseInt(params.get('time') || '10');
+
+let questions = [];
+let answers = {};
+let startAt = Date.now();
+let endAt = startAt + timeMin * 60 * 1000;
+let timerInterval;
+let submitted = false;
+
+async function init() {
+  if (isReview) {
+    initReview();
+    return;
+  }
+
+  const [q5, q6, q7] = await Promise.all([
+    App.loadJSON('questions-part5.json'),
+    App.loadJSON('questions-part6.json'),
+    App.loadJSON('questions-part7.json'),
+  ]);
+
+  if (mode === 'part5') questions = sample(q5?.questions || [], count);
+  else if (mode === 'part6') questions = sampleByPassage(q6?.questions || [], count);
+  else if (mode === 'part7') questions = sampleByPassage(q7?.questions || [], count);
+  else if (mode === 'full') {
+    questions = [
+      ...sample(q5?.questions || [], 30),
+      ...sampleByPassage(q6?.questions || [], 16),
+      ...sampleByPassage(q7?.questions || [], 54),
+    ];
+  } else if (mode === 'mistakes') {
+    const all = [...(q5?.questions||[]), ...(q6?.questions||[]), ...(q7?.questions||[])];
+    const mistakeIds = new Set(Storage.getMistakes().map(m => m.questionId));
+    const pool = all.filter(q => mistakeIds.has(q.id));
+    questions = sample(pool, count);
+  }
+
+  if (!questions.length) {
+    document.getElementById('exam-body').innerHTML =
+      '<div class="empty">沒有題目可以出。請先執行 <code>scripts/04_generate_questions.py</code> 生成題庫。</div>';
+    clearInterval(timerInterval);
+    document.getElementById('timer').textContent = '--:--';
+    return;
+  }
+
+  document.getElementById('exam-title').textContent = `${mode.toUpperCase()} — ${questions.length} 題`;
+  document.getElementById('exam-sub').textContent = `限時 ${timeMin} 分鐘。點選項後可再修改。`;
+  render();
+  startTimer();
+}
+
+function initReview() {
+  const exam = Storage.getExamById(reviewId);
+  if (!exam) {
+    document.getElementById('exam-body').innerHTML =
+      '<div class="empty">找不到這次考試紀錄。可能已被清除或尚未存檔。</div>';
+    document.getElementById('exam-title').textContent = '回顧考試';
+    document.getElementById('exam-sub').textContent = '';
+    document.getElementById('timer').style.display = 'none';
+    document.getElementById('btn-submit').style.display = 'none';
+    return;
+  }
+
+  questions = (exam.questions || []).map(q => ({ ...q }));
+  answers = {};
+  questions.forEach((q, i) => {
+    if (q.userAnswer != null) answers[i] = q.userAnswer;
+  });
+
+  // 停計時器、隱藏交卷按鈕
+  document.getElementById('timer').style.display = 'none';
+  document.getElementById('btn-submit').style.display = 'none';
+
+  const pct = (exam.score / exam.total * 100).toFixed(0);
+  const dateStr = new Date(exam.date).toLocaleString('zh-TW');
+  document.getElementById('exam-title').textContent =
+    `📖 回顧 — ${exam.score}/${exam.total}（${pct}%）`;
+  document.getElementById('exam-sub').innerHTML =
+    `${escapeHtml(exam.mode || exam.part || '')} · ${escapeHtml(dateStr)} · 用時 ${Math.round((exam.timeSpent || 0) / 60)} 分鐘`;
+
+  render();
+  // 立即套用已作答狀態 + 顯示正解與解析（不再寫入進度/錯題）
+  displayAnswered();
+}
+
+function sample(arr, n) {
+  if (!arr || !arr.length) return [];
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, Math.min(n, copy.length));
+}
+
+// Part 6/7:以 passage 為單位抽樣,同一 passage 的題目要連在一起
+function sampleByPassage(arr, n) {
+  if (!arr || !arr.length) return [];
+  const groups = {};
+  const order = [];
+  arr.forEach(q => {
+    const key = q.passage || q.id;
+    if (!groups[key]) { groups[key] = []; order.push(key); }
+    groups[key].push(q);
+  });
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  const out = [];
+  for (const key of order) {
+    for (const q of groups[key]) {
+      out.push(q);
+      if (out.length >= n) return out;
+    }
+  }
+  return out;
+}
+
+function render() {
+  const body = document.getElementById('exam-body');
+  let lastPassage = null;
+  body.innerHTML = questions.map((q, qi) => {
+    const showPassage = q.passage && q.passage !== lastPassage;
+    if (q.passage) lastPassage = q.passage;
+    const passageHtml = showPassage
+      ? `<div class="passage">
+           <div class="passage-en">${escapeHtml(q.passage)}</div>
+           ${q.passage_zh ? `<div class="passage-zh hidden" data-zh="1">${escapeHtml(q.passage_zh)}</div>` : ''}
+         </div>`
+      : '';
+    return `
+      <div class="question-block" id="q-${qi}">
+        ${passageHtml}
+        <div class="question-text">
+          <div class="q-en">
+            ${qi + 1}. ${escapeHtml(q.question)}
+            ${inlineZh(q.question_zh)}
+          </div>
+        </div>
+        ${(q.options || []).map((o, i) => {
+          const zh = (q.options_zh && q.options_zh[i]) ? q.options_zh[i] : '';
+          return `
+            <div class="option" data-qi="${qi}" data-i="${i}">
+              <div class="opt-en">
+                ${String.fromCharCode(65 + i)}. ${escapeHtml(o)}
+                ${inlineZh(zh)}
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+    `;
+  }).join('');
+
+  body.querySelectorAll('.option').forEach(el => {
+    el.addEventListener('click', () => {
+      if (submitted) return;
+      const qi = parseInt(el.dataset.qi);
+      const i = parseInt(el.dataset.i);
+      answers[qi] = i;
+      document.querySelectorAll(`#q-${qi} .option`).forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+    });
+  });
+}
+
+function startTimer() {
+  updateTimer();
+  timerInterval = setInterval(updateTimer, 500);
+}
+
+function updateTimer() {
+  const remain = endAt - Date.now();
+  const t = document.getElementById('timer');
+  if (remain <= 0) {
+    t.textContent = '00:00';
+    submit();
+    return;
+  }
+  const m = Math.floor(remain / 60000);
+  const s = Math.floor((remain % 60000) / 1000);
+  t.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  t.classList.toggle('warning', remain < 5 * 60000);
+  t.classList.toggle('danger', remain < 60000);
+}
+
+function inlineZh(text) {
+  if (!text) return '';
+  return `<span class="inline-zh hidden" data-zh="1">（${escapeHtml(text)}）</span>`;
+}
+
+// 共用:把每題的正解/使用者作答/解析顯示出來(不寫進度)
+function displayAnswered() {
+  submitted = true;
+  // 交卷/回顧時:把所有隱藏的中文顯示出來
+  document.querySelectorAll('[data-zh="1"]').forEach(el => el.classList.remove('hidden'));
+
+  questions.forEach((q, qi) => {
+    const picked = answers[qi];
+    const block = document.getElementById('q-' + qi);
+    if (!block) return;
+    block.querySelectorAll('.option').forEach((o, i) => {
+      o.style.pointerEvents = 'none';
+      if (i === q.answer) o.classList.add('correct');
+      else if (i === picked) o.classList.add('wrong');
+    });
+    // 解析區
+    if (!block.querySelector('.explanation')) {
+      const exp = document.createElement('div');
+      exp.className = 'explanation';
+      const head = picked === q.answer
+        ? '<strong class="ok">✓ 答對</strong>'
+        : (picked != null
+          ? `<strong class="ng">✗ 你選 ${String.fromCharCode(65 + picked)},正解 ${String.fromCharCode(65 + q.answer)}</strong>`
+          : `<strong class="ng">✗ 未作答,正解 ${String.fromCharCode(65 + q.answer)}</strong>`);
+      exp.innerHTML = `${head}<br>${escapeHtml(q.explanation || '')}`;
+      block.appendChild(exp);
+    }
+  });
+}
+
+function submit() {
+  if (submitted) return;
+  clearInterval(timerInterval);
+
+  let correct = 0;
+  let lastPassage = null;
+  let lastPassageZh = null;
+  const snapshot = questions.map((q, qi) => {
+    const picked = answers[qi];
+    const isCorrect = picked === q.answer;
+    if (isCorrect) correct++;
+
+    // 每題在 localStorage 裡存的副本(含使用者作答)；精簡重複段落避免爆容量。
+    const samePassage = !!q.passage && q.passage === lastPassage;
+    const samePassageZh = !!q.passage_zh && q.passage_zh === lastPassageZh;
+    const item = {
+      id: q.id,
+      type: q.type,
+      question: q.question,
+      question_zh: q.question_zh,
+      options: Array.isArray(q.options) ? q.options : [],
+      options_zh: Array.isArray(q.options_zh) ? q.options_zh : undefined,
+      answer: q.answer,
+      explanation: q.explanation || '',
+      passage: samePassage ? null : (q.passage || null),
+      passage_zh: samePassageZh ? null : (q.passage_zh || null),
+      userAnswer: picked != null ? picked : null,
+    };
+
+    if (q.passage) lastPassage = q.passage;
+    if (q.passage_zh) lastPassageZh = q.passage_zh;
+    return item;
+  });
+
+  // 先渲染結果
+  displayAnswered();
+
+  // 寫進度(這部分只在「新考試」時做,不在回顧模式做)
+  questions.forEach((q, qi) => {
+    const picked = answers[qi];
+    if (picked === q.answer) {
+      Storage.removeMistake(q.id);
+    } else {
+      Storage.addMistake({
+        type: q.type || mode,
+        questionId: q.id,
+        yourAnswer: picked != null ? String.fromCharCode(65 + picked) : '未作答',
+        correctAnswer: String.fromCharCode(65 + q.answer),
+      });
+    }
+  });
+
+  const timeSpent = Math.round((Date.now() - startAt) / 1000);
+  const examId = Storage.addExamResult({
+    mode,
+    part: mode,
+    score: correct,
+    total: questions.length,
+    timeSpent,
+    questions: snapshot,
+  });
+  Storage.bumpStudyStreak();
+
+  const pct = (correct / questions.length * 100).toFixed(0);
+  const title = document.getElementById('exam-title');
+  title.textContent = `結果:${correct} / ${questions.length}(${pct}%)`;
+  title.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('btn-submit').classList.add('hidden');
+
+  // 交卷後顯示「回模擬考首頁」連結(+ 若剛剛是完整模考,顯示閱讀預估分)
+  const actionRow = document.getElementById('action-row');
+  actionRow.innerHTML = `
+    <a class="btn" href="exam.html">回模擬考首頁</a>
+    <a class="btn secondary" href="exam-session.html?review=${encodeURIComponent(examId)}">這次的詳解（可以之後再看）</a>
+  `;
+
+  // L&R 估算(閱讀 495 分制粗估)
+  if (mode === 'full') {
+    const estReading = Math.round(495 * (correct / 100));
+    const sub = document.getElementById('exam-sub');
+    sub.innerHTML = `閱讀預估分數 ≈ <strong>${estReading}</strong> / 495(僅供參考)`;
+  }
+}
+
+const submitBtn = document.getElementById('btn-submit');
+if (submitBtn) {
+  submitBtn.addEventListener('click', () => {
+    if (confirm('確定交卷?')) submit();
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>學習進度 — TOEIC 875</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="container">
+  <h1>學習進度 📊</h1>
+
+  <div class="card-grid mt-20">
+    <div class="card stat-card">
+      <div class="stat-value" id="s-day">—</div>
+      <div class="stat-label">計畫第幾天</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value" id="s-streak">—</div>
+      <div class="stat-label">連續學習天數</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value" id="s-learned">—</div>
+      <div class="stat-label">已加入學習</div>
+    </div>
+    <div class="card stat-card">
+      <div class="stat-value" id="s-mastered">—</div>
+      <div class="stat-label">已熟練（interval ≥ 14 天）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📈 距離目標</h2>
+    <p class="muted">每學會一個 TSL 字，距離 875 就更近一步。</p>
+    <p>已熟練 <span id="mastered-count">0</span> / <span id="total-count">0</span></p>
+    <div class="progress-bar"><div class="progress-fill" id="pbar"></div></div>
+  </div>
+
+  <div class="card">
+    <h2>📝 錯題本</h2>
+    <p class="muted">答錯的單字與題目會留在這裡，定期回來清掉。</p>
+    <div id="mistake-list"></div>
+  </div>
+
+  <div class="card">
+    <h2>📚 歷次考試</h2>
+    <canvas id="chart" width="600" height="200" style="width:100%; max-width:600px; border:1px solid var(--border); border-radius:8px; background:var(--surface)"></canvas>
+    <p class="muted" style="margin-top:8px">藍線：正確率 %</p>
+  </div>
+</div>
+
+<script src="../data/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/app.js"></script>
+<script>
+App.init('progress.html');
+
+function daysSince(iso) {
+  return Math.floor((Date.now() - new Date(iso+'T00:00:00')) / 86400000) + 1;
+}
+
+async function init() {
+  const stats = Storage.getStats();
+  const settings = Storage.getSettings();
+  const day = daysSince(settings.startDate || new Date().toISOString().slice(0,10));
+  const allProg = Storage.getAllVocabProgress();
+  const learned = Object.keys(allProg).length;
+  const mastered = Object.values(allProg).filter(p => p.interval >= 14).length;
+
+  const vocab = await App.loadJSON('vocabulary.json');
+  const total = vocab ? vocab.words.length : 4000;
+
+  document.getElementById('s-day').textContent = 'Day ' + Math.min(day, 90);
+  document.getElementById('s-streak').textContent = stats.streak || 0;
+  document.getElementById('s-learned').textContent = learned;
+  document.getElementById('s-mastered').textContent = mastered;
+  document.getElementById('mastered-count').textContent = mastered;
+  document.getElementById('total-count').textContent = total;
+  document.getElementById('pbar').style.width = ((mastered / total) * 100).toFixed(1) + '%';
+
+  renderMistakes(vocab);
+  renderChart();
+}
+
+function renderMistakes(vocab) {
+  const list = Storage.getMistakes();
+  const el = document.getElementById('mistake-list');
+  if (!list.length) {
+    el.innerHTML = '<div class="empty">目前沒有錯題，繼續保持！</div>';
+    return;
+  }
+  const vocabMap = {};
+  if (vocab) vocab.words.forEach(w => vocabMap[w.id] = w);
+
+  // 依類型分組
+  const byType = {};
+  list.forEach(m => {
+    byType[m.type] = byType[m.type] || [];
+    byType[m.type].push(m);
+  });
+
+  let html = '';
+  for (const [type, items] of Object.entries(byType)) {
+    html += `<h3>${type} — ${items.length} 題</h3><ul>`;
+    items.slice(-20).reverse().forEach(m => {
+      const w = vocabMap[m.questionId];
+      const label = w ? w.word : m.questionId;
+      html += `<li>${escapeHtml(label)} <span class="muted">（你：${escapeHtml(String(m.yourAnswer))} / 正確：${escapeHtml(String(m.correctAnswer))}）</span></li>`;
+    });
+    html += '</ul>';
+  }
+  el.innerHTML = html;
+}
+
+function renderChart() {
+  const h = Storage.getExamHistory();
+  const canvas = document.getElementById('chart');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if (!h.length) {
+    ctx.fillStyle = '#9ca3af';
+    ctx.font = '14px sans-serif';
+    ctx.fillText('尚無考試紀錄', 20, 30);
+    return;
+  }
+  const data = h.slice(-20).map(r => (r.score / r.total) * 100);
+  const max = 100, min = 0;
+  const pad = 24;
+  const W = canvas.width - pad * 2;
+  const H = canvas.height - pad * 2;
+
+  // axes
+  ctx.strokeStyle = '#e5e7eb';
+  ctx.beginPath();
+  ctx.moveTo(pad, pad);
+  ctx.lineTo(pad, pad + H);
+  ctx.lineTo(pad + W, pad + H);
+  ctx.stroke();
+
+  // line
+  ctx.strokeStyle = '#4f46e5';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  data.forEach((v, i) => {
+    const x = pad + (data.length === 1 ? W/2 : (i / (data.length - 1)) * W);
+    const y = pad + H - ((v - min) / (max - min)) * H;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // dots
+  ctx.fillStyle = '#4f46e5';
+  data.forEach((v, i) => {
+    const x = pad + (data.length === 1 ? W/2 : (i / (data.length - 1)) * W);
+    const y = pad + H - ((v - min) / (max - min)) * H;
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI*2);
+    ctx.fill();
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+init();
+</script>
+</body>
+</html>

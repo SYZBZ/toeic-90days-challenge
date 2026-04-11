@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>複習 — TOEIC 875</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="container">
+  <h1>複習時間 📚</h1>
+  <p class="muted" id="review-summary">載入中…</p>
+
+  <div id="review-area"></div>
+</div>
+
+<script src="../data/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/srs.js"></script>
+<script src="../js/speech.js"></script>
+<script src="../js/app.js"></script>
+<script>
+App.init('review.html');
+
+let vocabMap = {};
+let queue = [];
+let idx = 0;
+
+async function init() {
+  const data = await App.loadJSON('vocabulary.json');
+  if (!data) {
+    document.getElementById('review-area').innerHTML =
+      '<div class="empty">尚未建立單字庫。</div>';
+    return;
+  }
+  data.words.forEach(w => vocabMap[w.id] = w);
+
+  const dueIds = Storage.getDueVocab();
+  queue = dueIds.map(id => vocabMap[id]).filter(Boolean);
+
+  if (!queue.length) {
+    document.getElementById('review-summary').textContent = '今天沒有需要複習的字了，去學新字吧！';
+    document.getElementById('review-area').innerHTML = `
+      <div class="card text-center">
+        <h2>🎉 今日複習完成</h2>
+        <p class="muted">SRS 演算法會在之後自動把卡片安排回來。</p>
+        <div class="row" style="justify-content:center">
+          <a class="btn" href="daily.html">去做今日新字</a>
+          <a class="btn secondary" href="vocabulary.html">到單字庫逛逛</a>
+        </div>
+      </div>`;
+    return;
+  }
+
+  Storage.bumpStudyStreak();
+  showCard();
+}
+
+function showCard() {
+  const total = queue.length;
+  document.getElementById('review-summary').textContent = `第 ${idx + 1} / ${total} 張`;
+
+  if (idx >= queue.length) {
+    document.getElementById('review-area').innerHTML = `
+      <div class="card text-center">
+        <h2>🎉 太棒了，全部複習完成！</h2>
+        <div class="row" style="justify-content:center">
+          <a class="btn" href="../index.html">回首頁</a>
+        </div>
+      </div>`;
+    return;
+  }
+
+  const w = queue[idx];
+  const prog = Storage.getVocabProgress(w.id) || SRS.newCard();
+
+  document.getElementById('review-area').innerHTML = `
+    <div class="flashcard" id="card">
+      <div class="front-word">${escapeHtml(w.word)}
+        <button class="btn small secondary" id="btn-say" style="margin-left:8px;">🔊</button>
+      </div>
+      <div class="phonetic">${escapeHtml(w.phonetic || '')}</div>
+      <div class="back hidden" id="back">
+        ${w.translation ? `<div class="translation-big">${escapeHtml(w.translation)}</div>` : ''}
+        <div class="def"><strong>定義：</strong>${escapeHtml(w.definition || '(無)')}</div>
+        ${w.example ? `<div class="example">例句：${escapeHtml(w.example)}</div>` : ''}
+      </div>
+      <div class="flashcard-actions" id="actions">
+        <button class="btn secondary" id="btn-show">顯示解答</button>
+      </div>
+    </div>
+    <p class="muted text-center mt-12">下次複習：${prog.nextReview || '—'}　|　連續答對 ${prog.reps}　|　EF ${(prog.easiness||2.5).toFixed(2)}</p>
+  `;
+
+  document.getElementById('btn-say').addEventListener('click', (e) => {
+    e.stopPropagation();
+    Speech.say(w.word);
+  });
+  Speech.say(w.word); // 自動發音
+
+  document.getElementById('btn-show').addEventListener('click', () => {
+    document.getElementById('back').classList.remove('hidden');
+    document.getElementById('actions').innerHTML = `
+      <button class="btn danger" data-q="0">忘了 (Again)</button>
+      <button class="btn warn" data-q="3">有點難 (Hard)</button>
+      <button class="btn success" data-q="4">記得 (Good)</button>
+      <button class="btn secondary" data-q="5">太簡單 (Easy)</button>
+    `;
+    document.querySelectorAll('#actions button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const q = parseInt(btn.dataset.q);
+        const next = SRS.review(prog, q);
+        Storage.setVocabProgress(w.id, next);
+        if (q < 3) {
+          Storage.addMistake({ type: 'vocab', questionId: w.id, yourAnswer: 'forgot', correctAnswer: w.word });
+        }
+        idx++;
+        showCard();
+      });
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+init();
+</script>
+</body>
+</html>

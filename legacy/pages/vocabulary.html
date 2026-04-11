@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>單字庫 — TOEIC 875</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="container">
+  <h1>單字庫</h1>
+  <p class="muted">總計 <span id="vocab-total">—</span> 個單字（TSL 1200 多益高頻字 + NGSL 2809 日常高頻字）</p>
+
+  <div class="card">
+    <div class="row gap-20">
+      <input type="search" id="vocab-search" placeholder="搜尋單字或定義…" style="flex:1; min-width:240px;">
+      <select id="vocab-filter" style="max-width:200px;">
+        <option value="all">全部</option>
+        <option value="tsl">僅 TSL（多益高頻）</option>
+        <option value="ngsl">僅 NGSL（日常高頻）</option>
+        <option value="learning">已加入學習</option>
+        <option value="due">今日需複習</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="vocab-list" class="word-list"></div>
+  <div id="vocab-pager" class="pager"></div>
+</div>
+
+<script src="../data/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/srs.js"></script>
+<script src="../js/speech.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/vocabulary.js"></script>
+<script>
+  App.init('vocabulary.html');
+  Vocabulary.init();
+</script>
+</body>
+</html>

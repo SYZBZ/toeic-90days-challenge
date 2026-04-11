@@ -1,0 +1,472 @@
+{
+  "units": [
+    {
+      "id": "parts-of-speech",
+      "title": "1. 詞性 (Parts of Speech)",
+      "summary": "名詞、動詞、形容詞、副詞的判斷 —— 多益 Part 5 最常考",
+      "sections": [
+        {
+          "heading": "八大詞性速覽",
+          "body": "<p>英文有八大詞性：<strong>名詞 (noun)、動詞 (verb)、形容詞 (adjective)、副詞 (adverb)、代名詞 (pronoun)、介系詞 (preposition)、連接詞 (conjunction)、感嘆詞 (interjection)</strong>。TOEIC Part 5 會在空格前後給你線索，要你挑對的詞性。</p>",
+          "examples": [
+            "名詞：manager, decision, development",
+            "動詞：develop, decide, manage",
+            "形容詞：successful, careful, decisive",
+            "副詞：successfully, carefully, quickly"
+          ]
+        },
+        {
+          "heading": "字尾線索（超級實用）",
+          "body": "<p>看字尾可以 90% 判斷詞性：</p><ul><li><strong>名詞字尾</strong>：-tion, -sion, -ment, -ness, -ity, -ance, -ence, -er/-or, -ist<br>例：decision, development, happiness, ability, importance, teacher</li><li><strong>形容詞字尾</strong>：-ful, -less, -ous, -ive, -able, -ible, -al, -ic<br>例：careful, useless, famous, effective, capable, economic</li><li><strong>副詞字尾</strong>：-ly（大多數，但 friendly 是形容詞！）<br>例：carefully, successfully, quickly</li><li><strong>動詞字尾</strong>：-ize, -ify, -en, -ate<br>例：organize, simplify, strengthen, create</li></ul>"
+        },
+        {
+          "heading": "判斷技巧：看空格位置",
+          "body": "<ul><li>空格在冠詞 a/an/the 之後 → <strong>名詞</strong>（可能中間夾形容詞）</li><li>空格在 be 動詞之後 → <strong>形容詞</strong>（形容主詞）</li><li>空格在名詞前 → <strong>形容詞</strong>（修飾名詞）</li><li>空格在動詞旁修飾它 → <strong>副詞</strong></li><li>空格在句子主要位置（主詞或受詞）→ <strong>名詞</strong></li></ul>"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "The new system has greatly improved the ______ of our team.",
+          "options": ["produce", "productive", "productively", "productivity"],
+          "answer": 3,
+          "explanation": "the ___ of 中間要名詞。productivity 是名詞（生產力）。produce 是動詞，productive 是形容詞，productively 是副詞。"
+        },
+        {
+          "question": "Ms. Chen is a ______ manager who always meets deadlines.",
+          "options": ["reliable", "reliably", "reliability", "rely"],
+          "answer": 0,
+          "explanation": "名詞 manager 前面要形容詞。reliable（可靠的）是形容詞。"
+        },
+        {
+          "question": "The team completed the project ______ before the deadline.",
+          "options": ["success", "successful", "successfully", "succeed"],
+          "answer": 2,
+          "explanation": "修飾動詞 completed 要用副詞。successfully 是副詞。"
+        },
+        {
+          "question": "Our company's rapid ______ surprised everyone in the industry.",
+          "options": ["grow", "grew", "growth", "growing"],
+          "answer": 2,
+          "explanation": "所有格 company's + 形容詞 rapid + ___ 要名詞。growth 是名詞。"
+        },
+        {
+          "question": "The report was ______ reviewed by the senior staff.",
+          "options": ["careful", "carefully", "care", "caring"],
+          "answer": 1,
+          "explanation": "was ___ reviewed 中間修飾動詞 reviewed 要副詞。carefully 是副詞。"
+        }
+      ]
+    },
+    {
+      "id": "tense",
+      "title": "2. 時態 (Tenses)",
+      "summary": "12 種時態的使用情境與時間副詞搭配",
+      "sections": [
+        {
+          "heading": "時態的兩個維度：時間 + 狀態",
+          "body": "<p>英文時態 = <strong>時間</strong>（現在/過去/未來）× <strong>狀態</strong>（簡單/進行/完成/完成進行）。但多益最常考這 6 種：</p><ul><li>現在簡單式：I <strong>work</strong></li><li>現在進行式：I <strong>am working</strong></li><li>現在完成式：I <strong>have worked</strong></li><li>過去簡單式：I <strong>worked</strong></li><li>過去完成式：I <strong>had worked</strong></li><li>未來式：I <strong>will work</strong></li></ul>"
+        },
+        {
+          "heading": "關鍵時間副詞（看到就知道時態）",
+          "body": "<ul><li><strong>現在簡單</strong>：always, usually, every day, often（習慣）</li><li><strong>現在進行</strong>：now, at the moment, currently（正在）</li><li><strong>現在完成</strong>：since, for, already, yet, recently, just（從過去到現在）</li><li><strong>過去簡單</strong>：yesterday, ago, last week, in 2020</li><li><strong>過去完成</strong>：by the time, before（過去的過去）</li><li><strong>未來</strong>：tomorrow, next week, by 2030</li></ul>"
+        },
+        {
+          "heading": "since / for 跟著現在完成式",
+          "body": "<p><code>since + 時間點</code>（since 2020, since Monday）<br><code>for + 時間長度</code>（for 5 years, for two weeks）<br>兩者通常跟 <strong>現在完成式</strong> 一起用。</p>",
+          "examples": [
+            "I have worked here for 3 years.（我在這工作 3 年了）",
+            "She has lived in Tokyo since 2018."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Mr. Tanaka ______ for this company since 2015.",
+          "options": ["works", "worked", "has worked", "is working"],
+          "answer": 2,
+          "explanation": "since + 時間點 → 現在完成式 have/has + p.p."
+        },
+        {
+          "question": "The delivery ______ tomorrow morning.",
+          "options": ["arrives", "arrived", "will arrive", "has arrived"],
+          "answer": 2,
+          "explanation": "tomorrow 是未來時間，用 will arrive。"
+        },
+        {
+          "question": "By the time we arrived, the meeting ______ already started.",
+          "options": ["has", "had", "have", "was"],
+          "answer": 1,
+          "explanation": "by the time + 過去，表示過去的過去 → 過去完成式 had + p.p."
+        },
+        {
+          "question": "She ______ the report right now.",
+          "options": ["writes", "is writing", "wrote", "has written"],
+          "answer": 1,
+          "explanation": "right now → 現在進行式 be + Ving。"
+        },
+        {
+          "question": "Our CEO ______ the new product last month.",
+          "options": ["announces", "announced", "has announced", "will announce"],
+          "answer": 1,
+          "explanation": "last month 是過去時間 → 過去簡單式。"
+        }
+      ]
+    },
+    {
+      "id": "passive-voice",
+      "title": "3. 被動語態 (Passive Voice)",
+      "summary": "be + p.p. 的用法 —— 商務英文中超常見",
+      "sections": [
+        {
+          "heading": "被動語態的形式",
+          "body": "<p>主動：<code>S + V + O</code><br>被動：<code>O + be + p.p. + (by S)</code></p><p>被動用在「主詞是動作的承受者」或「不重要誰做的」。商務信件非常愛用被動。</p>",
+          "examples": [
+            "The report was written by Mr. Lee.（報告是由李先生寫的）",
+            "Your order has been shipped.（您的訂單已寄出）",
+            "All employees are required to attend.（所有員工需要參加）"
+          ]
+        },
+        {
+          "heading": "各時態的被動",
+          "body": "<ul><li>現在被動：is/are + p.p.</li><li>過去被動：was/were + p.p.</li><li>現在完成被動：has/have been + p.p.</li><li>未來被動：will be + p.p.</li><li>情態動詞被動：can/should/must + be + p.p.</li></ul>"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "The new policy ______ by all staff members.",
+          "options": ["must follow", "must be followed", "must following", "must followed"],
+          "answer": 1,
+          "explanation": "情態動詞被動：must + be + p.p."
+        },
+        {
+          "question": "Your package ______ tomorrow morning.",
+          "options": ["will deliver", "will be delivered", "will delivering", "is delivering"],
+          "answer": 1,
+          "explanation": "包裹是被送達 → 未來被動 will + be + p.p."
+        },
+        {
+          "question": "The building ______ last year.",
+          "options": ["renovates", "renovated", "was renovated", "has renovated"],
+          "answer": 2,
+          "explanation": "last year 過去時間，建築物被翻新 → 過去被動 was + p.p."
+        },
+        {
+          "question": "All applications ______ carefully before any decision is made.",
+          "options": ["review", "reviews", "are reviewed", "reviewing"],
+          "answer": 2,
+          "explanation": "申請是被審核 → 現在被動 are + p.p."
+        }
+      ]
+    },
+    {
+      "id": "relative-clause",
+      "title": "4. 關係子句 (Relative Clauses)",
+      "summary": "who / which / that / whose 的用法",
+      "sections": [
+        {
+          "heading": "關係代名詞三劍客：who / which / that",
+          "body": "<ul><li><strong>who</strong>：先行詞是人，後面接動詞</li><li><strong>which</strong>：先行詞是物，後面接動詞</li><li><strong>that</strong>：人/物皆可（但非限定用法不可用 that）</li><li><strong>whose</strong>：所有格，「~的」</li><li><strong>whom</strong>：who 的受格，後面接 S+V（越來越少用）</li></ul>",
+          "examples": [
+            "The employee who works hardest will get a bonus.",
+            "The laptop which I bought last week is broken.",
+            "The customer whose order is delayed is calling."
+          ]
+        },
+        {
+          "heading": "判斷技巧",
+          "body": "<p>看兩件事：<strong>先行詞是人還是物</strong> + <strong>空格後接什麼</strong>。<br>空格後接動詞 → 主格（who/which/that）<br>空格後接 S+V → 受格（可省略）<br>空格後接名詞 → whose</p>"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "The candidate ______ has the most experience will be hired.",
+          "options": ["who", "whose", "whom", "which"],
+          "answer": 0,
+          "explanation": "先行詞 candidate 是人，後接動詞 has → 主格 who。"
+        },
+        {
+          "question": "The software ______ we purchased is very user-friendly.",
+          "options": ["who", "which", "whose", "what"],
+          "answer": 1,
+          "explanation": "先行詞 software 是物，後接 S+V (we purchased) → 受格 which。"
+        },
+        {
+          "question": "Mr. Kim, ______ office is on the third floor, is the new director.",
+          "options": ["who", "which", "whose", "whom"],
+          "answer": 2,
+          "explanation": "空格後接名詞 office，且意思是「他的辦公室」→ whose。"
+        },
+        {
+          "question": "The report ______ was submitted yesterday contains several errors.",
+          "options": ["who", "that", "whose", "where"],
+          "answer": 1,
+          "explanation": "先行詞 report 是物，後接動詞 was → that 或 which，選項只有 that。"
+        }
+      ]
+    },
+    {
+      "id": "conjunctions",
+      "title": "5. 連接詞 (Conjunctions)",
+      "summary": "對等、從屬、轉折 —— 分辨詞性最重要",
+      "sections": [
+        {
+          "heading": "三大類連接詞",
+          "body": "<p><strong>1. 對等連接詞</strong>（連接兩個同等地位的東西）：for, and, nor, but, or, yet, so（口訣 FANBOYS）</p><p><strong>2. 從屬連接詞</strong>（引導從屬子句）：because, since, although, though, while, when, if, unless, after, before, until</p><p><strong>3. 介系詞片語</strong>（後面只接名詞，不是連接詞！）：because of, due to, despite, in spite of</p>"
+        },
+        {
+          "heading": "最常考：連接詞 vs 介系詞",
+          "body": "<p>多益最愛考這個陷阱 —— 後面接句子還是名詞？</p><ul><li><strong>because</strong> + 句子 / <strong>because of</strong> + 名詞</li><li><strong>although</strong> + 句子 / <strong>despite</strong> + 名詞</li><li><strong>while</strong> + 句子 / <strong>during</strong> + 名詞</li></ul>",
+          "examples": [
+            "Because it was raining, we stayed home. ✓",
+            "Because of the rain, we stayed home. ✓",
+            "Despite the rain, we went out. ✓",
+            "Although it was raining, we went out. ✓"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "______ the heavy traffic, we arrived on time.",
+          "options": ["Although", "Despite", "Because", "While"],
+          "answer": 1,
+          "explanation": "the heavy traffic 是名詞片語，要用介系詞 Despite（儘管）。Although 後要接子句。"
+        },
+        {
+          "question": "The meeting was postponed ______ several key members were sick.",
+          "options": ["because", "because of", "despite", "due to"],
+          "answer": 0,
+          "explanation": "後面是句子 several key members were sick，要用連接詞 because。"
+        },
+        {
+          "question": "You should arrive early ______ you want a good seat.",
+          "options": ["because", "if", "despite", "so"],
+          "answer": 1,
+          "explanation": "表達條件「如果」→ if。"
+        },
+        {
+          "question": "The presentation was well received, ______ the short preparation time.",
+          "options": ["although", "because", "despite", "while"],
+          "answer": 2,
+          "explanation": "後接名詞片語 the short preparation time → 介系詞 despite。"
+        }
+      ]
+    },
+    {
+      "id": "gerund-infinitive",
+      "title": "6. 動名詞 vs 不定詞 (Gerund vs Infinitive)",
+      "summary": "Ving 還是 to V？背固定搭配",
+      "sections": [
+        {
+          "heading": "動詞後只接 Ving",
+          "body": "<p>口訣「MEGAFEPS」：mind, enjoy, give up, avoid, finish, escape, practice, suggest<br>其他常見：consider, deny, postpone, admit, appreciate, recommend, risk, quit</p>",
+          "examples": [
+            "I enjoy reading business news.",
+            "He suggested postponing the meeting.",
+            "We can't avoid paying taxes."
+          ]
+        },
+        {
+          "heading": "動詞後只接 to V",
+          "body": "<p>常見：want, hope, wish, plan, decide, expect, promise, refuse, agree, offer, manage, fail, tend, pretend</p>",
+          "examples": [
+            "We plan to launch next month.",
+            "She agreed to sign the contract."
+          ]
+        },
+        {
+          "heading": "介系詞後一定接 Ving",
+          "body": "<p>to 是介系詞時也要接 Ving（這個特別容易錯）：be used to / look forward to / object to / in addition to + Ving</p>",
+          "examples": [
+            "I look forward to meeting you.（不是 meet）",
+            "She is used to working long hours."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "We look forward to ______ from you soon.",
+          "options": ["hear", "hearing", "heard", "be hearing"],
+          "answer": 1,
+          "explanation": "look forward to 的 to 是介系詞，後面接 Ving。"
+        },
+        {
+          "question": "The manager suggested ______ the deadline.",
+          "options": ["to extend", "extending", "extend", "extended"],
+          "answer": 1,
+          "explanation": "suggest 後面只接 Ving。"
+        },
+        {
+          "question": "They decided ______ the new proposal.",
+          "options": ["accepting", "accept", "to accept", "accepted"],
+          "answer": 2,
+          "explanation": "decide 後面接 to V。"
+        },
+        {
+          "question": "She is considering ______ for another position.",
+          "options": ["apply", "to apply", "applying", "applied"],
+          "answer": 2,
+          "explanation": "consider 後面接 Ving。"
+        }
+      ]
+    },
+    {
+      "id": "conditional",
+      "title": "7. 假設語氣 (Conditionals)",
+      "summary": "If 子句的三種時態搭配",
+      "sections": [
+        {
+          "heading": "三種假設句型",
+          "body": "<p><strong>第一類</strong>（可能發生的未來）：<br>If + 現在式, will + 原形<br>例：If it rains, we will cancel the event.</p><p><strong>第二類</strong>（與現在事實相反）：<br>If + 過去式, would + 原形<br>例：If I were rich, I would buy a house.</p><p><strong>第三類</strong>（與過去事實相反）：<br>If + had + p.p., would have + p.p.<br>例：If I had studied, I would have passed.</p>"
+        },
+        {
+          "heading": "重要提醒",
+          "body": "<ul><li>第二類的 be 動詞統一用 <strong>were</strong>（If I <strong>were</strong> you...）</li><li>if 子句裡不用 will（If it <strong>rains</strong>, 不是 If it will rain）</li></ul>"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "If the weather ______ good tomorrow, we will go hiking.",
+          "options": ["is", "will be", "was", "would be"],
+          "answer": 0,
+          "explanation": "第一類假設，if 子句用現在式。"
+        },
+        {
+          "question": "If I ______ you, I would accept the offer.",
+          "options": ["am", "was", "were", "will be"],
+          "answer": 2,
+          "explanation": "第二類假設，be 動詞用 were。"
+        },
+        {
+          "question": "If we had invested earlier, we ______ more money.",
+          "options": ["make", "would make", "would have made", "will make"],
+          "answer": 2,
+          "explanation": "第三類假設（過去事實相反），主句用 would have + p.p."
+        }
+      ]
+    },
+    {
+      "id": "comparative",
+      "title": "8. 比較級與最高級 (Comparatives & Superlatives)",
+      "summary": "比較三個層級：原級、比較級、最高級",
+      "sections": [
+        {
+          "heading": "三級變化",
+          "body": "<p><strong>短單字</strong>（1-2 音節）：加 -er / -est<br>tall → taller → tallest<br><strong>長單字</strong>（3 音節以上）：加 more / most<br>expensive → more expensive → most expensive</p><p><strong>不規則</strong>：good → better → best, bad → worse → worst</p>"
+        },
+        {
+          "heading": "比較句型",
+          "body": "<ul><li><strong>原級</strong>：as + 形容詞 + as（跟...一樣）</li><li><strong>比較級</strong>：比較級 + than（比...更）</li><li><strong>最高級</strong>：the + 最高級 + in/of...（最...的）</li></ul>",
+          "examples": [
+            "Tom is as tall as Jerry.",
+            "This year's sales are higher than last year's.",
+            "It is the most expensive item in the store."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Our new office is ______ than the old one.",
+          "options": ["big", "bigger", "biggest", "more big"],
+          "answer": 1,
+          "explanation": "than 前面用比較級，big 的比較級是 bigger。"
+        },
+        {
+          "question": "She is one of ______ employees in our company.",
+          "options": ["experienced", "more experienced", "the most experienced", "most experienced"],
+          "answer": 2,
+          "explanation": "one of the + 最高級 + 複數名詞。"
+        },
+        {
+          "question": "The presentation was not as ______ as we expected.",
+          "options": ["good", "better", "best", "well"],
+          "answer": 0,
+          "explanation": "as...as 中間用原級形容詞。"
+        }
+      ]
+    },
+    {
+      "id": "modals",
+      "title": "9. 情態助動詞 (Modal Verbs)",
+      "summary": "can, may, must, should, will 的語氣差別",
+      "sections": [
+        {
+          "heading": "常見情態助動詞",
+          "body": "<ul><li><strong>can / could</strong>：能力、許可</li><li><strong>may / might</strong>：可能性（might 更不確定）</li><li><strong>must</strong>：必須、一定</li><li><strong>should / ought to</strong>：應該（建議）</li><li><strong>have to</strong>：必須（客觀規定）</li><li><strong>will / would</strong>：意願、預測</li></ul><p>情態動詞後面 <strong>一定接原形動詞</strong>，不能加 to。</p>"
+        },
+        {
+          "heading": "過去推測：must/might/could have + p.p.",
+          "body": "<ul><li>must have + p.p.（一定...過）</li><li>might have + p.p.（可能...過）</li><li>should have + p.p.（早該...）</li></ul>",
+          "examples": [
+            "He must have forgotten the meeting.",
+            "I should have called earlier."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "All employees ______ wear their ID badges at all times.",
+          "options": ["must", "could", "might", "would"],
+          "answer": 0,
+          "explanation": "表達規定必須 → must。"
+        },
+        {
+          "question": "You ______ have informed me about the changes earlier.",
+          "options": ["should", "can", "may", "will"],
+          "answer": 0,
+          "explanation": "should have + p.p. 表示「早該」，責備語氣。"
+        },
+        {
+          "question": "The manager ______ be in the meeting room; I saw him go there.",
+          "options": ["should", "must", "might", "would"],
+          "answer": 1,
+          "explanation": "有根據的強烈推測 → must。"
+        }
+      ]
+    },
+    {
+      "id": "prepositions",
+      "title": "10. 介系詞 (Prepositions)",
+      "summary": "時間、地點、方向介系詞",
+      "sections": [
+        {
+          "heading": "時間介系詞",
+          "body": "<ul><li><strong>at</strong>：具體時間點（at 3 p.m., at noon, at Christmas）</li><li><strong>on</strong>：某日（on Monday, on July 4, on weekends）</li><li><strong>in</strong>：月、年、世紀、較長時段（in 2025, in May, in the morning）</li><li><strong>by</strong>：最晚到（by Friday = no later than Friday）</li><li><strong>until / till</strong>：持續到（wait until 5 p.m.）</li><li><strong>within</strong>：在...之內（within 30 days）</li></ul>"
+        },
+        {
+          "heading": "地點介系詞",
+          "body": "<ul><li><strong>at</strong>：具體一點（at the station, at home）</li><li><strong>in</strong>：封閉空間（in the room, in Taipei）</li><li><strong>on</strong>：表面（on the table, on the second floor）</li></ul>"
+        },
+        {
+          "heading": "商務常用介系詞片語",
+          "body": "<ul><li>in charge of（負責）</li><li>in accordance with（依照）</li><li>on behalf of（代表）</li><li>due to（由於）</li><li>regardless of（不論）</li></ul>"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Please submit your report ______ Friday.",
+          "options": ["in", "on", "at", "to"],
+          "answer": 1,
+          "explanation": "某一天用 on。"
+        },
+        {
+          "question": "The package will arrive ______ 3 business days.",
+          "options": ["in", "at", "on", "by"],
+          "answer": 0,
+          "explanation": "in + 一段時間，表示「在...之內」也可用 within。"
+        },
+        {
+          "question": "The new policy takes effect ______ January 1.",
+          "options": ["in", "at", "on", "by"],
+          "answer": 2,
+          "explanation": "某一天 (January 1) 用 on。"
+        },
+        {
+          "question": "I would like to speak ______ behalf of the entire team.",
+          "options": ["in", "on", "at", "by"],
+          "answer": 1,
+          "explanation": "固定片語 on behalf of（代表）。"
+        }
+      ]
+    }
+  ]
+}

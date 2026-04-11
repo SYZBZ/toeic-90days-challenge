@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>語法教學 — TOEIC 875</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="container">
+  <h1 id="title">語法教學</h1>
+  <p class="muted" id="subtitle">多益常考文法重點，每單元附小測驗。</p>
+
+  <div id="content"></div>
+</div>
+
+<script src="../data/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/app.js"></script>
+<script>
+App.init('grammar.html');
+
+let data = null;
+
+async function init() {
+  data = await App.loadJSON('grammar.json');
+  if (!data) {
+    document.getElementById('content').innerHTML =
+      '<div class="empty">尚未建立語法內容。</div>';
+    return;
+  }
+  const params = new URLSearchParams(location.search);
+  const unitId = params.get('unit');
+  if (unitId) showUnit(unitId);
+  else showList();
+}
+
+function showList() {
+  document.getElementById('title').textContent = '語法教學';
+  document.getElementById('content').innerHTML = `
+    <div class="grammar-unit-list">
+      ${data.units.map(u => `
+        <div class="grammar-unit" data-id="${u.id}">
+          <h3>${escapeHtml(u.title)}</h3>
+          <p class="muted">${escapeHtml(u.summary || '')}</p>
+          <div class="muted" style="font-size:12px">${u.sections.length} 段教學 · ${u.quiz.length} 題小考</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  document.querySelectorAll('.grammar-unit').forEach(el => {
+    el.addEventListener('click', () => {
+      location.search = '?unit=' + el.dataset.id;
+    });
+  });
+}
+
+function showUnit(id) {
+  const u = data.units.find(x => x.id === id);
+  if (!u) { showList(); return; }
+  document.getElementById('title').textContent = u.title;
+  document.getElementById('subtitle').textContent = u.summary || '';
+  document.getElementById('content').innerHTML = `
+    <a href="grammar.html" class="muted">← 回單元列表</a>
+    ${u.sections.map(s => `
+      <div class="grammar-section">
+        <h3>${escapeHtml(s.heading)}</h3>
+        <div>${s.body}</div>
+        ${s.examples ? `<ul>${s.examples.map(e => `<li>${escapeHtml(e)}</li>`).join('')}</ul>` : ''}
+      </div>
+    `).join('')}
+    <h2>📝 小測驗</h2>
+    <div id="quiz-area"></div>
+  `;
+  renderQuiz(u);
+}
+
+function renderQuiz(u) {
+  const area = document.getElementById('quiz-area');
+  let correct = 0;
+  area.innerHTML = u.quiz.map((q, qi) => `
+    <div class="question-block" data-qi="${qi}">
+      <div class="question-text">${qi + 1}. ${escapeHtml(q.question)}</div>
+      <div class="options">
+        ${q.options.map((o, i) => `<div class="option" data-i="${i}">${String.fromCharCode(65+i)}. ${escapeHtml(o)}</div>`).join('')}
+      </div>
+      <div class="explanation hidden"></div>
+    </div>
+  `).join('');
+
+  area.querySelectorAll('.question-block').forEach(block => {
+    const qi = parseInt(block.dataset.qi);
+    const q = u.quiz[qi];
+    block.querySelectorAll('.option').forEach(el => {
+      el.addEventListener('click', () => {
+        if (block.dataset.done) return;
+        block.dataset.done = '1';
+        const picked = parseInt(el.dataset.i);
+        block.querySelectorAll('.option').forEach((o, i) => {
+          o.style.pointerEvents = 'none';
+          if (i === q.answer) o.classList.add('correct');
+          else if (i === picked) o.classList.add('wrong');
+        });
+        const exp = block.querySelector('.explanation');
+        exp.classList.remove('hidden');
+        exp.innerHTML = `<strong>${picked === q.answer ? '✓ 答對' : '✗ 正解：' + String.fromCharCode(65+q.answer)}</strong><br>${escapeHtml(q.explanation || '')}`;
+        if (picked !== q.answer) {
+          Storage.addMistake({ type: 'grammar', questionId: `${u.id}_${qi}`, yourAnswer: picked, correctAnswer: q.answer });
+        } else {
+          correct++;
+        }
+      });
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+init();
+</script>
+</body>
+</html>

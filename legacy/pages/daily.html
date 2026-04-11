@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今日學習 — TOEIC 875</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav id="main-nav"></nav>
+
+<div class="container">
+  <h1>今日學習 ✨</h1>
+  <p class="muted" id="day-label">載入中…</p>
+
+  <div class="card">
+    <h2>📖 今日新字</h2>
+    <div id="new-words-area">載入中…</div>
+  </div>
+
+  <div class="card">
+    <h2>🔁 待複習卡片</h2>
+    <div id="due-info" class="muted"></div>
+    <div class="row mt-12">
+      <a class="btn" href="review.html">開始複習 →</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📝 今日一題</h2>
+    <div id="daily-question">載入中…</div>
+  </div>
+</div>
+
+<script src="../data/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/srs.js"></script>
+<script src="../js/speech.js"></script>
+<script src="../js/app.js"></script>
+<script>
+App.init('daily.html');
+
+function daysSince(isoStart) {
+  const start = new Date(isoStart + 'T00:00:00');
+  const now = new Date();
+  return Math.floor((now - start) / 86400000) + 1;
+}
+
+async function init() {
+  const settings = Storage.getSettings();
+  const day = daysSince(settings.startDate || new Date().toISOString().slice(0,10));
+  document.getElementById('day-label').textContent = `Day ${Math.min(day, 90)} / 90`;
+
+  // 待複習提示
+  const dueCount = Storage.getDueVocab().length;
+  document.getElementById('due-info').textContent =
+    dueCount ? `目前有 ${dueCount} 張卡片需要複習。` : '今天沒有需要複習的字。';
+
+  // 今日新字
+  const [plan, vocab] = await Promise.all([
+    App.loadJSON('study-plan.json'),
+    App.loadJSON('vocabulary.json'),
+  ]);
+
+  const area = document.getElementById('new-words-area');
+  if (!plan || !vocab) {
+    area.innerHTML = '<div class="empty">尚未建立學習計畫。請先執行 <code>scripts/03_generate_plan.py</code>。</div>';
+  } else {
+    const vocabMap = {};
+    vocab.words.forEach(w => vocabMap[w.id] = w);
+    const dayIdx = Math.min(day - 1, plan.days.length - 1);
+    const todayPlan = plan.days[dayIdx];
+    if (!todayPlan || !todayPlan.newWords || !todayPlan.newWords.length) {
+      area.innerHTML = '<div class="empty">🎉 90 天計畫已完成！</div>';
+    } else {
+      const words = todayPlan.newWords.map(id => vocabMap[id]).filter(Boolean);
+      area.innerHTML = `
+        <div class="word-list">
+          ${words.map(w => {
+            const prog = Storage.getVocabProgress(w.id);
+            const tr = w.translation ? `<div class="translation">${escapeHtml(w.translation)}</div>` : '';
+            return `
+              <div class="word-row" data-id="${w.id}">
+                <div class="word-main">
+                  <div class="word-text">${escapeHtml(w.word)} <span class="phonetic">${escapeHtml(w.phonetic||'')}</span></div>
+                  ${tr}
+                  <div class="def">${escapeHtml(w.definition||'(無定義)')}</div>
+                  ${w.example ? `<div class="def muted" style="font-style:italic">「${escapeHtml(w.example)}」</div>` : ''}
+                </div>
+                <div class="row">
+                  <button class="btn small secondary btn-say">🔊</button>
+                  <button class="btn small ${prog ? 'success' : ''} btn-learn" title="${prog ? '再點一次可取消' : '加入學習'}">${prog ? '✓ 已加入（再點取消）' : '＋學習'}</button>
+                </div>
+              </div>`;
+          }).join('')}
+        </div>
+        <div class="row mt-20">
+          <button class="btn success" id="btn-add-all">全部加入學習</button>
+        </div>
+      `;
+      bindRow(words);
+      document.getElementById('btn-add-all').addEventListener('click', () => {
+        let added = 0;
+        words.forEach(w => {
+          if (!Storage.getVocabProgress(w.id)) {
+            Storage.setVocabProgress(w.id, SRS.newCard());
+            added++;
+          }
+        });
+        if (added) {
+          Storage.incTodayNew(added);
+          Storage.bumpStudyStreak();
+          App.toast(`已加入 ${added} 個新字`);
+          init();
+        } else {
+          App.toast('今天的新字都已加入');
+        }
+      });
+    }
+  }
+
+  loadDailyQuestion();
+}
+
+function bindRow(words) {
+  document.querySelectorAll('.word-row').forEach(row => {
+    const w = words.find(x => x.id === row.dataset.id);
+    if (!w) return;
+    row.querySelector('.btn-say').addEventListener('click', () => Speech.say(w.word));
+    row.querySelector('.btn-learn').addEventListener('click', () => {
+      if (Storage.getVocabProgress(w.id)) {
+        Storage.removeVocabProgress(w.id);
+        App.toast('已取消學習');
+      } else {
+        Storage.setVocabProgress(w.id, SRS.newCard());
+        Storage.incTodayNew(1);
+        Storage.bumpStudyStreak();
+        App.toast('已加入學習清單');
+      }
+      init();
+    });
+  });
+}
+
+async function loadDailyQuestion() {
+  const q5 = await App.loadJSON('questions-part5.json');
+  const area = document.getElementById('daily-question');
+  if (!q5 || !q5.questions || !q5.questions.length) {
+    area.innerHTML = '<div class="empty">尚無題庫。請先執行 <code>scripts/04_generate_questions.py</code>。</div>';
+    return;
+  }
+  // 以日期為種子取題
+  const day = daysSince(Storage.getSettings().startDate || new Date().toISOString().slice(0,10));
+  const q = q5.questions[day % q5.questions.length];
+  area.innerHTML = `
+    <div class="question-text">${escapeHtml(q.question)}</div>
+    <div id="daily-options">
+      ${q.options.map((o, i) => `<div class="option" data-i="${i}">${String.fromCharCode(65+i)}. ${escapeHtml(o)}</div>`).join('')}
+    </div>
+    <div class="explanation hidden" id="daily-exp"></div>
+  `;
+  document.querySelectorAll('#daily-options .option').forEach(el => {
+    el.addEventListener('click', () => {
+      const picked = parseInt(el.dataset.i);
+      const correct = q.answer;
+      document.querySelectorAll('#daily-options .option').forEach((o, i) => {
+        o.style.pointerEvents = 'none';
+        if (i === correct) o.classList.add('correct');
+        else if (i === picked) o.classList.add('wrong');
+      });
+      const exp = document.getElementById('daily-exp');
+      exp.classList.remove('hidden');
+      exp.innerHTML = `<strong>${picked === correct ? '✓ 答對了！' : '✗ 正確答案：' + String.fromCharCode(65+correct)}</strong><br>${escapeHtml(q.explanation || '')}`;
+      if (picked !== correct) {
+        Storage.addMistake({ type: 'part5', questionId: q.id, yourAnswer: picked, correctAnswer: correct });
+      }
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+init();
+</script>
+</body>
+</html>

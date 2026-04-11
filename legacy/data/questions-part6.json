@@ -1,0 +1,285 @@
+{
+  "part": 6,
+  "questions": [
+    {
+      "id": "p6_f9729f53",
+      "type": "part6",
+      "passage": "To: All Staff\nFrom: Facilities Management\nSubject: Office Relocation\n\nThis is to remind everyone that our department will be ______ (1) to the newly renovated building on 5th Avenue this weekend. Please ensure all personal items and ______ (2) are packed into the provided crates by 5:00 PM on Friday. ______ (3). Furthermore, any keys or access badges for the current office must be returned to the reception desk before you leave for the day. Your ______ (4) in this transition is greatly appreciated during this busy period.",
+      "question": "空格 (1)",
+      "options": [
+        "relocate",
+        "relocating",
+        "relocated",
+        "relocation"
+      ],
+      "answer": 1,
+      "explanation": "助動詞 will be 後接現在分詞 V-ing 表示未來進行式，描述即將發生的搬遷計劃。"
+    },
+    {
+      "id": "p6_4bc64a43",
+      "type": "part6",
+      "passage": "To: All Staff\nFrom: Facilities Management\nSubject: Office Relocation\n\nThis is to remind everyone that our department will be ______ (1) to the newly renovated building on 5th Avenue this weekend. Please ensure all personal items and ______ (2) are packed into the provided crates by 5:00 PM on Friday. ______ (3). Furthermore, any keys or access badges for the current office must be returned to the reception desk before you leave for the day. Your ______ (4) in this transition is greatly appreciated during this busy period.",
+      "question": "空格 (2)",
+      "options": [
+        "belongings",
+        "belong",
+        "belonged",
+        "belonging"
+      ],
+      "answer": 0,
+      "explanation": "在此需填入名詞作為動詞 packed 的受詞。belongings 為固定複數名詞，意為「個人財物、隨身物品」。"
+    },
+    {
+      "id": "p6_f2ab0fc0",
+      "type": "part6",
+      "passage": "To: All Staff\nFrom: Facilities Management\nSubject: Office Relocation\n\nThis is to remind everyone that our department will be ______ (1) to the newly renovated building on 5th Avenue this weekend. Please ensure all personal items and ______ (2) are packed into the provided crates by 5:00 PM on Friday. ______ (3). Furthermore, any keys or access badges for the current office must be returned to the reception desk before you leave for the day. Your ______ (4) in this transition is greatly appreciated during this busy period.",
+      "question": "空格 (3)",
+      "options": [
+        "The cafeteria will remain open during the weekend.",
+        "Labels should be clearly affixed to each crate.",
+        "The new building is located near a train station.",
+        "Employees are encouraged to work from home on Friday."
+      ],
+      "answer": 1,
+      "explanation": "句意插入題。前文提到物品需裝箱，後文提到還回鑰匙，選項 B（箱子上應貼好標籤）與搬遷準備工作的邏輯最為連貫。"
+    },
+    {
+      "id": "p6_5ec3a480",
+      "type": "part6",
+      "passage": "To: All Staff\nFrom: Facilities Management\nSubject: Office Relocation\n\nThis is to remind everyone that our department will be ______ (1) to the newly renovated building on 5th Avenue this weekend. Please ensure all personal items and ______ (2) are packed into the provided crates by 5:00 PM on Friday. ______ (3). Furthermore, any keys or access badges for the current office must be returned to the reception desk before you leave for the day. Your ______ (4) in this transition is greatly appreciated during this busy period.",
+      "question": "空格 (4)",
+      "options": [
+        "cooperation",
+        "cooperating",
+        "cooperative",
+        "cooperated"
+      ],
+      "answer": 0,
+      "explanation": "形容詞所有格 Your 後方應接名詞。cooperation（合作）符合商業書信感謝語語境。"
+    },
+    {
+      "id": "p6_3585461b",
+      "type": "part6",
+      "passage": "Dear Mr. Higgins,\n\nI am writing to invite you to our upcoming 'Leadership Excellence' seminar scheduled for next month. Your ______ (5) participation is highly valued as we aim to foster a culture of innovation. ______ (6). All attendees are requested to bring their laptops, as the session involves interactive simulations. Please confirm your attendance by replying to this email by Friday afternoon. Should you have any dietary restrictions, please ______ (7) us as soon as possible. We look forward to your ______ (8) input during the workshop.",
+      "question": "空格 (5)",
+      "options": [
+        "active",
+        "actively",
+        "action",
+        "activated"
+      ],
+      "answer": 0,
+      "explanation": "修飾名詞 participation，需使用形容詞。active 為「積極的」，符合邀請函語氣。"
+    },
+    {
+      "id": "p6_fa7c4012",
+      "type": "part6",
+      "passage": "Dear Mr. Higgins,\n\nI am writing to invite you to our upcoming 'Leadership Excellence' seminar scheduled for next month. Your ______ (5) participation is highly valued as we aim to foster a culture of innovation. ______ (6). All attendees are requested to bring their laptops, as the session involves interactive simulations. Please confirm your attendance by replying to this email by Friday afternoon. Should you have any dietary restrictions, please ______ (7) us as soon as possible. We look forward to your ______ (8) input during the workshop.",
+      "question": "空格 (6)",
+      "options": [
+        "Lunch will be provided at the local cafeteria.",
+        "The event will feature several keynote speakers from the industry.",
+        "The parking lot is currently under renovation.",
+        "We apologize for the short notice of this meeting."
+      ],
+      "answer": 1,
+      "explanation": "句意插入題。此段落為研討會邀請，選項 B 介紹研討會內容（主題演講嘉賓）最符合上下文。"
+    },
+    {
+      "id": "p6_eb311fee",
+      "type": "part6",
+      "passage": "Dear Mr. Higgins,\n\nI am writing to invite you to our upcoming 'Leadership Excellence' seminar scheduled for next month. Your ______ (5) participation is highly valued as we aim to foster a culture of innovation. ______ (6). All attendees are requested to bring their laptops, as the session involves interactive simulations. Please confirm your attendance by replying to this email by Friday afternoon. Should you have any dietary restrictions, please ______ (7) us as soon as possible. We look forward to your ______ (8) input during the workshop.",
+      "question": "空格 (7)",
+      "options": [
+        "notify",
+        "notification",
+        "notifying",
+        "notified"
+      ],
+      "answer": 0,
+      "explanation": "祈使句 please 後接原形動詞。notify 為「通知」。"
+    },
+    {
+      "id": "p6_3e9ef040",
+      "type": "part6",
+      "passage": "Dear Mr. Higgins,\n\nI am writing to invite you to our upcoming 'Leadership Excellence' seminar scheduled for next month. Your ______ (5) participation is highly valued as we aim to foster a culture of innovation. ______ (6). All attendees are requested to bring their laptops, as the session involves interactive simulations. Please confirm your attendance by replying to this email by Friday afternoon. Should you have any dietary restrictions, please ______ (7) us as soon as possible. We look forward to your ______ (8) input during the workshop.",
+      "question": "空格 (8)",
+      "options": [
+        "insightful",
+        "insight",
+        "insights",
+        "insignificant"
+      ],
+      "answer": 0,
+      "explanation": "形容詞修飾名詞 input。insightful（具洞察力的、有深刻見解的）常用於稱讚他人的意見或貢獻。"
+    },
+    {
+      "id": "p6_c7fdabc3",
+      "type": "part6",
+      "passage": "Notice to Shareholders\n\nLuminary Tech is proud to announce a significant ______ (9) in its research and development budget for the upcoming fiscal year. This strategic move is intended to accelerate the production of our next-generation semiconductor chips. ______ (10). Consequently, we anticipate a slight reduction in dividends for the next two quarters. We believe this investment will ensure the company's ______ (11) competitiveness in the global market. We appreciate your ______ (12) support as we pursue these ambitious growth targets.",
+      "question": "空格 (9)",
+      "options": [
+        "increase",
+        "increasing",
+        "increased",
+        "increasingly"
+      ],
+      "answer": 0,
+      "explanation": "冠詞 a 加上形容詞 significant 後應接名詞。increase 在此作為名詞，表示預算的「增加」。"
+    },
+    {
+      "id": "p6_adc81b14",
+      "type": "part6",
+      "passage": "Notice to Shareholders\n\nLuminary Tech is proud to announce a significant ______ (9) in its research and development budget for the upcoming fiscal year. This strategic move is intended to accelerate the production of our next-generation semiconductor chips. ______ (10). Consequently, we anticipate a slight reduction in dividends for the next two quarters. We believe this investment will ensure the company's ______ (11) competitiveness in the global market. We appreciate your ______ (12) support as we pursue these ambitious growth targets.",
+      "question": "空格 (10)",
+      "options": [
+        "The company will sell its manufacturing plant.",
+        "Market analysts predict a surge in demand for these components.",
+        "Our competitors have recently filed for bankruptcy.",
+        "The annual report will be delayed until further notice."
+      ],
+      "answer": 1,
+      "explanation": "句意插入題。前文提到加速生產晶片，後文提到股息減少。選項 B（分析師預測需求激增）為增加預算提供了合理的市場動機。"
+    },
+    {
+      "id": "p6_6435ce42",
+      "type": "part6",
+      "passage": "Notice to Shareholders\n\nLuminary Tech is proud to announce a significant ______ (9) in its research and development budget for the upcoming fiscal year. This strategic move is intended to accelerate the production of our next-generation semiconductor chips. ______ (10). Consequently, we anticipate a slight reduction in dividends for the next two quarters. We believe this investment will ensure the company's ______ (11) competitiveness in the global market. We appreciate your ______ (12) support as we pursue these ambitious growth targets.",
+      "question": "空格 (11)",
+      "options": [
+        "long-term",
+        "lengthy",
+        "longing",
+        "elongated"
+      ],
+      "answer": 0,
+      "explanation": "形容詞修飾 competitiveness。long-term（長期的）符合投資與競爭力增長的商業邏輯。"
+    },
+    {
+      "id": "p6_7d68a77f",
+      "type": "part6",
+      "passage": "Notice to Shareholders\n\nLuminary Tech is proud to announce a significant ______ (9) in its research and development budget for the upcoming fiscal year. This strategic move is intended to accelerate the production of our next-generation semiconductor chips. ______ (10). Consequently, we anticipate a slight reduction in dividends for the next two quarters. We believe this investment will ensure the company's ______ (11) competitiveness in the global market. We appreciate your ______ (12) support as we pursue these ambitious growth targets.",
+      "question": "空格 (12)",
+      "options": [
+        "continued",
+        "continuing",
+        "continues",
+        "continuation"
+      ],
+      "answer": 0,
+      "explanation": "分詞修飾名詞 support。continued support 為商業常用詞組，指「一如既往、持續的」支持。"
+    },
+    {
+      "id": "p6_7c7cff00",
+      "type": "part6",
+      "passage": "Memo\n\nTo improve the efficiency of our internal communications, the IT department will be ______ (13) a new project management platform starting next Monday. All staff members are required to attend a brief training session to ______ (14) themselves with the software's features. ______ (15). Please check the attached schedule for your assigned time slot. We are confident that this tool will ______ (16) facilitate collaboration across different departments and reduce reliance on internal emails.",
+      "question": "空格 (13)",
+      "options": [
+        "implementing",
+        "implement",
+        "implemented",
+        "implementation"
+      ],
+      "answer": 0,
+      "explanation": "will be + V-ing（未來進行式），表示即將執行的計畫（實施新平台）。"
+    },
+    {
+      "id": "p6_b4e8d99e",
+      "type": "part6",
+      "passage": "Memo\n\nTo improve the efficiency of our internal communications, the IT department will be ______ (13) a new project management platform starting next Monday. All staff members are required to attend a brief training session to ______ (14) themselves with the software's features. ______ (15). Please check the attached schedule for your assigned time slot. We are confident that this tool will ______ (16) facilitate collaboration across different departments and reduce reliance on internal emails.",
+      "question": "空格 (14)",
+      "options": [
+        "familiarize",
+        "familiar",
+        "familiarity",
+        "familiarly"
+      ],
+      "answer": 0,
+      "explanation": "to + V 原形（不定詞）。familiarize oneself with 為固定用法，意為「使自己熟悉某事」。"
+    },
+    {
+      "id": "p6_4fddfd36",
+      "type": "part6",
+      "passage": "Memo\n\nTo improve the efficiency of our internal communications, the IT department will be ______ (13) a new project management platform starting next Monday. All staff members are required to attend a brief training session to ______ (14) themselves with the software's features. ______ (15). Please check the attached schedule for your assigned time slot. We are confident that this tool will ______ (16) facilitate collaboration across different departments and reduce reliance on internal emails.",
+      "question": "空格 (15)",
+      "options": [
+        "The software was developed by an external vendor.",
+        "Attendance at these sessions is mandatory for all personnel.",
+        "The IT department will be closed for maintenance.",
+        "Previous versions of the software will still be available."
+      ],
+      "answer": 1,
+      "explanation": "句意插入題。前文提到員工需參加培訓，後文提到分配時段，選項 B（所有人必須參加）最符合公司公告的語氣。"
+    },
+    {
+      "id": "p6_eb4d5195",
+      "type": "part6",
+      "passage": "Memo\n\nTo improve the efficiency of our internal communications, the IT department will be ______ (13) a new project management platform starting next Monday. All staff members are required to attend a brief training session to ______ (14) themselves with the software's features. ______ (15). Please check the attached schedule for your assigned time slot. We are confident that this tool will ______ (16) facilitate collaboration across different departments and reduce reliance on internal emails.",
+      "question": "空格 (16)",
+      "options": [
+        "significantly",
+        "significance",
+        "significant",
+        "signifying"
+      ],
+      "answer": 0,
+      "explanation": "副詞修飾動詞 facilitate。significantly 意為「顯著地、大幅地」。"
+    },
+    {
+      "id": "p6_87822a40",
+      "type": "part6",
+      "passage": "Job Opportunity\n\nGlobal Logistics Inc. is currently seeking a ______ (17) and motivated individual for the position of Logistics Coordinator. The successful candidate will be responsible for overseeing international shipments and ensuring ______ (18) with maritime regulations. ______ (19). Applicants must possess at least five years of experience in the supply chain industry and demonstrate proficiency in several languages. Interested parties should submit their resumes ______ (20) the online portal no later than August 15th.",
+      "question": "空格 (17)",
+      "options": [
+        "dedicated",
+        "dedicate",
+        "dedicating",
+        "dedication"
+      ],
+      "answer": 0,
+      "explanation": "形容詞修飾 individual。dedicated 為形容詞，指「盡職的、投入的」。"
+    },
+    {
+      "id": "p6_fab69a72",
+      "type": "part6",
+      "passage": "Job Opportunity\n\nGlobal Logistics Inc. is currently seeking a ______ (17) and motivated individual for the position of Logistics Coordinator. The successful candidate will be responsible for overseeing international shipments and ensuring ______ (18) with maritime regulations. ______ (19). Applicants must possess at least five years of experience in the supply chain industry and demonstrate proficiency in several languages. Interested parties should submit their resumes ______ (20) the online portal no later than August 15th.",
+      "question": "空格 (18)",
+      "options": [
+        "compliance",
+        "complying",
+        "compliant",
+        "comply"
+      ],
+      "answer": 0,
+      "explanation": "動詞 ensure（確保）後接名詞受詞。compliance with 為固定用法，指「遵守（法規）」。"
+    },
+    {
+      "id": "p6_b9ea662a",
+      "type": "part6",
+      "passage": "Job Opportunity\n\nGlobal Logistics Inc. is currently seeking a ______ (17) and motivated individual for the position of Logistics Coordinator. The successful candidate will be responsible for overseeing international shipments and ensuring ______ (18) with maritime regulations. ______ (19). Applicants must possess at least five years of experience in the supply chain industry and demonstrate proficiency in several languages. Interested parties should submit their resumes ______ (20) the online portal no later than August 15th.",
+      "question": "空格 (19)",
+      "options": [
+        "A background check will be conducted for all candidates.",
+        "The office is conveniently located near the city center.",
+        "Excellent negotiation skills are also a prerequisite for this role.",
+        "The company was founded more than twenty years ago."
+      ],
+      "answer": 2,
+      "explanation": "句意插入題。此段落描述職位要求，選項 C（優秀的談判技巧也是先決條件）與後文的經驗及語言要求性質相同。"
+    },
+    {
+      "id": "p6_580b741b",
+      "type": "part6",
+      "passage": "Job Opportunity\n\nGlobal Logistics Inc. is currently seeking a ______ (17) and motivated individual for the position of Logistics Coordinator. The successful candidate will be responsible for overseeing international shipments and ensuring ______ (18) with maritime regulations. ______ (19). Applicants must possess at least five years of experience in the supply chain industry and demonstrate proficiency in several languages. Interested parties should submit their resumes ______ (20) the online portal no later than August 15th.",
+      "question": "空格 (20)",
+      "options": [
+        "via",
+        "along",
+        "toward",
+        "onto"
+      ],
+      "answer": 0,
+      "explanation": "介係詞題。via 表示「透過、經由（某種管道）」，在此指透過線上入口網站提交簡歷。"
+    }
+  ]
+}
