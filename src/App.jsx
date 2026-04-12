@@ -11,6 +11,7 @@ import GrammarPage from "./pages/GrammarPage";
 import ProgressPage from "./pages/ProgressPage";
 import MistakesPage from "./pages/MistakesPage";
 import VocabGamePage from "./pages/VocabGamePage";
+import DailyVocabPage from "./pages/DailyVocabPage";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/vocabulary" element={<VocabularyPage />} />
+          <Route path="/daily-vocab" element={<DailyVocabPage />} />
           <Route path="/practice" element={<PracticePage />} />
           <Route path="/grammar" element={<GrammarPage />} />
           <Route path="/review" element={<ReviewPage />} />

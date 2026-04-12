@@ -4,6 +4,7 @@ import { DEFAULT_AI_SETTINGS, normalizeAiSettings } from "../lib/aiModels";
 import { probeModelAvailability } from "../lib/geminiService";
 import { importLegacyLocalData, saveUserKey, saveUserSettings } from "../lib/firestoreService";
 import { normalizeTargetSettings, targetLevelFromScore } from "../lib/targetDifficulty";
+import { parseDateInput } from "../lib/vocabPlan";
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -27,6 +28,8 @@ export default function SettingsPage() {
   const [aiSettings, setAiSettings] = useState(DEFAULT_AI_SETTINGS);
   const [examPreset, setExamPreset] = useState("10x5");
   const [targetScore, setTargetScore] = useState(860);
+  const [planStartDate, setPlanStartDate] = useState("");
+  const [planExamDate, setPlanExamDate] = useState("");
   const [reminderEnabled, setReminderEnabled] = useState(false);
   const [reminderTime, setReminderTime] = useState("20:30");
   const [message, setMessage] = useState("");
@@ -38,6 +41,8 @@ export default function SettingsPage() {
     setAiSettings(normalizeAiSettings(profile?.settings?.ai || {}));
     setExamPreset(profile?.settings?.examPreset || "10x5");
     setTargetScore(normalizeTargetSettings(profile?.settings || {}).targetScore);
+    setPlanStartDate(profile?.settings?.vocabPlan?.startDate || "");
+    setPlanExamDate(profile?.settings?.vocabPlan?.examDate || "");
     setReminderEnabled(!!profile?.settings?.reminder?.enabled);
     setReminderTime(profile?.settings?.reminder?.time || "20:30");
   }, [profile?.geminiApiKey, profile?.settings]);
@@ -61,9 +66,24 @@ export default function SettingsPage() {
     ].filter(Boolean).map((x) => String(x).trim()))];
   }, [aiSettings, profile?.settings?.ai]);
 
+  function validateVocabPlanDates() {
+    if (!planStartDate && !planExamDate) return "";
+    const start = parseDateInput(planStartDate);
+    const end = parseDateInput(planExamDate);
+    if (!start || !end) return "請填入有效的備考開始日期與考試日期。";
+    if (end.getTime() < start.getTime()) return "考試日期不能早於開始日期。";
+    return "";
+  }
+
   const onSaveAll = async () => {
     setSaving(true);
     setMessage("");
+    const planError = validateVocabPlanDates();
+    if (planError) {
+      setMessage(planError);
+      setSaving(false);
+      return;
+    }
 
     const normalizedAi = normalizeAiSettings(aiSettings);
     try {
@@ -71,6 +91,10 @@ export default function SettingsPage() {
         examPreset,
         targetScore,
         targetLevel: targetLevelFromScore(targetScore),
+        vocabPlan: {
+          startDate: planStartDate,
+          examDate: planExamDate,
+        },
         reminder: {
           enabled: reminderEnabled,
           time: reminderTime,
@@ -78,7 +102,7 @@ export default function SettingsPage() {
       });
       localStorage.setItem("toeic.ai.settings", JSON.stringify(normalizedAi));
       await refreshProfile(user.uid);
-      setMessage("已儲存：API Key、模型、目標分數、考試預設與每日提醒設定已同步。");
+      setMessage("已儲存：API Key、模型、目標分數、備考日程、考試預設與每日提醒設定已同步。");
     } catch (err) {
       setMessage(err.message || "儲存失敗");
     } finally {
@@ -172,17 +196,54 @@ export default function SettingsPage() {
 
   const onSaveReminderOnly = async () => {
     setSaving(true);
+    setMessage("");
+    const planError = validateVocabPlanDates();
+    if (planError) {
+      setMessage(planError);
+      setSaving(false);
+      return;
+    }
     try {
       await saveUserSettings(user.uid, {
         reminder: { enabled: reminderEnabled, time: reminderTime },
         examPreset,
         targetScore,
         targetLevel: targetLevelFromScore(targetScore),
+        vocabPlan: {
+          startDate: planStartDate,
+          examDate: planExamDate,
+        },
       });
       await refreshProfile(user.uid);
-      setMessage("提醒、預設與目標分數已儲存。");
+      setMessage("提醒、預設、目標分數與備考日程已儲存。");
     } catch (err) {
       setMessage(err.message || "儲存失敗");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const onSaveVocabPlanOnly = async () => {
+    setSaving(true);
+    setMessage("");
+    const planError = validateVocabPlanDates();
+    if (planError) {
+      setMessage(planError);
+      setSaving(false);
+      return;
+    }
+
+    try {
+      await saveUserSettings(user.uid, {
+        vocabPlan: {
+          startDate: planStartDate,
+          examDate: planExamDate,
+        },
+      });
+      await refreshProfile(user.uid);
+      setMessage("備考日程規劃已儲存。");
+    } catch (err) {
+      setMessage(err.message || "儲存備考日程失敗");
     } finally {
       setSaving(false);
     }
@@ -193,7 +254,7 @@ export default function SettingsPage() {
       <section className="hero-panel compact">
         <p className="eyebrow">SETTINGS</p>
         <h2>帳號與學習設定</h2>
-        <p className="muted">Gemini Key、模型、目標分數、考試預設、提醒時間都會同步到 Firestore。</p>
+        <p className="muted">Gemini Key、模型、目標分數、備考日程、考試預設、提醒時間都會同步到 Firestore。</p>
       </section>
 
       <Card>
@@ -246,6 +307,26 @@ export default function SettingsPage() {
         <div className="row wrap">
           <Button variant="secondary" onClick={onSaveModelsOnly} disabled={saving}>僅儲存模型設定</Button>
           <Button variant="ghost" onClick={onResetModelsToDefault} disabled={saving}>套用預設模型</Button>
+        </div>
+      </Card>
+
+      <Card>
+        <h3>備考日程規劃</h3>
+        <p className="muted">設定從哪一天開始準備，到正式考試那天；每日單字會依此分配在「每日單字」頁。</p>
+        <div className="row wrap">
+          <InputField
+            label="開始日期"
+            type="date"
+            value={planStartDate}
+            onChange={(e) => setPlanStartDate(e.target.value)}
+          />
+          <InputField
+            label="考試日期"
+            type="date"
+            value={planExamDate}
+            onChange={(e) => setPlanExamDate(e.target.value)}
+          />
+          <Button variant="secondary" onClick={onSaveVocabPlanOnly} disabled={saving}>儲存備考日程</Button>
         </div>
       </Card>
 

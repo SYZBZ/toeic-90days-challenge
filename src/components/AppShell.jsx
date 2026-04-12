@@ -8,6 +8,7 @@ const desktopLinks = [
   { to: "/dashboard", label: "Dashboard", icon: "dashboard" },
   { to: "/progress", label: "進度頁", icon: "monitoring" },
   { to: "/vocabulary", label: "單字庫", icon: "library_books" },
+  { to: "/daily-vocab", label: "每日單字", icon: "today" },
   { to: "/review", label: "單字複習", icon: "cycle" },
   { to: "/vocab-game", label: "單字遊戲", icon: "sports_esports" },
   { to: "/practice", label: "考試", icon: "quiz" },
@@ -19,6 +20,7 @@ const desktopLinks = [
 const mobileLinks = [
   { to: "/dashboard", label: "首頁", icon: "dashboard" },
   { to: "/vocabulary", label: "單字", icon: "library_books" },
+  { to: "/daily-vocab", label: "每日", icon: "today" },
   { to: "/practice", label: "考試", icon: "quiz" },
   { to: "/mistakes", label: "錯題", icon: "error" },
   { to: "/settings", label: "設定", icon: "settings" },
