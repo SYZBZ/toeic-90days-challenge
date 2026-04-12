@@ -20,7 +20,7 @@
  * @typedef {Object} UserProfile
  * @property {string} email
  * @property {string} geminiApiKey
- * @property {{level?: string, part?: string, examPreset?: "10x5"|"20x10", exam?: ExamSettings, reminder?: ReminderSettings, ai?: AiSettings}} settings
+ * @property {{level?: string, targetScore?: 470|730|860, targetLevel?: "green"|"blue"|"gold", part?: string, examPreset?: "10x5"|"20x10", exam?: ExamSettings, reminder?: ReminderSettings, ai?: AiSettings}} settings
  */
 
 /**
@@ -35,6 +35,7 @@
  * @property {string} poolDocId
  * @property {"part5"|"part6"|"part7"} part
  * @property {"single"|"passage_group"} kind
+ * @property {"green"|"blue"|"gold"} level
  * @property {string} hashId
  * @property {number} size
  * @property {QuestionItem|PassageGroup} payload
@@ -64,6 +65,7 @@
  * @property {string} question
  * @property {string[]} options
  * @property {number} answer
+ * @property {"green"|"blue"|"gold"} difficulty
  * @property {string=} explanation
  */
 

@@ -10,6 +10,10 @@ This repo is now a serverless TOEIC app on:
 Legacy static site is preserved in `legacy/`.
 
 ## Current Product Behaviors
+- Adaptive difficulty by target score:
+  - 470 -> green
+  - 730 -> blue
+  - 860 -> gold
 - Practice flow is exam-oriented (not topic input):
   - setup -> taking -> submit -> detailed explanations -> history review
 - Modes:
@@ -43,10 +47,13 @@ Legacy static site is preserved in `legacy/`.
 - root doc:
   - `email`, `geminiApiKey`
   - `settings.level`, `settings.part`
+  - `settings.targetScore`, `settings.targetLevel`
   - `settings.examPreset`
   - `settings.reminder.{enabled,time}`
   - `settings.ai.{questionModel,analysisModel,analysisFallbackModel}`
 - subcollections:
+  - `question_pool` (level-aware FIFO pool)
+  - `pool_history`
   - `examAttempts`
   - `history`
   - `mistakes`
@@ -76,6 +83,10 @@ Legacy static site is preserved in `legacy/`.
   - `public/data/questions-part7.json`
 
 ## Collaboration Notes for Claude Code
+- Keep question dispatch level-aware: pool filtering must include `part + targetLevel`.
+- Keep pool dedupe hash independent from level, but on level conflict prefer current target level.
+- Keep missing `question_pool.level` migration silent and non-blocking.
+- Keep background pool expansion button locked while request is in-flight.
 - Do not reintroduce topic-based practice input.
 - Keep exam snapshots in `examAttempts` for review playback.
 - Keep analysis in batch mode to reduce API pressure.

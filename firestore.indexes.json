@@ -15,6 +15,24 @@
       ]
     },
     {
+      "collectionGroup": "question_pool",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "part",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "level",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "pool_history",
       "queryScope": "COLLECTION",
       "fields": [

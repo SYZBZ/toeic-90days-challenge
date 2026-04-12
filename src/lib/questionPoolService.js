@@ -1,6 +1,5 @@
 ﻿import {
   collection,
-  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -13,8 +12,18 @@
   writeBatch,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { normalizeTargetLevel } from "./targetDifficulty";
 
 const PARTS = ["part5", "part6", "part7"];
+const LEVELS = ["green", "blue", "gold"];
+const pendingLevelMigrations = new Map();
+const runningLevelMigrations = new Set();
+
+function normalizeLevel(value, fallback = "gold") {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (LEVELS.includes(normalized)) return normalized;
+  return normalizeTargetLevel(fallback, "gold");
+}
 
 function stableStringify(value) {
   if (value === null || value === undefined) return String(value);
@@ -33,13 +42,14 @@ function fnv1aHash(input) {
   return (`0000000${(h >>> 0).toString(16)}`).slice(-8);
 }
 
-function normalizeQuestionForPool(raw = {}, part) {
+function normalizeQuestionForPool(raw = {}, part, fallbackLevel = "gold") {
   return {
     id: raw.id || `${part}_${Date.now()}_${Math.random().toString(16).slice(2, 8)}`,
     type: raw.type || part,
     question: String(raw.question || "").trim(),
     options: Array.isArray(raw.options) ? raw.options.map((x) => String(x || "").trim()) : [],
     answer: Number(raw.answer),
+    difficulty: normalizeLevel(raw.difficulty, fallbackLevel),
     explanation: String(raw.explanation || raw.explanationZh || ""),
     question_zh: String(raw.question_zh || raw.questionZh || ""),
     options_zh: Array.isArray(raw.options_zh) ? raw.options_zh : (Array.isArray(raw.optionsZh) ? raw.optionsZh : []),
@@ -48,19 +58,87 @@ function normalizeQuestionForPool(raw = {}, part) {
   };
 }
 
-function toPassageGroups(part, docs = []) {
+function resolveGroupLevel(questions, fallbackLevel = "gold") {
+  for (const q of questions || []) {
+    const lv = String(q?.difficulty || "").trim().toLowerCase();
+    if (LEVELS.includes(lv)) return lv;
+  }
+  return normalizeLevel(fallbackLevel, "gold");
+}
+
+function inferLevelFromPoolDoc(data = {}, fallbackLevel = "gold") {
+  const direct = String(data?.level || "").trim().toLowerCase();
+  if (LEVELS.includes(direct)) return direct;
+
+  const payload = data?.payload || {};
+  const singleLv = String(payload?.difficulty || "").trim().toLowerCase();
+  if (LEVELS.includes(singleLv)) return singleLv;
+
+  const groupLv = Array.isArray(payload?.questions)
+    ? payload.questions.map((q) => String(q?.difficulty || "").trim().toLowerCase()).find((lv) => LEVELS.includes(lv))
+    : "";
+  if (LEVELS.includes(groupLv)) return groupLv;
+
+  return normalizeLevel(fallbackLevel, "gold");
+}
+
+function queueLevelMigration(uid, updates = []) {
+  const validUpdates = updates.filter((x) => x?.poolDocId && LEVELS.includes(String(x?.level || "").toLowerCase()));
+  if (!validUpdates.length) return;
+
+  const map = pendingLevelMigrations.get(uid) || new Map();
+  for (const item of validUpdates) {
+    map.set(item.poolDocId, normalizeLevel(item.level, "gold"));
+  }
+  pendingLevelMigrations.set(uid, map);
+
+  if (runningLevelMigrations.has(uid)) return;
+  runningLevelMigrations.add(uid);
+
+  Promise.resolve().then(async () => {
+    try {
+      while (true) {
+        const queued = pendingLevelMigrations.get(uid);
+        if (!queued || queued.size === 0) break;
+
+        pendingLevelMigrations.set(uid, new Map());
+        const batch = writeBatch(db);
+        for (const [poolDocId, level] of queued.entries()) {
+          const ref = doc(db, "users", uid, "question_pool", poolDocId);
+          batch.set(ref, {
+            level: normalizeLevel(level, "gold"),
+            updatedAt: serverTimestamp(),
+            updatedAtMs: Date.now(),
+          }, { merge: true });
+        }
+
+        try {
+          await batch.commit();
+        } catch {
+          // Silent lazy migration: never block user-facing flow.
+        }
+      }
+    } finally {
+      runningLevelMigrations.delete(uid);
+    }
+  });
+}
+
+function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
   if (part === "part5") {
     return docs
-      .map((raw) => normalizeQuestionForPool(raw, part))
+      .map((raw) => normalizeQuestionForPool(raw, part, fallbackLevel))
       .filter((q) => q.question && q.options.length === 4 && Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3)
       .map((q) => ({
         part,
         kind: "single",
+        level: normalizeLevel(q.difficulty, fallbackLevel),
         size: 1,
         payload: {
           question: q.question,
           options: q.options,
           answer: q.answer,
+          difficulty: normalizeLevel(q.difficulty, fallbackLevel),
           explanation: q.explanation,
           question_zh: q.question_zh,
           options_zh: q.options_zh,
@@ -78,12 +156,12 @@ function toPassageGroups(part, docs = []) {
       grouped.set(key, {
         passage: String(raw.payload.passage || ""),
         passage_zh: String(raw.payload.passage_zh || ""),
-        questions: raw.payload.questions.map((q) => normalizeQuestionForPool(q, part)),
+        questions: raw.payload.questions.map((q) => normalizeQuestionForPool(q, part, fallbackLevel)),
       });
       continue;
     }
 
-    const q = normalizeQuestionForPool(raw, part);
+    const q = normalizeQuestionForPool(raw, part, fallbackLevel);
     if (!q.question || q.options.length !== 4 || !Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) continue;
 
     const key = q.passage || `nogroup_${q.id}`;
@@ -101,9 +179,12 @@ function toPassageGroups(part, docs = []) {
   const out = [];
   for (const group of grouped.values()) {
     if (!group.questions.length) continue;
+
+    const groupLevel = resolveGroupLevel(group.questions, fallbackLevel);
     out.push({
       part,
       kind: "passage_group",
+      level: groupLevel,
       size: group.questions.length,
       payload: {
         passage: group.passage,
@@ -114,6 +195,7 @@ function toPassageGroups(part, docs = []) {
           question: q.question,
           options: q.options,
           answer: q.answer,
+          difficulty: normalizeLevel(q.difficulty, groupLevel),
           explanation: q.explanation,
           question_zh: q.question_zh,
           options_zh: q.options_zh,
@@ -155,10 +237,13 @@ function poolDocRef(uid, part, hashId) {
 }
 
 function flattenPayloadToQuestions(poolDoc) {
+  const baseLevel = normalizeLevel(poolDoc.level, "gold");
+
   if (poolDoc.kind === "single") {
     return [{
       ...poolDoc.payload,
       type: poolDoc.part,
+      difficulty: normalizeLevel(poolDoc.payload?.difficulty, baseLevel),
       passage: "",
       passage_zh: "",
     }];
@@ -170,6 +255,7 @@ function flattenPayloadToQuestions(poolDoc) {
   return (payload.questions || []).map((q) => ({
     ...q,
     type: poolDoc.part,
+    difficulty: normalizeLevel(q?.difficulty, baseLevel),
     passage,
     passage_zh: passageZh,
   }));
@@ -179,20 +265,42 @@ export async function appendToQuestionPool(uid, part, docs, meta = {}) {
   const normalizedPart = String(part || "").toLowerCase();
   if (!PARTS.includes(normalizedPart)) throw new Error(`Unsupported part: ${part}`);
 
-  const groupedDocs = toPassageGroups(normalizedPart, docs);
+  const currentTargetLevel = normalizeLevel(meta.currentTargetLevel || meta.level, "gold");
+  const groupedDocs = toPassageGroups(normalizedPart, docs, currentTargetLevel);
   if (!groupedDocs.length) {
-    return { addedDocs: 0, addedQuestions: 0, skippedDuplicates: 0 };
+    return {
+      addedDocs: 0,
+      addedQuestions: 0,
+      skippedDuplicates: 0,
+      upgradedDuplicates: 0,
+    };
   }
 
   let addedDocs = 0;
   let addedQuestions = 0;
   let skippedDuplicates = 0;
+  let upgradedDuplicates = 0;
 
   for (const candidate of groupedDocs) {
     const hashId = hashForDoc(candidate);
     const ref = poolDocRef(uid, normalizedPart, hashId);
     const exists = await getDoc(ref);
+
+    const candidateLevel = normalizeLevel(candidate.level || meta.level, currentTargetLevel);
+
     if (exists.exists()) {
+      const old = exists.data() || {};
+      const oldLevel = inferLevelFromPoolDoc(old, currentTargetLevel);
+
+      if (candidateLevel === currentTargetLevel && oldLevel !== currentTargetLevel) {
+        await setDoc(ref, {
+          level: currentTargetLevel,
+          updatedAt: serverTimestamp(),
+          updatedAtMs: Date.now(),
+        }, { merge: true });
+        upgradedDuplicates += 1;
+      }
+
       skippedDuplicates += 1;
       continue;
     }
@@ -201,6 +309,7 @@ export async function appendToQuestionPool(uid, part, docs, meta = {}) {
     await setDoc(ref, {
       part: normalizedPart,
       kind: candidate.kind,
+      level: candidateLevel,
       hashId,
       size: candidate.size,
       payload: candidate.payload,
@@ -214,49 +323,71 @@ export async function appendToQuestionPool(uid, part, docs, meta = {}) {
     addedQuestions += candidate.size;
   }
 
-  return { addedDocs, addedQuestions, skippedDuplicates };
+  return { addedDocs, addedQuestions, skippedDuplicates, upgradedDuplicates };
 }
 
-export async function getPoolStock(uid) {
-  const out = { part5: 0, part6: 0, part7: 0, mixed: 0, docs: 0 };
+export async function getPoolStock(uid, options = {}) {
+  const targetLevel = options?.targetLevel ? normalizeLevel(options.targetLevel, "gold") : "";
+  const out = { part5: 0, part6: 0, part7: 0, mixed: 0, docs: 0, targetLevel: targetLevel || null };
 
+  const migration = [];
   const snap = await getDocs(collection(db, "users", uid, "question_pool"));
   snap.forEach((d) => {
     const data = d.data() || {};
     const size = Number(data.size || 0);
     const part = data.part;
-    if (PARTS.includes(part)) {
-      out[part] += size;
-      out.docs += 1;
+    if (!PARTS.includes(part) || !size) return;
+
+    const resolvedLevel = inferLevelFromPoolDoc(data, targetLevel || "gold");
+    if (!data.level) {
+      migration.push({ poolDocId: d.id, level: resolvedLevel });
     }
+
+    if (targetLevel && resolvedLevel !== targetLevel) return;
+
+    out[part] += size;
+    out.docs += 1;
   });
+
+  queueLevelMigration(uid, migration);
 
   out.mixed = out.part5 + out.part6 + out.part7;
   return out;
 }
 
-export async function dequeueFromPoolFIFO(uid, part, maxQuestions, sessionId) {
+export async function dequeueFromPoolFIFO(uid, part, maxQuestions, sessionId, options = {}) {
   const normalizedPart = String(part || "").toLowerCase();
   if (!PARTS.includes(normalizedPart)) throw new Error(`Unsupported part: ${part}`);
 
   const target = Math.max(0, Number(maxQuestions || 0));
+  const targetLevel = options?.targetLevel ? normalizeLevel(options.targetLevel, "gold") : "";
   if (target === 0) return { docs: [], questionCount: 0, questions: [] };
 
   const q = query(
     collection(db, "users", uid, "question_pool"),
     where("part", "==", normalizedPart),
     orderBy("createdAt", "asc"),
-    limit(200),
+    limit(300),
   );
 
   const snap = await getDocs(q);
   const picked = [];
   let pickedCount = 0;
+  const migration = [];
 
   for (const d of snap.docs) {
     const data = d.data() || {};
     const size = Number(data.size || 0);
     if (!size) continue;
+
+    const resolvedLevel = inferLevelFromPoolDoc(data, targetLevel || "gold");
+    if (!data.level) {
+      migration.push({ poolDocId: d.id, level: resolvedLevel });
+    }
+
+    if (targetLevel && resolvedLevel !== targetLevel) {
+      continue;
+    }
 
     if (pickedCount + size > target) {
       break;
@@ -266,6 +397,7 @@ export async function dequeueFromPoolFIFO(uid, part, maxQuestions, sessionId) {
       poolDocId: d.id,
       part: data.part,
       kind: data.kind,
+      level: resolvedLevel,
       hashId: data.hashId,
       size,
       payload: data.payload,
@@ -278,6 +410,8 @@ export async function dequeueFromPoolFIFO(uid, part, maxQuestions, sessionId) {
     pickedCount += size;
     if (pickedCount >= target) break;
   }
+
+  queueLevelMigration(uid, migration);
 
   const questions = picked.flatMap(flattenPayloadToQuestions);
   return { docs: picked, questionCount: pickedCount, questions };
@@ -297,6 +431,7 @@ export async function archiveConsumedPool(uid, consumedDocs, sessionId) {
       hashId: item.hashId,
       part: item.part,
       kind: item.kind,
+      level: item.level || "",
       size: item.size,
       payload: item.payload,
       source: item.source || "",
@@ -315,10 +450,24 @@ export async function archiveConsumedPool(uid, consumedDocs, sessionId) {
   return { archivedDocs: list.length, archivedQuestions };
 }
 
-export async function seedQuestionPoolFromLocal(uid, localByPart) {
-  const part5 = await appendToQuestionPool(uid, "part5", localByPart.part5 || [], { source: "seed" });
-  const part6 = await appendToQuestionPool(uid, "part6", localByPart.part6 || [], { source: "seed" });
-  const part7 = await appendToQuestionPool(uid, "part7", localByPart.part7 || [], { source: "seed" });
+export async function seedQuestionPoolFromLocal(uid, localByPart, options = {}) {
+  const currentTargetLevel = normalizeLevel(options?.currentTargetLevel || options?.level, "gold");
+
+  const part5 = await appendToQuestionPool(uid, "part5", localByPart.part5 || [], {
+    source: "seed",
+    level: currentTargetLevel,
+    currentTargetLevel,
+  });
+  const part6 = await appendToQuestionPool(uid, "part6", localByPart.part6 || [], {
+    source: "seed",
+    level: currentTargetLevel,
+    currentTargetLevel,
+  });
+  const part7 = await appendToQuestionPool(uid, "part7", localByPart.part7 || [], {
+    source: "seed",
+    level: currentTargetLevel,
+    currentTargetLevel,
+  });
 
   return {
     part5,

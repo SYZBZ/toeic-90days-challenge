@@ -1,8 +1,10 @@
 ﻿import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { fetchRecentHistory, fetchSummary } from "../lib/firestoreService";
+import { fetchRecentHistory, fetchSummary, saveUserSettings } from "../lib/firestoreService";
+import { getTargetLabel, normalizeTargetSettings, targetLevelFromScore } from "../lib/targetDifficulty";
 import { Card } from "../ui/Card";
+import { Banner } from "../ui/Banner";
 
 function accuracy(total, correct) {
   if (!total) return "0%";
@@ -10,10 +12,18 @@ function accuracy(total, correct) {
 }
 
 export default function DashboardPage() {
-  const { user } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
   const [summary, setSummary] = useState(null);
   const [recent, setRecent] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [targetScore, setTargetScore] = useState(860);
+  const [savingTarget, setSavingTarget] = useState(false);
+  const [targetMessage, setTargetMessage] = useState("");
+
+  useEffect(() => {
+    const target = normalizeTargetSettings(profile?.settings || {});
+    setTargetScore(target.targetScore);
+  }, [profile?.settings]);
 
   useEffect(() => {
     let active = true;
@@ -37,6 +47,26 @@ export default function DashboardPage() {
     };
   }, [user?.uid]);
 
+  async function onTargetScoreChange(nextScore) {
+    if (!user?.uid || savingTarget) return;
+    const score = Number(nextScore);
+    setTargetScore(score);
+    setSavingTarget(true);
+    setTargetMessage("");
+    try {
+      await saveUserSettings(user.uid, {
+        targetScore: score,
+        targetLevel: targetLevelFromScore(score),
+      });
+      await refreshProfile(user.uid);
+      setTargetMessage("目標分數已更新，後續出題將套用新難度。");
+    } catch (err) {
+      setTargetMessage(err?.message || "更新目標分數失敗");
+    } finally {
+      setSavingTarget(false);
+    }
+  }
+
   const trend = useMemo(() => {
     const map = new Map();
     for (const item of recent) {
@@ -46,6 +76,8 @@ export default function DashboardPage() {
     return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0])).slice(-7);
   }, [recent]);
 
+  const targetLabel = getTargetLabel(targetLevelFromScore(targetScore));
+
   if (loading) return <Card>載入儀表板中...</Card>;
 
   return (
@@ -54,11 +86,30 @@ export default function DashboardPage() {
         <p className="eyebrow">TODAY MISSION</p>
         <h2>90 天第 {summary?.dayX || 1} 天</h2>
         <p className="muted">先做一回合測驗，再回來複習錯題，連續天數會更穩定。</p>
+        <div className="field-wrap">
+          <span className="field-label">目標分數（目前：{targetLabel}）</span>
+          <select
+            className="field-input"
+            value={targetScore}
+            onChange={(e) => onTargetScoreChange(e.target.value)}
+            disabled={savingTarget}
+          >
+            <option value={470}>綠證 470+</option>
+            <option value={730}>藍證 730+</option>
+            <option value={860}>金證 860+</option>
+          </select>
+        </div>
         <div className="row wrap">
           <Link className="link-btn" to="/practice">開始考試</Link>
           <Link className="link-btn ghost-link" to="/mistakes">看錯題本</Link>
         </div>
       </section>
+
+      {targetMessage && (
+        <Banner tone={targetMessage.includes("失敗") ? "danger" : "info"}>
+          {targetMessage}
+        </Banner>
+      )}
 
       <section className="ethereal-stats-grid">
         <article className="ethereal-stat">

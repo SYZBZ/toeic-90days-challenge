@@ -2,6 +2,15 @@
 
 ## TOEIC 90 Days 重構計畫（已落地版本）
 
+## Adaptive Difficulty Engine（新增）
+- 目標分數三檔：`470 / 730 / 860`
+- 等級映射：`green / blue / gold`
+- 出題 prompt 會依 `targetLevel` 注入對應難度限制，並強制每題回傳 `difficulty`
+- Hybrid 調度改為 `part + targetLevel` 過濾後再套用 Step A~E
+- `question_pool` 新增 `level` 欄位
+- 缺 `level` 的舊 pool 採 silent lazy migration（不阻塞使用者）
+- 背景擴充題庫按鈕加入鎖定機制，防止連點打爆 API
+
 ### Phase 1：核心可用版
 - 考試流程重構：設定 -> 作答 -> 交卷 -> 詳解 -> 歷史回顧
 - 模式：Part 5 / Part 6 / Part 7 / 綜合
@@ -29,8 +38,12 @@
 ## 資料模型
 - `users/{uid}`
   - `settings.examPreset`: `10x5 | 20x10`
+  - `settings.targetScore`: `470 | 730 | 860`
+  - `settings.targetLevel`: `green | blue | gold`
   - `settings.reminder`: `{ enabled, time }`
   - `settings.ai`: `{ questionModel, analysisModel, analysisFallbackModel }`
+- `users/{uid}/question_pool/{poolDocId}`
+  - `part`, `kind`, `hashId`, `size`, `level`, `payload`
 - `users/{uid}/examAttempts/{attemptId}`：完整考卷
 - `users/{uid}/mistakes/{mistakeId}`：錯題
 - `users/{uid}/bookmarks/{wordId}`：收藏

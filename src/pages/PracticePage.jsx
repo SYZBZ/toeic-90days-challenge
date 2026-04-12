@@ -12,6 +12,7 @@ import {
   upsertMistake,
 } from "../lib/firestoreService";
 import { loadQuestionPart } from "../lib/localData";
+import { getTargetLabel, normalizeTargetSettings } from "../lib/targetDifficulty";
 import {
   appendToQuestionPool,
   archiveConsumedPool,
@@ -95,6 +96,7 @@ function normalizeQuestion(item, part) {
     question: item.question,
     options: item.options,
     answer: item.answer,
+    difficulty: item.difficulty || item.level || "",
     explanation: item.explanation || item.explanationZh || "",
     question_zh: item.question_zh || item.questionZh || "",
     options_zh: item.options_zh || item.optionsZh || [],
@@ -134,6 +136,7 @@ export default function PracticePage() {
   const [history, setHistory] = useState([]);
   const [reviewAttempt, setReviewAttempt] = useState(null);
   const [analysisProgress, setAnalysisProgress] = useState("");
+  const [isExpanding, setIsExpanding] = useState(false);
 
   const statusRef = useRef(status);
   const questionsRef = useRef(questions);
@@ -142,6 +145,10 @@ export default function PracticePage() {
 
   const presetValue = PRESETS[preset] || PRESETS["10x5"];
   const currentQuestion = useMemo(() => questions[currentIndex] || null, [questions, currentIndex]);
+  const target = useMemo(() => normalizeTargetSettings(profile?.settings || {}), [profile?.settings]);
+  const targetScore = target.targetScore;
+  const targetLevel = target.targetLevel;
+  const targetLabel = getTargetLabel(targetLevel);
 
   const onRetry = ({ waitMs, attempt }) => {
     const sec = (waitMs / 1000).toFixed(1);
@@ -156,9 +163,9 @@ export default function PracticePage() {
     }, 3500);
   }
 
-  async function refreshPool() {
+  async function refreshPool(filterLevel = targetLevel) {
     if (!user?.uid) return;
-    const stock = await getPoolStock(user.uid);
+    const stock = await getPoolStock(user.uid, { targetLevel: filterLevel });
     setPoolStock(stock);
     return stock;
   }
@@ -166,7 +173,6 @@ export default function PracticePage() {
   async function ensureSeededPool() {
     if (!user?.uid) return;
     const stock = await getPoolStock(user.uid);
-    setPoolStock(stock);
 
     if (stock.docs > 0) return;
 
@@ -181,11 +187,11 @@ export default function PracticePage() {
       part5: p5,
       part6: p6,
       part7: p7,
-    });
+    }, { currentTargetLevel: targetLevel });
 
     setAnalysisProgress("");
     pushToast(`題庫初始化完成，新增 ${seeded.addedQuestions} 題。`);
-    await refreshPool();
+    await refreshPool(targetLevel);
   }
 
   useEffect(() => {
@@ -208,13 +214,14 @@ export default function PracticePage() {
       if (!active) return;
       setHistory(list);
       await ensureSeededPool();
+      await refreshPool(targetLevel);
     }
 
     load();
     return () => {
       active = false;
     };
-  }, [user?.uid]);
+  }, [user?.uid, targetLevel]);
 
   useEffect(() => {
     if (status !== STATUS.TAKING || !deadlineMs) return () => {};
@@ -238,56 +245,60 @@ export default function PracticePage() {
 
   async function expandPoolInBackground() {
     if (!user?.uid) return;
+    if (isExpanding) return;
     if (!profile?.geminiApiKey) {
       setError("請先在設定頁填入 Gemini API Key。");
       return;
     }
 
+    setIsExpanding(true);
     setError("");
     setRetryHint("");
     setAnalysisProgress("正在背景擴充題庫...");
 
     const dist = expandDistForMode(mode);
-    const level = profile?.settings?.level || "850+";
     const modelName = profile?.settings?.ai?.questionModel || "";
 
     try {
       let addedQuestions = 0;
       for (const [part, count] of Object.entries(dist)) {
         const generated = await generateExamQuestions(
-          { part: `Part ${partNumber(part)}`, count, level },
+          { part: `Part ${partNumber(part)}`, count, targetScore, targetLevel },
           profile.geminiApiKey,
           onRetry,
         );
         const result = await appendToQuestionPool(user.uid, part, generated, {
           source: "api",
           generatorModel: modelName,
+          level: targetLevel,
+          currentTargetLevel: targetLevel,
         });
         addedQuestions += result.addedQuestions;
       }
 
-      const latest = await refreshPool();
-      pushToast(`成功新增 ${addedQuestions} 題，目前庫存 ${latest?.mixed || 0} 題。`, "success");
+      const latest = await refreshPool(targetLevel);
+      pushToast(`成功新增 ${addedQuestions} 題（${targetLabel}），目前庫存 ${latest?.mixed || 0} 題。`, "success");
     } catch (err) {
       setError(err.message || "背景擴充失敗");
     } finally {
+      setIsExpanding(false);
       setAnalysisProgress("");
     }
   }
 
-  async function dispatchPartQuestions({ part, count, level, sessionId }) {
+  async function dispatchPartQuestions({ part, count, targetScore: scoreTarget, targetLevel: levelTarget, sessionId }) {
     const safeCount = Math.max(0, Number(count || 0));
     const mustNew = Math.round(safeCount * freshRate);
     const allowedStock = safeCount - mustNew;
 
-    const fromPool = await dequeueFromPoolFIFO(user.uid, part, allowedStock, sessionId);
+    const fromPool = await dequeueFromPoolFIFO(user.uid, part, allowedStock, sessionId, { targetLevel: levelTarget });
     const actualStock = fromPool.questionCount;
     const apiFetch = mustNew + (allowedStock - actualStock);
 
     let generated = [];
     if (apiFetch > 0) {
       const raw = await generateExamQuestions(
-        { part: `Part ${partNumber(part)}`, count: apiFetch, level },
+        { part: `Part ${partNumber(part)}`, count: apiFetch, targetScore: scoreTarget, targetLevel: levelTarget },
         profile.geminiApiKey,
         onRetry,
       );
@@ -331,16 +342,25 @@ export default function PracticePage() {
       setStatus(STATUS.SUBMITTING);
       setAnalysisProgress("正在計算 fresh_rate 與調度題庫...");
 
-      await saveUserSettings(user.uid, { exam: { freshRate } });
+      await saveUserSettings(user.uid, {
+        exam: { freshRate },
+        targetScore,
+        targetLevel,
+      });
 
       const dist = modeDist(mode, presetValue.count);
-      const level = profile?.settings?.level || "850+";
       const sessionId = makeSessionId();
 
       const partsResult = [];
       for (const [part, count] of Object.entries(dist)) {
         setAnalysisProgress(`正在調度 ${part.toUpperCase()} 題庫...`);
-        const result = await dispatchPartQuestions({ part, count, level, sessionId });
+        const result = await dispatchPartQuestions({
+          part,
+          count,
+          targetScore,
+          targetLevel,
+          sessionId,
+        });
         partsResult.push(result);
       }
 
@@ -356,7 +376,7 @@ export default function PracticePage() {
         return;
       }
 
-      await refreshPool();
+      await refreshPool(targetLevel);
       setQuestions(merged);
       setCurrentIndex(0);
       const deadline = Date.now() + presetValue.minutes * 60 * 1000;
@@ -427,13 +447,15 @@ export default function PracticePage() {
         mode,
         preset,
         freshRate,
+        targetScore,
+        targetLevel,
         timeLimitMin: presetValue.minutes,
         timeSpentSec: Math.max(0, timeSpentSec),
         score: nextScore,
         total: finalQuestions.length,
         meta: mode === "mixed"
-          ? { autoSubmitted: isAuto, mixedRatio: modeDist(mode, presetValue.count) }
-          : { autoSubmitted: isAuto },
+          ? { autoSubmitted: isAuto, mixedRatio: modeDist(mode, presetValue.count), targetScore, targetLevel }
+          : { autoSubmitted: isAuto, targetScore, targetLevel },
         questions: finalQuestions,
       };
 
@@ -524,7 +546,7 @@ export default function PracticePage() {
         <>
           <Card>
             <h3>模擬考設定</h3>
-            <p className="muted">Hybrid Pool + Freshness Engine：庫存題與新題混合調度。</p>
+            <p className="muted">Hybrid Pool + Freshness Engine：庫存題與新題混合調度。目標難度：{targetLabel}</p>
 
             <div className="stack-sm">
               <div className="row wrap">
@@ -568,14 +590,16 @@ export default function PracticePage() {
 
               <div className="row wrap">
                 <Button onClick={startExam}>開始測驗</Button>
-                <Button variant="secondary" onClick={expandPoolInBackground}>📥 背景擴充題庫</Button>
+                <Button variant="secondary" onClick={expandPoolInBackground} disabled={isExpanding}>
+                  {isExpanding ? "擴充中..." : "📥 背景擴充題庫"}
+                </Button>
                 <Link className="link-btn ghost-link" to="/settings">設定 API Key</Link>
               </div>
             </div>
           </Card>
 
           <Card>
-            <h3>題庫庫存</h3>
+            <h3>題庫庫存（{targetLabel}）</h3>
             <div className="pool-stock-grid">
               <div className="pool-stock-item"><span>Part 5</span><strong>{poolStock.part5}</strong></div>
               <div className="pool-stock-item"><span>Part 6</span><strong>{poolStock.part6}</strong></div>

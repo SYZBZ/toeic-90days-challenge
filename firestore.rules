@@ -6,6 +6,7 @@ service cloud.firestore {
     }
 
     function validUserDoc() {
+      let settings = request.resource.data.settings;
       return request.resource.data.keys().hasOnly([
         "email",
         "geminiApiKey",
@@ -15,7 +16,30 @@ service cloud.firestore {
       ])
       && request.resource.data.email is string
       && request.resource.data.geminiApiKey is string
-      && request.resource.data.settings is map;
+      && settings is map
+      && settings.keys().hasOnly([
+        "level",
+        "targetScore",
+        "targetLevel",
+        "part",
+        "examPreset",
+        "exam",
+        "reminder",
+        "ai"
+      ])
+      && (!("level" in settings) || settings.level is string)
+      && (!("targetScore" in settings) || (settings.targetScore is int
+        && (settings.targetScore == 470 || settings.targetScore == 730 || settings.targetScore == 860)))
+      && (!("targetLevel" in settings) || (settings.targetLevel is string
+        && (settings.targetLevel == "green" || settings.targetLevel == "blue" || settings.targetLevel == "gold")))
+      && (!("part" in settings) || settings.part is string)
+      && (!("examPreset" in settings) || settings.examPreset is string)
+      && (!("exam" in settings) || (settings.exam is map
+        && settings.exam.keys().hasOnly(["freshRate"])))
+      && (!("reminder" in settings) || (settings.reminder is map
+        && settings.reminder.keys().hasOnly(["enabled", "time"])))
+      && (!("ai" in settings) || (settings.ai is map
+        && settings.ai.keys().hasOnly(["questionModel", "analysisModel", "analysisFallbackModel"])));
     }
 
     match /users/{uid} {

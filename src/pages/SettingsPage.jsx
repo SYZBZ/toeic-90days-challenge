@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { DEFAULT_AI_SETTINGS, normalizeAiSettings } from "../lib/aiModels";
 import { probeModelAvailability } from "../lib/geminiService";
 import { importLegacyLocalData, saveUserKey, saveUserSettings } from "../lib/firestoreService";
+import { normalizeTargetSettings, targetLevelFromScore } from "../lib/targetDifficulty";
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -14,11 +15,18 @@ const MODEL_PRESETS = [
   "gemini-3-flash-lite",
 ];
 
+const TARGET_SCORE_OPTIONS = [
+  { score: 470, label: "綠證 470+" },
+  { score: 730, label: "藍證 730+" },
+  { score: 860, label: "金證 860+" },
+];
+
 export default function SettingsPage() {
   const { user, profile, refreshProfile, signOut } = useAuth();
   const [apiKey, setApiKey] = useState("");
   const [aiSettings, setAiSettings] = useState(DEFAULT_AI_SETTINGS);
   const [examPreset, setExamPreset] = useState("10x5");
+  const [targetScore, setTargetScore] = useState(860);
   const [reminderEnabled, setReminderEnabled] = useState(false);
   const [reminderTime, setReminderTime] = useState("20:30");
   const [message, setMessage] = useState("");
@@ -29,6 +37,7 @@ export default function SettingsPage() {
     setApiKey(profile?.geminiApiKey || "");
     setAiSettings(normalizeAiSettings(profile?.settings?.ai || {}));
     setExamPreset(profile?.settings?.examPreset || "10x5");
+    setTargetScore(normalizeTargetSettings(profile?.settings || {}).targetScore);
     setReminderEnabled(!!profile?.settings?.reminder?.enabled);
     setReminderTime(profile?.settings?.reminder?.time || "20:30");
   }, [profile?.geminiApiKey, profile?.settings]);
@@ -60,6 +69,8 @@ export default function SettingsPage() {
     try {
       await saveUserKey(user.uid, apiKey.trim(), normalizedAi, {
         examPreset,
+        targetScore,
+        targetLevel: targetLevelFromScore(targetScore),
         reminder: {
           enabled: reminderEnabled,
           time: reminderTime,
@@ -67,7 +78,7 @@ export default function SettingsPage() {
       });
       localStorage.setItem("toeic.ai.settings", JSON.stringify(normalizedAi));
       await refreshProfile(user.uid);
-      setMessage("已儲存：API Key、模型、考試預設與每日提醒設定已同步。");
+      setMessage("已儲存：API Key、模型、目標分數、考試預設與每日提醒設定已同步。");
     } catch (err) {
       setMessage(err.message || "儲存失敗");
     } finally {
@@ -165,9 +176,11 @@ export default function SettingsPage() {
       await saveUserSettings(user.uid, {
         reminder: { enabled: reminderEnabled, time: reminderTime },
         examPreset,
+        targetScore,
+        targetLevel: targetLevelFromScore(targetScore),
       });
       await refreshProfile(user.uid);
-      setMessage("提醒與預設已儲存。");
+      setMessage("提醒、預設與目標分數已儲存。");
     } catch (err) {
       setMessage(err.message || "儲存失敗");
     } finally {
@@ -180,7 +193,7 @@ export default function SettingsPage() {
       <section className="hero-panel compact">
         <p className="eyebrow">SETTINGS</p>
         <h2>帳號與學習設定</h2>
-        <p className="muted">Gemini Key、模型、考試預設、提醒時間都會同步到 Firestore。</p>
+        <p className="muted">Gemini Key、模型、目標分數、考試預設、提醒時間都會同步到 Firestore。</p>
       </section>
 
       <Card>
@@ -239,6 +252,19 @@ export default function SettingsPage() {
       <Card>
         <h3>考試與提醒</h3>
         <label className="field-wrap">
+          <span className="field-label">目標分數</span>
+          <select
+            className="field-input"
+            value={targetScore}
+            onChange={(e) => setTargetScore(Number(e.target.value))}
+          >
+            {TARGET_SCORE_OPTIONS.map((item) => (
+              <option key={item.score} value={item.score}>{item.label}</option>
+            ))}
+          </select>
+        </label>
+
+        <label className="field-wrap">
           <span className="field-label">預設考試題數</span>
           <select className="field-input" value={examPreset} onChange={(e) => setExamPreset(e.target.value)}>
             <option value="10x5">10 題 / 5 分鐘</option>
@@ -261,7 +287,7 @@ export default function SettingsPage() {
         <div className="row wrap">
           <Button variant="secondary" onClick={requestNotifyPermission}>開啟通知權限</Button>
           <Button variant="ghost" onClick={sendTestNotification}>發送測試通知</Button>
-          <Button onClick={onSaveReminderOnly} disabled={saving}>只儲存提醒/預設</Button>
+          <Button onClick={onSaveReminderOnly} disabled={saving}>只儲存提醒/預設/目標</Button>
         </div>
       </Card>
 

@@ -1,5 +1,12 @@
 ﻿import { callGeminiWithBackoff, parseJsonSafely } from "./geminiClient";
 import { DEFAULT_AI_SETTINGS, normalizeAiSettings } from "./aiModels";
+import {
+  getPromptInjectByLevel,
+  normalizeTargetLevel,
+  normalizeTargetScore,
+  normalizeTargetSettings,
+  targetLevelFromScore,
+} from "./targetDifficulty";
 
 const cooldownByModel = new Map();
 
@@ -115,15 +122,34 @@ async function runWithFallback({ apiKey, primaryModel, fallbackModel, prompt, on
   }
 }
 
-function questionPrompt({ part = "Part 5", level = "850+", count = 1 }) {
+function resolveTargetPayload(payload = {}) {
+  const target = normalizeTargetSettings({
+    targetScore: payload?.targetScore,
+    targetLevel: payload?.targetLevel,
+    level: payload?.level,
+  });
+  const targetScore = normalizeTargetScore(target.targetScore, 860);
+  const targetLevel = targetLevelFromScore(targetScore);
+  return {
+    targetScore,
+    targetLevel,
+    promptInject: getPromptInjectByLevel(targetLevel),
+  };
+}
+
+function questionPrompt({ part = "Part 5", count = 1, targetScore = 860, targetLevel = "gold", promptInject = "" }) {
   return `
-你是 TOEIC 閱讀測驗出題器。請產生 ${count} 題 ${part}，難度 ${level}。
+你是 TOEIC 閱讀測驗出題器。請產生 ${count} 題 ${part}。
+目標分數：${targetScore}+（${targetLevel}）
+難度要求：${promptInject}
+
 規則：
 0. 題目數量必須「剛好 ${count} 題」，不得多也不得少。
 1. 每題都要 4 選 1。
 2. 必須包含正解 index（0~3）與繁中解析 explanationZh。
 3. Part 6 / Part 7 必須提供 passage；Part 5 不需要 passage。
-4. 僅輸出 JSON，不要任何額外文字。
+4. 每題必須帶 difficulty，且只能是 "${targetLevel}"。
+5. 僅輸出 JSON，不要任何額外文字。
 
 輸出格式：
 {
@@ -134,7 +160,8 @@ function questionPrompt({ part = "Part 5", level = "850+", count = 1 }) {
       "question": "...",
       "options": ["A","B","C","D"],
       "answer": 0,
-      "explanationZh": "..."
+      "explanationZh": "...",
+      "difficulty": "${targetLevel}"
     }
   ]
 }
@@ -171,13 +198,23 @@ ${JSON.stringify(chunk)}
 `;
 }
 
-function normalizeGeneratedQuestion(item, idx, partLabel) {
+function normalizeGeneratedQuestion(item, idx, partLabel, targetLevel = "gold") {
   const type = String(item?.type || partLabel || "part5").toLowerCase().replace(/\s+/g, "");
   const question = String(item?.question || "").trim();
   const options = Array.isArray(item?.options) ? item.options.map((x) => String(x || "").trim()) : [];
   const answer = Number(item?.answer);
+  const difficulty = String(item?.difficulty || "").trim().toLowerCase();
+  const normalizedTargetLevel = normalizeTargetLevel(targetLevel, "gold");
 
   if (!question || options.length !== 4 || !Number.isInteger(answer) || answer < 0 || answer > 3) {
+    return null;
+  }
+
+  if (!["green", "blue", "gold"].includes(difficulty)) {
+    return null;
+  }
+
+  if (difficulty !== normalizedTargetLevel) {
     return null;
   }
 
@@ -188,6 +225,7 @@ function normalizeGeneratedQuestion(item, idx, partLabel) {
     question,
     options,
     answer,
+    difficulty,
     explanation: String(item?.explanationZh || item?.explanation || "").trim(),
   };
 }
@@ -205,13 +243,22 @@ export async function probeModelAvailability({ apiKey, model, onRetry }) {
 export async function generateExamQuestions(payload, apiKey, onRetry) {
   const ai = readAiSettings();
   const questionModel = ai.questionModel || DEFAULT_AI_SETTINGS.questionModel;
+  const { targetScore, targetLevel, promptInject } = resolveTargetPayload(payload);
+  const expectedCount = Math.max(1, Number(payload?.count || 1));
+  const prompt = questionPrompt({
+    part: payload?.part || "Part 5",
+    count: expectedCount,
+    targetScore,
+    targetLevel,
+    promptInject,
+  });
 
   let text;
   try {
     text = await runModel({
       apiKey,
       model: questionModel,
-      prompt: questionPrompt(payload),
+      prompt,
       onRetry,
     });
   } catch (error) {
@@ -221,12 +268,12 @@ export async function generateExamQuestions(payload, apiKey, onRetry) {
   const parsed = parseJsonSafely(text);
   const list = Array.isArray(parsed?.questions) ? parsed.questions : [];
   const normalized = list
-    .map((x, idx) => normalizeGeneratedQuestion(x, idx, payload?.part || "part5"))
+    .map((x, idx) => normalizeGeneratedQuestion(x, idx, payload?.part || "part5", targetLevel))
     .filter(Boolean)
-    .slice(0, payload?.count || list.length);
+    .slice(0, expectedCount);
 
-  if (!normalized.length || normalized.length < (payload?.count || 1)) {
-    throw new Error("Gemini 出題數量不足，請稍後重試。");
+  if (normalized.length !== expectedCount) {
+    throw new Error("Gemini 出題格式不完整（題數或 difficulty 不符合要求），請稍後重試。");
   }
 
   return normalized;
@@ -312,6 +359,7 @@ export async function analyzeExamBatch(payload, apiKey, onRetry, onProgress) {
 export async function generateQuestion(payload, apiKey, onRetry) {
   const list = await generateExamQuestions({ ...payload, count: 1 }, apiKey, onRetry);
   const first = list[0];
+  const target = resolveTargetPayload(payload);
   return {
     question: first.question,
     options: first.options,
@@ -319,6 +367,8 @@ export async function generateQuestion(payload, apiKey, onRetry) {
       part: payload?.part || "Part 5",
       topic: payload?.topic || "general",
       level: payload?.level || "850+",
+      targetScore: target.targetScore,
+      targetLevel: target.targetLevel,
     },
   };
 }

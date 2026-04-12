@@ -14,6 +14,12 @@
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { normalizeAiSettings, resolveAiSettings } from "./aiModels";
+import {
+  normalizeTargetLevel,
+  normalizeTargetScore,
+  normalizeTargetSettings,
+  targetLevelFromScore,
+} from "./targetDifficulty";
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -77,8 +83,17 @@ function sanitizeForFirestore(value) {
 }
 
 function normalizeUserSettings(settings = {}) {
+  const target = normalizeTargetSettings(settings);
+  const targetScore = normalizeTargetScore(target?.targetScore, 860);
+  const targetLevel = targetLevelFromScore(targetScore);
+  const legacyLevel = settings?.level || (
+    targetLevel === "gold" ? "850+" : targetLevel === "blue" ? "730+" : "470+"
+  );
+
   return {
-    level: settings?.level || "850+",
+    level: legacyLevel,
+    targetScore,
+    targetLevel: normalizeTargetLevel(targetLevel, "gold"),
     part: settings?.part || "part5",
     examPreset: settings?.examPreset || "10x5",
     exam: normalizeExamSettings(settings?.exam || {}),
@@ -125,8 +140,11 @@ export async function ensureUserProfile(uid, email) {
       geminiApiKey: "",
       settings: {
         level: "850+",
+        targetScore: 860,
+        targetLevel: "gold",
         part: "part5",
         examPreset: "10x5",
+        exam: normalizeExamSettings(),
         reminder: normalizeReminder(),
         ai: normalizeAiSettings(),
       },
@@ -181,6 +199,14 @@ export async function saveUserSettings(uid, patchSettings = {}) {
     settings: mergedSettings,
     updatedAt: serverTimestamp(),
   }, { merge: true });
+}
+
+export function resolveTargetSettings(settings = {}) {
+  const normalized = normalizeUserSettings(settings);
+  return {
+    targetScore: normalized.targetScore,
+    targetLevel: normalized.targetLevel,
+  };
 }
 
 export async function saveHistory(uid, record) {
