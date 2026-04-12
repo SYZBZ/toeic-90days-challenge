@@ -5,7 +5,7 @@ import { buildSsmlFromSegments } from "./ssmlService";
 import { uploadAudioBase64, uploadImageBase64 } from "./storageUploadService";
 import { appendToQuestionPool } from "./questionPoolService";
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GOOGLE_API_KEY || "";
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 const TTS_API_KEY = import.meta.env.VITE_TTS_API_KEY || "";
 const VERTEX_AI_KEY = import.meta.env.VITE_VERTEX_AI_KEY || "";
 
@@ -21,7 +21,7 @@ function readAiSettings() {
 
 function ensureGeminiKey() {
   if (!GEMINI_API_KEY) {
-    throw new Error("缺少 VITE_GEMINI_API_KEY（或舊版 VITE_GOOGLE_API_KEY），請先在 .env 設定後重啟。");
+    throw new Error("缺少 VITE_GEMINI_API_KEY，請先在 .env 設定後重啟。");
   }
   return GEMINI_API_KEY;
 }

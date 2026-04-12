@@ -25,7 +25,7 @@ import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GOOGLE_API_KEY || "";
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 
 const STATUS = {
   SETUP: "setup",

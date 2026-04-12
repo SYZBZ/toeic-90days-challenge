@@ -54,8 +54,6 @@ VITE_FIREBASE_APP_ID=
 VITE_GEMINI_API_KEY=
 VITE_TTS_API_KEY=
 VITE_VERTEX_AI_KEY=
-# Legacy fallback (optional)
-VITE_GOOGLE_API_KEY=
 ```
 
 3-key 策略對應：
