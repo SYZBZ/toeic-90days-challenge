@@ -307,7 +307,7 @@ a { color: inherit; }
 .field-wrap { display: grid; gap: 7px; }
 .field-label { font-size: 13px; color: var(--on-surface-variant); }
 .field-input,
-input {
+input:not([type="checkbox"]):not([type="radio"]) {
   width: 100%;
   border: 1px solid color-mix(in srgb, var(--outline-variant) 32%, transparent);
   border-radius: 14px;
@@ -760,6 +760,8 @@ input {
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
   font-size: 14px;
 }
 

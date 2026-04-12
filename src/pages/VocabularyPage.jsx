@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { fetchBookmarkIds, removeBookmark, reviewSrsWord, setBookmark } from "../lib/firestoreService";
 import { loadVocabulary } from "../lib/localData";
 import { speakEnglishWord } from "../lib/speech";
+import VocabWordCard from "../components/VocabWordCard";
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -139,27 +140,14 @@ export default function VocabularyPage() {
         {pageData.map((word) => {
           const isBookmarked = bookmarkIds.has(word.id);
           return (
-            <Card key={word.id} className="vocab-card">
-              <div className="row between">
-                <div>
-                  <h3>{word.word}</h3>
-                  <p className="muted">{word.partOfSpeech || "-"} · {(word.source || []).join("/") || "-"}</p>
-                </div>
-                <button type="button" className={`star-btn ${isBookmarked ? "active" : ""}`} onClick={() => toggleBookmark(word)}>
-                  {isBookmarked ? "★" : "☆"}
-                </button>
-              </div>
-
-              <p><strong>中譯：</strong>{word.translation || "（待補）"}</p>
-              {word.phonetic ? <p className="muted">音標：{word.phonetic}</p> : null}
-              {word.definition ? <p className="muted">{word.definition}</p> : null}
-              {word.example ? <p className="muted">例句：{word.example}</p> : null}
-
-              <div className="row wrap">
-                <Button variant="ghost" onClick={() => speakWord(word)}>🔊 發音</Button>
-                <Button variant="secondary" onClick={() => markMastered(word)}>熟練 +1</Button>
-              </div>
-            </Card>
+            <VocabWordCard
+              key={word.id}
+              word={word}
+              isBookmarked={isBookmarked}
+              onToggleBookmark={toggleBookmark}
+              onSpeak={speakWord}
+              onMarkMastered={markMastered}
+            />
           );
         })}
       </div>
