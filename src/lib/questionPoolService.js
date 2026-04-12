@@ -4,7 +4,6 @@
   getDoc,
   getDocs,
   limit,
-  orderBy,
   query,
   serverTimestamp,
   setDoc,
@@ -445,16 +444,30 @@ export async function dequeueFromPoolFIFO(uid, part, maxQuestions, sessionId, op
   const q = query(
     collection(db, "users", uid, "question_pool"),
     where("part", "==", normalizedPart),
-    orderBy("createdAt", "asc"),
     limit(300),
   );
 
   const snap = await getDocs(q);
+  const sortedDocs = [...snap.docs].sort((a, b) => {
+    const da = a.data() || {};
+    const dbb = b.data() || {};
+
+    const msA = Number(da.createdAtMs || 0);
+    const msB = Number(dbb.createdAtMs || 0);
+    if (msA !== msB) return msA - msB;
+
+    const tsA = Number(da?.createdAt?.seconds || 0);
+    const tsB = Number(dbb?.createdAt?.seconds || 0);
+    if (tsA !== tsB) return tsA - tsB;
+
+    return String(a.id).localeCompare(String(b.id));
+  });
+
   const picked = [];
   let pickedCount = 0;
   const migration = [];
 
-  for (const d of snap.docs) {
+  for (const d of sortedDocs) {
     const data = d.data() || {};
     const size = Number(data.size || 0);
     if (!size) continue;
