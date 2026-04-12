@@ -13,6 +13,13 @@
   - 可選 `10 題` 或 `20 題`
   - 完成後顯示結算，不再無限下一題。
 
+## 2026-04-12 Listening Engine（Spark / Client-only）
+- `/practice` 新增閱讀/聽力切換，聽力支援 Part 1~4。
+- 前端多模態流程：Gemini 產題 -> TTS/Imagen REST -> Firebase Storage 直傳 -> `question_pool`。
+- Part 3/4 使用 SSML 多口音單次合成，固定 3 題一組，preset 為 `9x5`、`18x10`。
+- 新增全局 Audio Manager，切題/切頁/unmount 會 `pause + src 清空 + URL 回收`。
+- 新增 `storage.rules`，限制 `users/{uid}/audio/*`、`users/{uid}/images/*` 只能 owner 讀寫。
+
 ## Adaptive Difficulty Engine（新增）
 - 目標分數三檔：`470 / 730 / 860`
 - 等級映射：`green / blue / gold`

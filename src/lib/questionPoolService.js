@@ -14,8 +14,10 @@
 import { db } from "./firebase";
 import { normalizeTargetLevel } from "./targetDifficulty";
 
-const PARTS = ["part5", "part6", "part7"];
+const PARTS = ["part1", "part2", "part3", "part4", "part5", "part6", "part7"];
 const LEVELS = ["green", "blue", "gold"];
+const SINGLE_PARTS = new Set(["part1", "part2", "part5"]);
+const GROUP_PARTS = new Set(["part3", "part4", "part6", "part7"]);
 const pendingLevelMigrations = new Map();
 const runningLevelMigrations = new Set();
 
@@ -55,7 +57,22 @@ function normalizeQuestionForPool(raw = {}, part, fallbackLevel = "gold") {
     options_zh: Array.isArray(raw.options_zh) ? raw.options_zh : (Array.isArray(raw.optionsZh) ? raw.optionsZh : []),
     passage: String(raw.passage || ""),
     passage_zh: String(raw.passage_zh || raw.passageZh || ""),
+    audioUrl: String(raw.audioUrl || ""),
+    imageUrl: String(raw.imageUrl || ""),
+    transcript: raw.transcript && typeof raw.transcript === "object" ? raw.transcript : null,
+    scriptSsml: String(raw.scriptSsml || ""),
   };
+}
+
+function isValidSingleByPart(part, q) {
+  if (!Number.isInteger(q.answer)) return false;
+  if (part === "part1" || part === "part5") {
+    return q.options.length === 4 && q.answer >= 0 && q.answer <= 3;
+  }
+  if (part === "part2") {
+    return q.options.length === 3 && q.answer >= 0 && q.answer <= 2;
+  }
+  return false;
 }
 
 function resolveGroupLevel(questions, fallbackLevel = "gold") {
@@ -125,10 +142,10 @@ function queueLevelMigration(uid, updates = []) {
 }
 
 function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
-  if (part === "part5") {
+  if (SINGLE_PARTS.has(part)) {
     return docs
       .map((raw) => normalizeQuestionForPool(raw, part, fallbackLevel))
-      .filter((q) => q.question && q.options.length === 4 && Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3)
+      .filter((q) => isValidSingleByPart(part, q) && (part !== "part5" || q.question))
       .map((q) => ({
         part,
         kind: "single",
@@ -142,20 +159,30 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
           explanation: q.explanation,
           question_zh: q.question_zh,
           options_zh: q.options_zh,
+          audioUrl: q.audioUrl,
+          imageUrl: q.imageUrl,
+          transcript: q.transcript,
+          scriptSsml: q.scriptSsml,
           id: q.id,
           type: part,
         },
       }));
   }
 
+  if (!GROUP_PARTS.has(part)) return [];
+
   const grouped = new Map();
 
   for (const raw of docs) {
     if (raw?.kind === "passage_group" && raw?.payload?.questions?.length) {
-      const key = String(raw.payload.passage || "").trim() || `group_${Math.random().toString(36).slice(2, 8)}`;
+      const key = String(raw.payload.passage || raw.payload.audioUrl || "").trim() || `group_${Math.random().toString(36).slice(2, 8)}`;
       grouped.set(key, {
         passage: String(raw.payload.passage || ""),
         passage_zh: String(raw.payload.passage_zh || ""),
+        audioUrl: String(raw.payload.audioUrl || ""),
+        imageUrl: String(raw.payload.imageUrl || ""),
+        transcript: raw.payload.transcript && typeof raw.payload.transcript === "object" ? raw.payload.transcript : null,
+        scriptSsml: String(raw.payload.scriptSsml || ""),
         questions: raw.payload.questions.map((q) => normalizeQuestionForPool(q, part, fallbackLevel)),
       });
       continue;
@@ -164,11 +191,15 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
     const q = normalizeQuestionForPool(raw, part, fallbackLevel);
     if (!q.question || q.options.length !== 4 || !Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) continue;
 
-    const key = q.passage || `nogroup_${q.id}`;
+    const key = q.passage || q.audioUrl || `nogroup_${q.id}`;
     if (!grouped.has(key)) {
       grouped.set(key, {
         passage: q.passage || "",
         passage_zh: q.passage_zh || "",
+        audioUrl: q.audioUrl || "",
+        imageUrl: q.imageUrl || "",
+        transcript: q.transcript || null,
+        scriptSsml: q.scriptSsml || "",
         questions: [],
       });
     }
@@ -189,6 +220,10 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
       payload: {
         passage: group.passage,
         passage_zh: group.passage_zh,
+        audioUrl: group.audioUrl || "",
+        imageUrl: group.imageUrl || "",
+        transcript: group.transcript || null,
+        scriptSsml: group.scriptSsml || "",
         questions: group.questions.map((q) => ({
           id: q.id,
           type: part,
@@ -210,19 +245,27 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
 function hashForDoc(poolDoc) {
   if (poolDoc.kind === "single") {
     const payload = poolDoc.payload || {};
+    const transcriptSeed = Array.isArray(payload?.transcript?.segments)
+      ? payload.transcript.segments.map((s) => `${s.speaker || ""}:${s.text || ""}`).join("|")
+      : "";
     const seed = stableStringify({
       part: poolDoc.part,
       question: payload.question,
       options: payload.options,
       answer: payload.answer,
+      transcript: transcriptSeed,
     });
     return fnv1aHash(seed);
   }
 
   const payload = poolDoc.payload || {};
+  const transcriptSeed = Array.isArray(payload?.transcript?.segments)
+    ? payload.transcript.segments.map((s) => `${s.speaker || ""}:${s.text || ""}`).join("|")
+    : "";
   const seed = stableStringify({
     part: poolDoc.part,
     passage: payload.passage,
+    transcript: transcriptSeed,
     questions: (payload.questions || []).map((q) => ({
       question: q.question,
       options: q.options,
@@ -244,20 +287,28 @@ function flattenPayloadToQuestions(poolDoc) {
       ...poolDoc.payload,
       type: poolDoc.part,
       difficulty: normalizeLevel(poolDoc.payload?.difficulty, baseLevel),
-      passage: "",
-      passage_zh: "",
+      passage: poolDoc.payload?.passage || "",
+      passage_zh: poolDoc.payload?.passage_zh || "",
     }];
   }
 
   const payload = poolDoc.payload || {};
   const passage = payload.passage || "";
   const passageZh = payload.passage_zh || "";
+  const audioUrl = payload.audioUrl || "";
+  const imageUrl = payload.imageUrl || "";
+  const transcript = payload.transcript || null;
+  const scriptSsml = payload.scriptSsml || "";
   return (payload.questions || []).map((q) => ({
     ...q,
     type: poolDoc.part,
     difficulty: normalizeLevel(q?.difficulty, baseLevel),
     passage,
     passage_zh: passageZh,
+    audioUrl,
+    imageUrl,
+    transcript,
+    scriptSsml,
   }));
 }
 
@@ -280,6 +331,7 @@ export async function appendToQuestionPool(uid, part, docs, meta = {}) {
   let addedQuestions = 0;
   let skippedDuplicates = 0;
   let upgradedDuplicates = 0;
+  const addedPoolDocs = [];
 
   for (const candidate of groupedDocs) {
     const hashId = hashForDoc(candidate);
@@ -319,16 +371,42 @@ export async function appendToQuestionPool(uid, part, docs, meta = {}) {
       createdAtMs: now,
     });
 
+    addedPoolDocs.push({
+      poolDocId: `${normalizedPart}_${hashId}`,
+      part: normalizedPart,
+      kind: candidate.kind,
+      level: candidateLevel,
+      hashId,
+      size: candidate.size,
+      payload: candidate.payload,
+      source: meta.source || "api",
+      generatorModel: meta.generatorModel || "",
+      createdAt: null,
+      createdAtMs: now,
+    });
+
     addedDocs += 1;
     addedQuestions += candidate.size;
   }
 
-  return { addedDocs, addedQuestions, skippedDuplicates, upgradedDuplicates };
+  return { addedDocs, addedQuestions, skippedDuplicates, upgradedDuplicates, addedPoolDocs };
 }
 
 export async function getPoolStock(uid, options = {}) {
   const targetLevel = options?.targetLevel ? normalizeLevel(options.targetLevel, "gold") : "";
-  const out = { part5: 0, part6: 0, part7: 0, mixed: 0, docs: 0, targetLevel: targetLevel || null };
+  const out = {
+    part1: 0,
+    part2: 0,
+    part3: 0,
+    part4: 0,
+    part5: 0,
+    part6: 0,
+    part7: 0,
+    mixed: 0,
+    mixedListening: 0,
+    docs: 0,
+    targetLevel: targetLevel || null,
+  };
 
   const migration = [];
   const snap = await getDocs(collection(db, "users", uid, "question_pool"));
@@ -352,6 +430,7 @@ export async function getPoolStock(uid, options = {}) {
   queueLevelMigration(uid, migration);
 
   out.mixed = out.part5 + out.part6 + out.part7;
+  out.mixedListening = out.part1 + out.part2 + out.part3 + out.part4;
   return out;
 }
 

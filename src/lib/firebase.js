@@ -1,6 +1,7 @@
-ï»¿import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -19,9 +20,10 @@ export const firebaseMissingKeys = missing;
 export const firebaseIsConfigured = missing.length === 0;
 
 if (!firebaseIsConfigured) {
-  console.warn("Firebase å°šæœªå®Œæˆè¨­å®šï¼Œç¼ºå°‘ï¼š", missing.join(", "));
+  console.warn("Firebase ©|¥¼§¹¦¨³]©w¡A¯Ê¤Ö¡G", missing.join(", "));
 }
 
 const app = firebaseIsConfigured ? initializeApp(firebaseConfig) : null;
 export const auth = app ? getAuth(app) : null;
 export const db = app ? getFirestore(app) : null;
+export const storage = app ? getStorage(app) : null;

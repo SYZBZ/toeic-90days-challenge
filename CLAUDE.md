@@ -38,6 +38,14 @@ Legacy static site is preserved in `legacy/`.
 - Vocab mini-game is finite-round (10 or 20) and auto-finishes
   - state machine: `idle -> playing -> finished`
   - no infinite auto-looping
+- `/practice` now includes listening mode (Part 1~4) in addition to reading mode.
+- Listening generation is client-only on Spark:
+  - Gemini JSON generation
+  - Google Cloud TTS REST synthesis
+  - Imagen REST (Part 1)
+  - Firebase Storage direct upload
+- Part 3/4 uses SSML multi-accent synthesis in one TTS request.
+- Global audio manager prevents overlap and disposes on unmount.
 
 ## Route Map
 - `/dashboard`
@@ -74,11 +82,15 @@ Legacy static site is preserved in `legacy/`.
   - `src/components/AppShell.jsx`
   - `src/components/VocabWordCard.jsx`
   - `src/ui/NavBar.jsx`
-  - `src/pages/*.jsx`
+  - `src/pages/*.jsx` (`PracticePage` wrapper + reading/listening panels)
 - Data/AI services:
   - `src/lib/firestoreService.js`
   - `src/lib/geminiService.js`
   - `src/lib/localData.js`
+  - `src/lib/listeningEngine.js`
+  - `src/lib/ssmlService.js`
+  - `src/lib/storageUploadService.js`
+  - `src/lib/audioManager.js`
 - PWA assets:
   - `public/manifest.webmanifest`
   - `public/sw.js`
@@ -102,4 +114,7 @@ Legacy static site is preserved in `legacy/`.
 - Keep `public/data/*` as runtime source for local banks.
 - Keep daily vocab and vocabulary card rendering consistent via shared component.
 - Keep vocab game finite-round behavior (10/20) and finished summary screen.
+- Keep listening pipeline client-only; do not introduce Cloud Functions dependency.
+- Keep storage paths under `users/{uid}/audio|images/*` and owner-only rules.
+- Keep Part 3/4 group integrity (3 questions per audio group) and SSML multi-accent synthesis.
 - If adding dark mode/shortcuts later, preserve current CSS variable structure and sidebar collapse behavior.

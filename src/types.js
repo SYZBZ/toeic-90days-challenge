@@ -39,7 +39,7 @@
 /**
  * @typedef {Object} PoolDoc
  * @property {string} poolDocId
- * @property {"part5"|"part6"|"part7"} part
+ * @property {"part1"|"part2"|"part3"|"part4"|"part5"|"part6"|"part7"} part
  * @property {"single"|"passage_group"} kind
  * @property {"green"|"blue"|"gold"} level
  * @property {string} hashId
@@ -49,10 +49,15 @@
 
 /**
  * @typedef {Object} PoolStock
+ * @property {number} part1
+ * @property {number} part2
+ * @property {number} part3
+ * @property {number} part4
  * @property {number} part5
  * @property {number} part6
  * @property {number} part7
  * @property {number} mixed
+ * @property {number} mixedListening
  */
 
 /**
@@ -68,6 +73,10 @@
  * @property {string} id
  * @property {string} type
  * @property {string=} passage
+ * @property {string=} audioUrl
+ * @property {string=} imageUrl
+ * @property {{segments: Array<{speaker: string, text: string, accent?: string, gender?: string}>}=} transcript
+ * @property {string=} scriptSsml
  * @property {string} question
  * @property {string[]} options
  * @property {number} answer
