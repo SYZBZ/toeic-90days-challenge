@@ -5,6 +5,17 @@ import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import "./styles.css";
 
+const REDIRECT_PARAM = "redirect";
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const currentUrl = new URL(window.location.href);
+const redirectPath = currentUrl.searchParams.get(REDIRECT_PARAM);
+
+if (redirectPath) {
+  const normalizedPath = redirectPath.startsWith("/") ? redirectPath : `/${redirectPath}`;
+  const targetPath = `${basePath}${normalizedPath}`;
+  window.history.replaceState(null, "", targetPath);
+}
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     if (import.meta.env.PROD) {

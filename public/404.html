@@ -1,0 +1,20 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        var base = "/toeic-90days-challenge";
+        var redirectPath = window.location.pathname.replace(base, "") + window.location.search + window.location.hash;
+        if (!redirectPath || redirectPath === "/") {
+          window.location.replace(base + "/");
+          return;
+        }
+        window.location.replace(base + "/?redirect=" + encodeURIComponent(redirectPath));
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
