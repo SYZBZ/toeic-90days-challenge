@@ -19,14 +19,14 @@ export default function PracticePage() {
           className={`choice-chip ${tab === "reading" ? "active" : ""}`}
           onClick={() => switchTab("reading")}
         >
-          ¾\Åª´úÅç (Part 5~7)
+          é–±è®€æ¸¬é©— (Part 5~7)
         </button>
         <button
           type="button"
           className={`choice-chip ${tab === "listening" ? "active" : ""}`}
           onClick={() => switchTab("listening")}
         >
-          Å¥¤O´úÅç (Part 1~4)
+          è½åŠ›æ¸¬é©— (Part 1~4)
         </button>
       </div>
 
