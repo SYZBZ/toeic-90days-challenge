@@ -24,6 +24,7 @@ service cloud.firestore {
         "part",
         "examPreset",
         "exam",
+        "vocabPlan",
         "reminder",
         "ai"
       ])
@@ -36,6 +37,8 @@ service cloud.firestore {
       && (!("examPreset" in settings) || settings.examPreset is string)
       && (!("exam" in settings) || (settings.exam is map
         && settings.exam.keys().hasOnly(["freshRate"])))
+      && (!("vocabPlan" in settings) || (settings.vocabPlan is map
+        && settings.vocabPlan.keys().hasOnly(["startDate", "examDate"])))
       && (!("reminder" in settings) || (settings.reminder is map
         && settings.reminder.keys().hasOnly(["enabled", "time"])))
       && (!("ai" in settings) || (settings.ai is map

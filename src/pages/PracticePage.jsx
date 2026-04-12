@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { analyzeExamBatch, generateExamQuestions } from "../lib/geminiService";
 import {
+  deleteExamAttempt,
   fetchExamAttempt,
   fetchExamAttempts,
   removeMistake,
@@ -137,6 +138,7 @@ export default function PracticePage() {
   const [reviewAttempt, setReviewAttempt] = useState(null);
   const [analysisProgress, setAnalysisProgress] = useState("");
   const [isExpanding, setIsExpanding] = useState(false);
+  const [deletingAttemptId, setDeletingAttemptId] = useState("");
 
   const statusRef = useRef(status);
   const questionsRef = useRef(questions);
@@ -513,6 +515,34 @@ export default function PracticePage() {
     setStatus(STATUS.REVIEW);
   }
 
+  async function handleDeleteAttempt(attemptId) {
+    if (!user?.uid || !attemptId || deletingAttemptId) return;
+
+    const yes = window.confirm("確定要刪除此考試紀錄嗎？此動作無法復原。");
+    if (!yes) return;
+
+    setDeletingAttemptId(attemptId);
+    setError("");
+    try {
+      const result = await deleteExamAttempt(user.uid, attemptId);
+      if (!result.deleted) {
+        setError("找不到要刪除的考試紀錄。");
+        return;
+      }
+
+      const list = await fetchExamAttempts(user.uid, 20);
+      setHistory(list);
+      if (reviewAttempt?.id === attemptId) {
+        resetToSetup();
+      }
+      pushToast("已刪除考試紀錄。", "success");
+    } catch (err) {
+      setError(err?.message || "刪除考試紀錄失敗");
+    } finally {
+      setDeletingAttemptId("");
+    }
+  }
+
   function resetToSetup() {
     setStatus(STATUS.SETUP);
     setReviewAttempt(null);
@@ -623,7 +653,17 @@ export default function PracticePage() {
                   <li key={h.id} className="list-row">
                     <span>{MODE_LABEL[h.mode] || h.mode || "考卷"}</span>
                     <span>{h.score}/{h.total}</span>
-                    <button type="button" className="text-btn" onClick={() => openReview(h.id)}>回顧</button>
+                    <div className="row wrap">
+                      <button type="button" className="text-btn" onClick={() => openReview(h.id)}>回顧</button>
+                      <button
+                        type="button"
+                        className="text-btn danger"
+                        onClick={() => handleDeleteAttempt(h.id)}
+                        disabled={deletingAttemptId === h.id}
+                      >
+                        {deletingAttemptId === h.id ? "刪除中..." : "刪除"}
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>

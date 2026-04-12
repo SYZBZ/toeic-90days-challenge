@@ -785,6 +785,10 @@ input {
   cursor: pointer;
 }
 
+.text-btn.danger {
+  color: #c74646;
+}
+
 .tiny {
   font-size: 13px;
   margin-left: 4px;

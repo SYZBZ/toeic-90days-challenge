@@ -5,6 +5,12 @@
  */
 
 /**
+ * @typedef {Object} VocabPlanSettings
+ * @property {string} startDate
+ * @property {string} examDate
+ */
+
+/**
  * @typedef {Object} ExamSettings
  * @property {number} freshRate
  */
@@ -20,7 +26,7 @@
  * @typedef {Object} UserProfile
  * @property {string} email
  * @property {string} geminiApiKey
- * @property {{level?: string, targetScore?: 470|730|860, targetLevel?: "green"|"blue"|"gold", part?: string, examPreset?: "10x5"|"20x10", exam?: ExamSettings, reminder?: ReminderSettings, ai?: AiSettings}} settings
+ * @property {{level?: string, targetScore?: 470|730|860, targetLevel?: "green"|"blue"|"gold", part?: string, examPreset?: "10x5"|"20x10", exam?: ExamSettings, vocabPlan?: VocabPlanSettings, reminder?: ReminderSettings, ai?: AiSettings}} settings
  */
 
 /**

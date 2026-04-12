@@ -11,6 +11,8 @@
   runTransaction,
   serverTimestamp,
   setDoc,
+  where,
+  writeBatch,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { normalizeAiSettings, resolveAiSettings } from "./aiModels";
@@ -52,6 +54,19 @@ function normalizeExamSettings(exam = {}) {
   const rawFresh = Number(exam?.freshRate);
   const freshRate = Number.isFinite(rawFresh) ? Math.min(1, Math.max(0, rawFresh)) : 0.3;
   return { freshRate };
+}
+
+function normalizeDateInput(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  return /^\d{4}-\d{2}-\d{2}$/.test(raw) ? raw : "";
+}
+
+function normalizeVocabPlan(vocabPlan = {}) {
+  return {
+    startDate: normalizeDateInput(vocabPlan?.startDate),
+    examDate: normalizeDateInput(vocabPlan?.examDate),
+  };
 }
 
 function isPlainObject(value) {
@@ -97,6 +112,7 @@ function normalizeUserSettings(settings = {}) {
     part: settings?.part || "part5",
     examPreset: settings?.examPreset || "10x5",
     exam: normalizeExamSettings(settings?.exam || {}),
+    vocabPlan: normalizeVocabPlan(settings?.vocabPlan || {}),
     reminder: normalizeReminder(settings?.reminder || {}),
     ai: resolveAiSettings(settings),
   };
@@ -113,6 +129,10 @@ function mergeSettings(base = {}, patch = {}) {
     reminder: {
       ...(base?.reminder || {}),
       ...(patch?.reminder || {}),
+    },
+    vocabPlan: {
+      ...(base?.vocabPlan || {}),
+      ...(patch?.vocabPlan || {}),
     },
     ai: {
       ...(base?.ai || {}),
@@ -145,6 +165,7 @@ export async function ensureUserProfile(uid, email) {
         part: "part5",
         examPreset: "10x5",
         exam: normalizeExamSettings(),
+        vocabPlan: normalizeVocabPlan(),
         reminder: normalizeReminder(),
         ai: normalizeAiSettings(),
       },
@@ -247,6 +268,47 @@ export async function fetchExamAttempts(uid, size = 20) {
 export async function fetchExamAttempt(uid, attemptId) {
   const snap = await getDoc(doc(db, "users", uid, "examAttempts", attemptId));
   return snap.exists() ? { id: snap.id, ...snap.data() } : null;
+}
+
+export async function deleteExamAttempt(uid, attemptId) {
+  if (!uid || !attemptId) return { deleted: false };
+
+  const attemptRef = doc(db, "users", uid, "examAttempts", attemptId);
+  const attemptSnap = await getDoc(attemptRef);
+  if (!attemptSnap.exists()) return { deleted: false };
+
+  const attemptData = attemptSnap.data() || {};
+  const score = Number(attemptData.score || 0);
+  const total = Number(attemptData.total || 0);
+
+  const [historySnap, mistakeSnap] = await Promise.all([
+    getDocs(query(collection(db, "users", uid, "history"), where("attemptId", "==", attemptId))),
+    getDocs(query(collection(db, "users", uid, "mistakes"), where("reviewedFromAttemptId", "==", attemptId))),
+  ]);
+
+  const batch = writeBatch(db);
+  batch.delete(attemptRef);
+  historySnap.forEach((item) => batch.delete(item.ref));
+  mistakeSnap.forEach((item) => batch.delete(item.ref));
+  await batch.commit();
+
+  const summaryRef = doc(db, "users", uid, "stats", "summary");
+  await runTransaction(db, async (tx) => {
+    const summarySnap = await tx.get(summaryRef);
+    if (!summarySnap.exists()) return;
+    const old = summarySnap.data() || {};
+    tx.set(summaryRef, {
+      totalAnswered: Math.max(0, Number(old.totalAnswered || 0) - total),
+      totalCorrect: Math.max(0, Number(old.totalCorrect || 0) - score),
+      updatedAt: serverTimestamp(),
+    }, { merge: true });
+  });
+
+  return {
+    deleted: true,
+    removedHistory: historySnap.size,
+    removedMistakes: mistakeSnap.size,
+  };
 }
 
 export async function upsertMistake(uid, record) {
