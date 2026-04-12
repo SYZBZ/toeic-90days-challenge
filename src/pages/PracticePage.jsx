@@ -1,8 +1,12 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { analyzeAnswer, generateQuestion } from "../lib/geminiService";
 import { removeMistake, saveHistory, updateSummary, upsertMistake } from "../lib/firestoreService";
+import { Banner } from "../ui/Banner";
+import { Button } from "../ui/Button";
+import { Card } from "../ui/Card";
+import { InputField } from "../ui/InputField";
 
 const STATUS = {
   IDLE: "idle",
@@ -22,16 +26,9 @@ export default function PracticePage() {
   const [error, setError] = useState("");
   const [retryHint, setRetryHint] = useState("");
 
-  useEffect(() => {
-    if (retryHint) {
-      const timer = setTimeout(() => setRetryHint(""), 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [retryHint]);
-
   const onRetry = ({ waitMs, attempt }) => {
     const sec = (waitMs / 1000).toFixed(1);
-    setRetryHint(`伺服器忙碌中，第 ${attempt} 次重試：預計 ${sec} 秒後自動重試...`);
+    setRetryHint(`Server busy, retry #${attempt} in ${sec}s ...`);
   };
 
   const startQuestion = async () => {
@@ -40,9 +37,10 @@ export default function PracticePage() {
     setSelected(null);
     setRetryHint("");
     setStatus(STATUS.GENERATING);
+
     try {
       const q = await generateQuestion(
-        { part: profile?.settings?.part || "Part 5", topic, level: "850+" },
+        { part: profile?.settings?.part || "Part 5", topic, level: profile?.settings?.level || "850+" },
         profile?.geminiApiKey,
         onRetry,
       );
@@ -56,15 +54,21 @@ export default function PracticePage() {
 
   const submitAnswer = async () => {
     if (selected == null || !question) return;
+
     setError("");
     setRetryHint("");
     setStatus(STATUS.ANALYZING);
+
     try {
-      const a = await analyzeAnswer({
-        question: question.question,
-        options: question.options,
-        userAnswer: selected,
-      }, profile?.geminiApiKey, onRetry);
+      const a = await analyzeAnswer(
+        {
+          question: question.question,
+          options: question.options,
+          userAnswer: selected,
+        },
+        profile?.geminiApiKey,
+        onRetry,
+      );
 
       setAnalysis(a);
       setStatus(STATUS.RESULT);
@@ -110,64 +114,80 @@ export default function PracticePage() {
 
   if (!profile?.geminiApiKey) {
     return (
-      <div className="card">
+      <Card>
         <h3>尚未設定 GEMINI_API_KEY</h3>
         <p className="muted">請先到設定頁輸入 API Key，才能開始刷題。</p>
-        <Link className="btn primary" to="/settings">前往設定</Link>
-      </div>
+        <Link className="link-btn" to="/settings">前往設定</Link>
+      </Card>
     );
   }
 
   return (
-    <div className="stack">
-      <section className="card">
-        <h3>刷題練習（Part 5）</h3>
-        <label>主題（可選）</label>
-        <input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="business email / HR / finance" />
-
-        {status === STATUS.IDLE && <button className="btn primary" onClick={startQuestion}>產生題目</button>}
-        {status === STATUS.GENERATING && <p className="muted">題目生成中...</p>}
-        {retryHint && <p className="alert">{retryHint}</p>}
-        {error && <p className="alert danger">{error}</p>}
-      </section>
-
-      {(status === STATUS.QUESTION || status === STATUS.ANALYZING || status === STATUS.RESULT) && question && (
-        <section className="card">
-          <p className="question">{question.question}</p>
-          <div className="options">
-            {question.options.map((opt, idx) => (
-              <button
-                key={idx}
-                className={`option-btn ${selected === idx ? "selected" : ""} ${status === STATUS.RESULT && analysis?.correctAnswerIndex === idx ? "correct" : ""}`}
-                disabled={status === STATUS.ANALYZING || status === STATUS.RESULT}
-                onClick={() => setSelected(idx)}
-              >
-                {String.fromCharCode(65 + idx)}. {opt}
-              </button>
-            ))}
+    <div className="stack-lg">
+      <section className="test-shell">
+        <Card className="test-left">
+          <div className="row between">
+            <h3>Reading Prompt</h3>
+            <span className="progress-pill">Part 5</span>
           </div>
 
-          {status === STATUS.QUESTION && (
-            <button className="btn primary" onClick={submitAnswer} disabled={selected == null}>送出作答</button>
-          )}
-          {status === STATUS.ANALYZING && <p className="muted">解析中...</p>}
-        </section>
-      )}
+          <InputField
+            label="Topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder="business email / HR / finance"
+          />
+
+          {status === STATUS.IDLE && <Button onClick={startQuestion}>Generate Question</Button>}
+          {status === STATUS.GENERATING && <p className="muted">Generating...</p>}
+          {retryHint && <Banner>{retryHint}</Banner>}
+          {error && <Banner tone="danger">{error}</Banner>}
+
+          <img
+            alt="Mascot"
+            className="test-mascot"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYjwVmYUMsgceNjWV7GjUUvis4aGku5mFTuA3DZCf7d3f97W1-vHKHNE9IyIj1rsQg26gFX7rs3dLua92O8ddNDh73myYYZlA6eTfowAxo7LZZwPZHil4Kpjg9TULq7wUbRs3t7AChvbs7-xf0qP2XQnD6qOV3a-ei8q7URN4Mk97roGsnbH875QCOce2uHLz0Zjgvn1Y-gmN53WswzyVzG9dKZIKV9o6x0oBVEfA4FC9qjxMjojzAlokqrxlCQbUhn8lrvBxmTTc"
+          />
+        </Card>
+
+        {(status === STATUS.QUESTION || status === STATUS.ANALYZING || status === STATUS.RESULT) && question && (
+          <Card className="test-right">
+            <span className="question-badge">QUESTION</span>
+            <p className="question">{question.question}</p>
+
+            <div className="options">
+              {question.options.map((opt, idx) => (
+                <button
+                  key={idx}
+                  className={`option-btn ${selected === idx ? "selected" : ""} ${
+                    status === STATUS.RESULT && analysis?.correctAnswerIndex === idx ? "correct" : ""
+                  }`}
+                  disabled={status === STATUS.ANALYZING || status === STATUS.RESULT}
+                  onClick={() => setSelected(idx)}
+                >
+                  <span className="option-key">{String.fromCharCode(65 + idx)}</span>
+                  <span>{opt}</span>
+                </button>
+              ))}
+            </div>
+
+            {status === STATUS.QUESTION && (
+              <Button onClick={submitAnswer} disabled={selected == null}>Submit</Button>
+            )}
+            {status === STATUS.ANALYZING && <p className="muted">Analyzing...</p>}
+          </Card>
+        )}
+      </section>
 
       {status === STATUS.RESULT && analysis && (
-        <section className="card">
-          <h3>完整解析</h3>
+        <Card>
+          <h3>解析結果</h3>
           <p><strong>正解：</strong>{String.fromCharCode(65 + analysis.correctAnswerIndex)}</p>
           <p><strong>翻譯：</strong>{analysis.translationZh}</p>
-          <p><strong>為何容易錯：</strong>{analysis.trapExplanationZh}</p>
-          <p><strong>正解理由：</strong>{analysis.correctReasonZh}</p>
-          {analysis.optionReviewZh.length > 0 && (
-            <ul className="list">
-              {analysis.optionReviewZh.map((item, idx) => <li key={idx}>{String.fromCharCode(65 + idx)}. {item}</li>)}
-            </ul>
-          )}
-          <button className="btn primary" onClick={startQuestion}>下一題</button>
-        </section>
+          <p><strong>陷阱：</strong>{analysis.trapExplanationZh}</p>
+          <p><strong>理由：</strong>{analysis.correctReasonZh}</p>
+          <Button onClick={startQuestion}>下一題</Button>
+        </Card>
       )}
     </div>
   );

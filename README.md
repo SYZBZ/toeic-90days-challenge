@@ -1,30 +1,28 @@
-﻿# TOEIC 90 Days Challenge (Serverless)
+﻿# README.md — TOEIC 90 Days Challenge (Serverless)
 
-Vite + React + Firebase + Gemini 的多益刷題 Web App。
+Vite + React + Firebase + Gemini 的多益刷題 App。現在已完成：
+- Gemini 雙模型路由（2.5 出題 / 3 解析 / 2.5 備援）
+- Firestore 跨裝置同步 API Key 與模型設定
+- Stitch MCP 連線成功（可讀取 Stitch 專案）
+- UI 改為 Ethereal Playground / Stitch 匯出版型骨架
 
 ## 技術棧
 - Frontend: Vite + React + React Router
 - Auth/DB: Firebase Authentication + Firestore
 - AI: `@google/generative-ai`
-  - 出題: `gemini-2.5-flash`
-  - 解析: `gemini-2.5-pro`
+  - 出題：`gemini-2.5-flash`
+  - 解析主：`gemini-3-flash`
+  - 解析備援：`gemini-2.5-flash`
 - Deploy: GitHub Actions -> GitHub Pages
-
-## 目錄說明
-- `src/`: 新版 App 程式碼
-- `legacy/`: 舊版純靜態網站完整備份
-- `firestore.rules`: Firestore 安全規則（僅 owner 可讀寫）
-- `.github/workflows/deploy.yml`: Pages 自動部署
+- Design workflow: Stitch MCP（僅本機工具鏈）
 
 ## 快速開始
-
-### 1) 安裝依賴
+1. 安裝依賴
 ```bash
 npm install
 ```
 
-### 2) 設定環境變數
-複製 `.env.example` 為 `.env`，填入 Firebase Web config：
+2. 設定 `.env`
 ```env
 VITE_FIREBASE_API_KEY=
 VITE_FIREBASE_AUTH_DOMAIN=
@@ -34,64 +32,52 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 ```
 
-### 3) 啟動開發
+3. 啟動
 ```bash
 npm run dev
 ```
 
-### 4) Build
+4. 建置
 ```bash
 npm run build
 npm run preview
 ```
 
-## Firebase 設定
-1. 啟用 Authentication -> Email/Password。
-2. 建立 Firestore (Native mode)。
-3. 在 Firebase Console 匯入 `firestore.rules`。
-4. Firestore 結構：
-   - `users/{uid}`
-   - `users/{uid}/history/{attemptId}`
-   - `users/{uid}/mistakes/{mistakeId}`
-   - `users/{uid}/stats/summary`
+## Firestore 結構
+- `users/{uid}`
+  - `email`
+  - `geminiApiKey`
+  - `settings.level`
+  - `settings.part`
+  - `settings.ai.questionModel`
+  - `settings.ai.analysisModel`
+  - `settings.ai.analysisFallbackModel`
+- `users/{uid}/history/{attemptId}`
+- `users/{uid}/mistakes/{mistakeId}`
+- `users/{uid}/stats/summary`
 
-## API Key 同步
-- 使用者在設定頁輸入 `GEMINI_API_KEY`。
-- Key 會儲存在 `users/{uid}.geminiApiKey`。
-- 換裝置登入同帳號會自動載入。
+## Gemini 韌性策略
+- `429/503`：Exponential Backoff with Jitter
+- 主模型不可用（配額/服務忙碌/未開通）時自動降級到備援模型
+- 主模型 cooldown：短時間內避免重複撞限流模型
+- 設定頁支援一鍵檢查模型可用性
 
-## 韌性設計
-Gemini 呼叫使用 `callGeminiWithBackoff()`：
-- 針對 `429/503` 做 Exponential Backoff with Jitter
-- 前端會顯示「預計幾秒後重試」的提示
+## Stitch 整合現況
+- 已確認 MCP 可連線並可讀取專案/畫面（`list_projects` 成功）
+- UI 已套用 Stitch 匯出風格骨架：
+  - 固定 TopBar
+  - Desktop SideNav
+  - Mobile BottomNav
+  - Hero + Bento 內容區
 
-## GitHub Pages 部署
-`deploy.yml` 已設定 push 到 `main` 自動部署。
+## 安全注意
+- Stitch API Key 僅限本機 MCP 設定使用
+- 禁止把 Stitch key 寫入前端程式碼、`.env`、Firestore 或 git 歷史
+- 若 key 曾公開，請先 rotate 再使用
 
-### 初始化與推送（本機）
-```bash
-git init
-git add .
-git commit -m "feat: serverless toeic app with firebase and gemini"
-```
-
-若尚未安裝 GitHub CLI：
-```bash
-winget install --id GitHub.cli -e
-```
-
-建立並推送到 GitHub：
-```bash
-gh auth login
-gh repo create toeic-90days-challenge --public --source . --remote origin --push
-```
-
-## 舊版資料匯入
-設定頁有「匯入舊版 localStorage」按鈕，會把以下資料搬到 Firestore：
-- `toeic.examHistory`
-- `toeic.mistakes`
-- `toeic.stats`
-
-## 注意
-- 本專案是純前端 serverless，請勿把 API key 寫在程式碼或 commit 到 repo。
-- `legacy/` 僅供回溯，不參與新版 runtime。
+## 專案目錄
+- `src/`: 新版 App 程式碼
+- `src/ui/`: 共用 UI 元件層
+- `legacy/`: 舊版靜態網站備份（不可刪）
+- `firestore.rules`: Firestore 安全規則
+- `.github/workflows/deploy.yml`: Pages 自動部署

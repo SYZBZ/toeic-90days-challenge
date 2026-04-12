@@ -15,10 +15,13 @@ const missing = Object.entries(firebaseConfig)
   .filter(([, value]) => !value)
   .map(([key]) => key);
 
-if (missing.length > 0) {
-  console.warn("Firebase 環境變數缺漏:", missing.join(", "));
+export const firebaseMissingKeys = missing;
+export const firebaseIsConfigured = missing.length === 0;
+
+if (!firebaseIsConfigured) {
+  console.warn("Firebase 尚未完成設定，缺少：", missing.join(", "));
 }
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+const app = firebaseIsConfigured ? initializeApp(firebaseConfig) : null;
+export const auth = app ? getAuth(app) : null;
+export const db = app ? getFirestore(app) : null;

@@ -12,6 +12,7 @@
   setDoc,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import { normalizeAiSettings, resolveAiSettings } from "./aiModels";
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -22,30 +23,83 @@ function mistakeDocId(questionText = "", optionText = "") {
   return btoa(unescape(encodeURIComponent(seed))).replace(/[^a-zA-Z0-9]/g, "").slice(0, 64) || `m_${Date.now()}`;
 }
 
+function normalizeUserSettings(settings = {}) {
+  return {
+    level: settings?.level || "850+",
+    part: settings?.part || "part5",
+    ai: resolveAiSettings(settings),
+  };
+}
+
 export async function ensureUserProfile(uid, email) {
   const ref = doc(db, "users", uid);
   const snap = await getDoc(ref);
+
   if (!snap.exists()) {
     await setDoc(ref, {
       email: email || "",
       geminiApiKey: "",
-      settings: { level: "850+", part: "part5" },
+      settings: {
+        level: "850+",
+        part: "part5",
+        ai: normalizeAiSettings(),
+      },
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
-  } else {
-    await setDoc(ref, { email: email || snap.data()?.email || "", updatedAt: serverTimestamp() }, { merge: true });
+    return;
   }
+
+  const old = snap.data() || {};
+  await setDoc(ref, {
+    email: email || old.email || "",
+    settings: normalizeUserSettings(old.settings),
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
 }
 
 export async function loadUserProfile(uid) {
   const ref = doc(db, "users", uid);
   const snap = await getDoc(ref);
-  return snap.exists() ? snap.data() : null;
+  if (!snap.exists()) return null;
+
+  const data = snap.data();
+  return {
+    ...data,
+    settings: normalizeUserSettings(data.settings),
+  };
 }
 
-export async function saveUserKey(uid, geminiApiKey) {
-  await setDoc(doc(db, "users", uid), { geminiApiKey, updatedAt: serverTimestamp() }, { merge: true });
+export async function saveUserKey(uid, geminiApiKey, aiSettings) {
+  const payload = {
+    geminiApiKey,
+    updatedAt: serverTimestamp(),
+  };
+
+  if (aiSettings) {
+    const snap = await getDoc(doc(db, "users", uid));
+    const oldSettings = snap.exists() ? snap.data()?.settings || {} : {};
+    payload.settings = {
+      level: oldSettings.level || "850+",
+      part: oldSettings.part || "part5",
+      ai: normalizeAiSettings(aiSettings),
+    };
+  }
+
+  await setDoc(doc(db, "users", uid), payload, { merge: true });
+}
+
+export async function saveUserAiSettings(uid, aiSettings) {
+  const snap = await getDoc(doc(db, "users", uid));
+  const oldSettings = snap.exists() ? snap.data()?.settings || {} : {};
+  await setDoc(doc(db, "users", uid), {
+    settings: {
+      level: oldSettings.level || "850+",
+      part: oldSettings.part || "part5",
+      ai: normalizeAiSettings(aiSettings),
+    },
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
 }
 
 export async function saveHistory(uid, record) {

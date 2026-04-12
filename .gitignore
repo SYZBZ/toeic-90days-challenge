@@ -1,4 +1,4 @@
-node_modules/
+﻿node_modules/
 dist/
 config.local.json
 .env
@@ -7,7 +7,7 @@ config.local.json
 coverage/
 legacy/data/raw/
 legacy/scripts/__pycache__/
-# 舊版殘留目錄（OneDrive 權限限制導致無法刪除）
+# OneDrive 同步資料夾保留在工作目錄但不納入新版 runtime
 /assets/
 /css/
 /data/
@@ -17,3 +17,4 @@ legacy/scripts/__pycache__/
 .claude/
 *.pyc
 .DS_Store
+stitch_*.html

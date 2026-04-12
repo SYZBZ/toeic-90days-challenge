@@ -1,8 +1,15 @@
 ﻿/**
+ * @typedef {Object} AiSettings
+ * @property {string} questionModel
+ * @property {string} analysisModel
+ * @property {string} analysisFallbackModel
+ */
+
+/**
  * @typedef {Object} UserProfile
  * @property {string} email
  * @property {string} geminiApiKey
- * @property {{level?: string, part?: string}} settings
+ * @property {{level?: string, part?: string, ai?: AiSettings}} settings
  */
 
 /**
@@ -16,7 +23,7 @@
  * @typedef {Object} QuestionItem
  * @property {string} question
  * @property {string[]} options
- * @property {{part: string, topic: string, level: string}} meta
+ * @property {{part: string, topic: string, level: string, questionModel?: string}} meta
  */
 
 /**
@@ -26,6 +33,7 @@
  * @property {string} trapExplanationZh
  * @property {string} correctReasonZh
  * @property {string[]} optionReviewZh
+ * @property {string=} modelUsed
  */
 
 /**

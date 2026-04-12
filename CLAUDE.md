@@ -1,39 +1,47 @@
 ﻿# CLAUDE.md
 
-## 專案狀態
-本 repo 已重構為 **Vite + React + Firebase + Gemini** 的 serverless web app。
+## Repo 現況（請先讀）
+此專案已重構為 **Vite + React + Firebase + Gemini**，並已接上 Stitch 設計流程。
 
-- 新版 runtime: `src/`
-- 舊版備份: `legacy/`
-- 部署: `.github/workflows/deploy.yml`
+- runtime: `src/`
+- legacy backup: `legacy/`（不可刪）
+- deploy: `.github/workflows/deploy.yml`
 
-## 協作 AI 注意事項
-此 repo 會由 Codex 與 Claude Code 協作，請遵守：
-1. **不要刪除 `legacy/`**，它是回溯與資料匯入來源。
-2. Firestore 路徑固定為 `users/{uid}` 以及其子集合，不得改成全域集合。
-3. Gemini 路由固定：
-   - 出題 `gemini-2.5-flash`
-   - 解析 `gemini-2.5-pro`
-4. Backoff 行為不可移除：`429/503` 必須重試且 UI 要顯示等待提示。
-5. `vite.config.js` 的 `base` 需維持 `/toeic-90days-challenge/` 以支援 GitHub Pages。
+## 核心決策（不可回退）
+1. Firestore 路徑固定 user-scoped：`users/{uid}` 與子集合
+2. 模型路由預設：
+   - 出題：`gemini-2.5-flash`
+   - 解析主：`gemini-3-flash`
+   - 解析備援：`gemini-2.5-flash`
+3. Backoff/cooldown/UI retry hint 不可移除
+4. `vite.config.js` base 維持 `/toeic-90days-challenge/`
+5. Stitch key 僅允許存在本機 MCP 設定，不進前端與資料庫
 
-## 程式結構
-- `src/context/AuthContext.jsx`: Auth 狀態與 profile 載入
-- `src/lib/firestoreService.js`: Firestore CRUD 與 legacy 匯入
-- `src/lib/geminiClient.js`: Exponential Backoff with Jitter
-- `src/lib/geminiService.js`: 出題/解析 prompt 與模型路由
-- `src/pages/*`: Login, Dashboard, Practice, Review, Settings
+## Stitch 協作現況
+- MCP `stitch` 已可連線並可讀取專案
+- 目前 UI 已採用 Ethereal Playground 骨架：
+  - 固定 TopBar
+  - Desktop SideNav
+  - Mobile BottomNav
+  - Hero + Bento 內容布局
+- 若要「完全 1:1」，請在既有骨架上做逐頁細部對齊，不要推倒重做
 
-## Firestore 規則
-- 檔案：`firestore.rules`
-- 核心原則：只允許 owner（`request.auth.uid == uid`）讀寫
+## 關鍵檔案
+- `src/lib/aiModels.js`: 模型預設與正規化
+- `src/lib/geminiClient.js`: backoff + jitter
+- `src/lib/geminiService.js`: 模型路由、fallback、cooldown
+- `src/lib/firestoreService.js`: profile/history/mistakes/stats CRUD
+- `src/ui/*`: 共用 UI 元件
+- `src/styles.css`: Stitch/Ethereal 全域風格
 
-## 變更紀錄（本次重構）
-- 舊版靜態檔案已備份到 `legacy/`
-- 根目錄切換為 React/Vite 專案
-- 新增 Firebase Auth + Firestore 同步架構
-- 新增 Gemini 雙模型調度與 backoff
-- 新增 GitHub Pages Actions workflow
+## 資料模型（user doc）
+- `email`
+- `geminiApiKey`
+- `settings.level`
+- `settings.part`
+- `settings.ai.questionModel`
+- `settings.ai.analysisModel`
+- `settings.ai.analysisFallbackModel`
 
 ## 開發指令
 ```bash
@@ -42,11 +50,9 @@ npm run dev
 npm run build
 ```
 
-## 發佈指令（人工執行）
+## 提交建議
 ```bash
-git init
 git add .
-git commit -m "feat: serverless toeic app"
-gh auth login
-gh repo create toeic-90days-challenge --public --source . --remote origin --push
+git commit -m "feat: align stitch ui and gemini routing"
+git push
 ```
