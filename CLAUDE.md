@@ -31,6 +31,13 @@ Legacy static site is preserved in `legacy/`.
   - correct reason
   - trap explanation
   - per-option review
+- Daily vocab page now uses the same vocabulary card UI/behavior as `/vocabulary`
+  - bookmark toggle
+  - pronunciation
+  - mastered +1
+- Vocab mini-game is finite-round (10 or 20) and auto-finishes
+  - state machine: `idle -> playing -> finished`
+  - no infinite auto-looping
 
 ## Route Map
 - `/dashboard`
@@ -65,6 +72,7 @@ Legacy static site is preserved in `legacy/`.
 - App shell/routing/pages:
   - `src/App.jsx`
   - `src/components/AppShell.jsx`
+  - `src/components/VocabWordCard.jsx`
   - `src/ui/NavBar.jsx`
   - `src/pages/*.jsx`
 - Data/AI services:
@@ -92,4 +100,6 @@ Legacy static site is preserved in `legacy/`.
 - Keep analysis in batch mode to reduce API pressure.
 - Keep retry UX surfaced to users (backoff waiting hints).
 - Keep `public/data/*` as runtime source for local banks.
+- Keep daily vocab and vocabulary card rendering consistent via shared component.
+- Keep vocab game finite-round behavior (10/20) and finished summary screen.
 - If adding dark mode/shortcuts later, preserve current CSS variable structure and sidebar collapse behavior.
