@@ -1,35 +1,6 @@
 ﻿import { callGeminiWithBackoff, parseJsonSafely } from "./geminiClient";
 import { DEFAULT_AI_SETTINGS, normalizeAiSettings } from "./aiModels";
 
-const QUESTION_PROMPT = ({ part, topic, level }) => `
-你是 TOEIC 金色證書（${level}）閱讀出題器。
-請只產生 1 題 ${part} 題型（商務情境、偏高難度），不得提供正解。
-輸出 JSON：
-{
-  "question": "...",
-  "options": ["A","B","C","D"],
-  "meta": { "part": "${part}", "topic": "${topic || "general business"}", "level": "${level}" }
-}
-僅輸出 JSON。
-`;
-
-const ANALYSIS_PROMPT = ({ question, options, userAnswer }) => `
-你是 TOEIC 專家解析器。
-我會提供題目、選項、使用者作答。請回傳 JSON（繁體中文）：
-{
-  "correctAnswerIndex": 0,
-  "translationZh": "題目與關鍵語句翻譯",
-  "trapExplanationZh": "為什麼容易選錯",
-  "correctReasonZh": "正解理由",
-  "optionReviewZh": ["A解析","B解析","C解析","D解析"]
-}
-
-題目: ${question}
-選項: ${JSON.stringify(options)}
-使用者作答 index: ${userAnswer}
-僅輸出 JSON。
-`;
-
 const cooldownByModel = new Map();
 
 function readAiSettings() {
@@ -59,9 +30,9 @@ function isModelUnavailableError(error) {
   const msg = String(error?.message || "").toLowerCase();
   const status = error?.status || error?.code;
   return (
-    status === 404 ||
-    msg.includes("model") && (msg.includes("not found") || msg.includes("not enabled") || msg.includes("not supported")) ||
-    msg.includes("permission")
+    status === 404
+    || (msg.includes("model") && (msg.includes("not found") || msg.includes("not enabled") || msg.includes("not supported")))
+    || msg.includes("permission")
   );
 }
 
@@ -114,6 +85,113 @@ async function runModel({ apiKey, model, prompt, onRetry }) {
   });
 }
 
+async function runWithFallback({ apiKey, primaryModel, fallbackModel, prompt, onRetry, actionLabel }) {
+  if (shouldSkipModelByCooldown(primaryModel)) {
+    try {
+      const text = await runModel({ apiKey, model: fallbackModel, prompt, onRetry });
+      return { text, modelUsed: fallbackModel };
+    } catch (error) {
+      throw toUserFriendlyError(error, actionLabel);
+    }
+  }
+
+  try {
+    const text = await runModel({ apiKey, model: primaryModel, prompt, onRetry });
+    return { text, modelUsed: primaryModel };
+  } catch (error) {
+    const canFallback = isQuotaError(error) || isServiceBusyError(error) || isModelUnavailableError(error);
+    if (!canFallback) throw toUserFriendlyError(error, actionLabel);
+
+    if (isQuotaError(error) || isServiceBusyError(error)) {
+      markModelCooldown(primaryModel, error);
+    }
+
+    try {
+      const text = await runModel({ apiKey, model: fallbackModel, prompt, onRetry });
+      return { text, modelUsed: fallbackModel };
+    } catch (fallbackError) {
+      throw toUserFriendlyError(fallbackError, actionLabel);
+    }
+  }
+}
+
+function questionPrompt({ part = "Part 5", level = "850+", count = 1 }) {
+  return `
+你是 TOEIC 閱讀測驗出題器。請產生 ${count} 題 ${part}，難度 ${level}。
+規則：
+0. 題目數量必須「剛好 ${count} 題」，不得多也不得少。
+1. 每題都要 4 選 1。
+2. 必須包含正解 index（0~3）與繁中解析 explanationZh。
+3. Part 6 / Part 7 必須提供 passage；Part 5 不需要 passage。
+4. 僅輸出 JSON，不要任何額外文字。
+
+輸出格式：
+{
+  "questions": [
+    {
+      "type": "part5|part6|part7",
+      "passage": "... 可省略",
+      "question": "...",
+      "options": ["A","B","C","D"],
+      "answer": 0,
+      "explanationZh": "..."
+    }
+  ]
+}
+`;
+}
+
+function analysisChunkPrompt(chunk) {
+  return `
+你是 TOEIC 閱讀解析助教。請針對下列題目提供繁中完整詳解。
+要求：
+1. 每題輸出 questionZh（整句翻譯）
+2. 每題輸出 optionsZh（4 個選項的翻譯）
+3. correctReasonZh：為什麼正解
+4. trapExplanationZh：常見誤選陷阱
+5. optionReviewZh：依 A/B/C/D 各給一行說明
+6. 僅輸出 JSON，不要 markdown，不要多餘文字。
+
+輸入：
+${JSON.stringify(chunk)}
+
+輸出格式：
+{
+  "results": [
+    {
+      "idx": 0,
+      "questionZh": "...",
+      "optionsZh": ["...","...","...","..."],
+      "correctReasonZh": "...",
+      "trapExplanationZh": "...",
+      "optionReviewZh": ["...","...","...","..."]
+    }
+  ]
+}
+`;
+}
+
+function normalizeGeneratedQuestion(item, idx, partLabel) {
+  const type = String(item?.type || partLabel || "part5").toLowerCase().replace(/\s+/g, "");
+  const question = String(item?.question || "").trim();
+  const options = Array.isArray(item?.options) ? item.options.map((x) => String(x || "").trim()) : [];
+  const answer = Number(item?.answer);
+
+  if (!question || options.length !== 4 || !Number.isInteger(answer) || answer < 0 || answer > 3) {
+    return null;
+  }
+
+  return {
+    id: `${type}_gen_${Date.now()}_${idx}`,
+    type,
+    passage: String(item?.passage || "").trim() || undefined,
+    question,
+    options,
+    answer,
+    explanation: String(item?.explanationZh || item?.explanation || "").trim(),
+  };
+}
+
 export async function probeModelAvailability({ apiKey, model, onRetry }) {
   const text = await runModel({
     apiKey,
@@ -124,7 +202,7 @@ export async function probeModelAvailability({ apiKey, model, onRetry }) {
   return String(text || "").trim().length > 0;
 }
 
-export async function generateQuestion(payload, apiKey, onRetry) {
+export async function generateExamQuestions(payload, apiKey, onRetry) {
   const ai = readAiSettings();
   const questionModel = ai.questionModel || DEFAULT_AI_SETTINGS.questionModel;
 
@@ -133,7 +211,7 @@ export async function generateQuestion(payload, apiKey, onRetry) {
     text = await runModel({
       apiKey,
       model: questionModel,
-      prompt: QUESTION_PROMPT(payload),
+      prompt: questionPrompt(payload),
       onRetry,
     });
   } catch (error) {
@@ -141,19 +219,106 @@ export async function generateQuestion(payload, apiKey, onRetry) {
   }
 
   const parsed = parseJsonSafely(text);
-  if (!parsed?.question || !Array.isArray(parsed?.options) || parsed.options.length !== 4) {
-    throw new Error("Gemini 出題格式不正確，請稍後重試。");
+  const list = Array.isArray(parsed?.questions) ? parsed.questions : [];
+  const normalized = list
+    .map((x, idx) => normalizeGeneratedQuestion(x, idx, payload?.part || "part5"))
+    .filter(Boolean)
+    .slice(0, payload?.count || list.length);
+
+  if (!normalized.length || normalized.length < (payload?.count || 1)) {
+    throw new Error("Gemini 出題數量不足，請稍後重試。");
   }
 
+  return normalized;
+}
+
+export async function analyzeExamBatch(payload, apiKey, onRetry, onProgress) {
+  const ai = readAiSettings();
+  const primaryModel = ai.analysisModel || DEFAULT_AI_SETTINGS.analysisModel;
+  const fallbackModel = ai.analysisFallbackModel || DEFAULT_AI_SETTINGS.analysisFallbackModel;
+
+  const questions = Array.isArray(payload?.questions) ? payload.questions : [];
+  if (!questions.length) return [];
+
+  const chunkSize = 4;
+  const chunks = [];
+  for (let i = 0; i < questions.length; i += chunkSize) {
+    const chunk = questions.slice(i, i + chunkSize).map((q, offset) => ({
+      idx: i + offset,
+      part: q.type || q.meta?.part || "part5",
+      passage: q.passage || "",
+      question: q.question,
+      options: q.options,
+      correctAnswerIndex: q.answer,
+      userAnswerIndex: payload?.answers?.[i + offset] ?? null,
+    }));
+    chunks.push(chunk);
+  }
+
+  const all = [];
+  for (let i = 0; i < chunks.length; i += 1) {
+    const prompt = analysisChunkPrompt(chunks[i]);
+    const { text, modelUsed } = await runWithFallback({
+      apiKey,
+      primaryModel,
+      fallbackModel,
+      prompt,
+      onRetry,
+      actionLabel: "解析",
+    });
+
+    const parsed = parseJsonSafely(text);
+    const results = Array.isArray(parsed?.results) ? parsed.results : [];
+
+    for (const item of results) {
+      const idx = Number(item?.idx);
+      if (!Number.isInteger(idx)) continue;
+
+      all[idx] = {
+        questionZh: String(item?.questionZh || ""),
+        optionsZh: Array.isArray(item?.optionsZh) ? item.optionsZh.map((x) => String(x || "")) : ["", "", "", ""],
+        correctReasonZh: String(item?.correctReasonZh || ""),
+        trapExplanationZh: String(item?.trapExplanationZh || ""),
+        optionReviewZh: Array.isArray(item?.optionReviewZh) ? item.optionReviewZh.map((x) => String(x || "")) : ["", "", "", ""],
+        modelUsed,
+      };
+    }
+
+    if (typeof onProgress === "function") {
+      onProgress({ done: i + 1, total: chunks.length });
+    }
+  }
+
+  return questions.map((q, idx) => {
+    const fallbackReason = q.explanation || "";
+    const item = all[idx] || {};
+    const optionsZh = Array.isArray(item.optionsZh) && item.optionsZh.length === 4
+      ? item.optionsZh
+      : ["", "", "", ""];
+
+    return {
+      questionZh: item.questionZh || "",
+      optionsZh,
+      correctReasonZh: item.correctReasonZh || fallbackReason,
+      trapExplanationZh: item.trapExplanationZh || "",
+      optionReviewZh: Array.isArray(item.optionReviewZh) && item.optionReviewZh.length === 4
+        ? item.optionReviewZh
+        : ["", "", "", ""],
+      modelUsed: item.modelUsed || primaryModel,
+    };
+  });
+}
+
+export async function generateQuestion(payload, apiKey, onRetry) {
+  const list = await generateExamQuestions({ ...payload, count: 1 }, apiKey, onRetry);
+  const first = list[0];
   return {
-    question: parsed.question,
-    options: parsed.options,
+    question: first.question,
+    options: first.options,
     meta: {
-      ...(parsed.meta || {}),
-      part: parsed.meta?.part || payload.part,
-      topic: parsed.meta?.topic || payload.topic || "general business",
-      level: parsed.meta?.level || payload.level,
-      questionModel,
+      part: payload?.part || "Part 5",
+      topic: payload?.topic || "general",
+      level: payload?.level || "850+",
     },
   };
 }
@@ -162,39 +327,32 @@ export async function analyzeAnswer(payload, apiKey, onRetry) {
   const ai = readAiSettings();
   const primaryModel = ai.analysisModel || DEFAULT_AI_SETTINGS.analysisModel;
   const fallbackModel = ai.analysisFallbackModel || DEFAULT_AI_SETTINGS.analysisFallbackModel;
-  const prompt = ANALYSIS_PROMPT(payload);
-  let modelUsed = primaryModel;
 
-  const runFallback = async () => {
-    try {
-      return await runModel({ apiKey, model: fallbackModel, prompt, onRetry });
-    } catch (fallbackError) {
-      throw toUserFriendlyError(fallbackError, "解析");
-    }
-  };
+  const prompt = `
+你是 TOEIC 專家解析器。
+我會提供題目、選項、使用者作答。請回傳 JSON（繁體中文）：
+{
+  "correctAnswerIndex": 0,
+  "translationZh": "題目翻譯",
+  "trapExplanationZh": "為什麼容易選錯",
+  "correctReasonZh": "正解理由",
+  "optionReviewZh": ["A解析","B解析","C解析","D解析"]
+}
 
-  let text;
-  if (shouldSkipModelByCooldown(primaryModel)) {
-    modelUsed = fallbackModel;
-    text = await runFallback();
-  } else {
-    try {
-      text = await runModel({ apiKey, model: primaryModel, prompt, onRetry });
-    } catch (error) {
-      const canFallback = isQuotaError(error) || isModelUnavailableError(error) || isServiceBusyError(error);
-      if (!canFallback) {
-        throw toUserFriendlyError(error, "解析");
-      }
+題目: ${payload.question}
+選項: ${JSON.stringify(payload.options || [])}
+使用者作答 index: ${payload.userAnswer}
+僅輸出 JSON。
+`;
 
-      if (isQuotaError(error) || isServiceBusyError(error)) {
-        markModelCooldown(primaryModel, error);
-      }
-
-      modelUsed = fallbackModel;
-      text = await runFallback();
-    }
-  }
-
+  const { text, modelUsed } = await runWithFallback({
+    apiKey,
+    primaryModel,
+    fallbackModel,
+    prompt,
+    onRetry,
+    actionLabel: "解析",
+  });
   const parsed = parseJsonSafely(text);
   if (!parsed || typeof parsed.correctAnswerIndex !== "number") {
     throw new Error("Gemini 解析格式不正確，請稍後重試。");
@@ -207,6 +365,5 @@ export async function analyzeAnswer(payload, apiKey, onRetry) {
     correctReasonZh: parsed.correctReasonZh || "",
     optionReviewZh: Array.isArray(parsed.optionReviewZh) ? parsed.optionReviewZh : [],
     modelUsed,
-    fallbackModel,
   };
 }

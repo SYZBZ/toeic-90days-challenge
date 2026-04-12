@@ -1,0 +1,265 @@
+{
+  "part": 5,
+  "questions": [
+    {
+      "id": "p5_6a1b2aff",
+      "type": "part5",
+      "question": "The CEO decided to ________ the merger until the financial audit was fully completed to avoid any potential legal liabilities.",
+      "options": [
+        "relinquish",
+        "defer",
+        "advocate",
+        "expedite"
+      ],
+      "answer": 1,
+      "explanation": "defer 意為「推遲」。根據句意，執行長決定推遲合併案，直到財務審計完成。"
+    },
+    {
+      "id": "p5_0b8cbf58",
+      "type": "part5",
+      "question": "It is imperative that the marketing director ________ the proposal before the board meeting tomorrow morning.",
+      "options": [
+        "reviews",
+        "review",
+        "reviewed",
+        "is reviewing"
+      ],
+      "answer": 1,
+      "explanation": "在形容詞 imperative (必要的) 引導的 that 子句中，需使用虛擬語氣，動詞應為原形 review。"
+    },
+    {
+      "id": "p5_0ba72957",
+      "type": "part5",
+      "question": "The ________ of the new enterprise resource planning software has led to a significant increase in productivity across all departments.",
+      "options": [
+        "implementation",
+        "implement",
+        "implemented",
+        "implementing"
+      ],
+      "answer": 0,
+      "explanation": "此處需要名詞作為句子的主詞。implementation 意為「實施、執行」。"
+    },
+    {
+      "id": "p5_e8afc720",
+      "type": "part5",
+      "question": "________ the complexity of the project, the project manager requested an extension of two weeks to ensure high-quality results.",
+      "options": [
+        "Given",
+        "Giving",
+        "Give",
+        "To give"
+      ],
+      "answer": 0,
+      "explanation": "Given 作為介系詞，意為「考慮到」或「鑒於」，常用於句首說明理由。"
+    },
+    {
+      "id": "p5_344f472a",
+      "type": "part5",
+      "question": "The company's annual report shows that profits have been ________ expectations for the third consecutive quarter.",
+      "options": [
+        "in accordance with",
+        "regardless of",
+        "consistent with",
+        "in excess of"
+      ],
+      "answer": 3,
+      "explanation": "in excess of 意為「超過」。句意指利潤已連續三季超過預期。"
+    },
+    {
+      "id": "p5_ac6bc3b5",
+      "type": "part5",
+      "question": "Mr. Henderson is the consultant ________ expertise helped the firm navigate the complex international trade regulations during the acquisition.",
+      "options": [
+        "whom",
+        "whose",
+        "which",
+        "that"
+      ],
+      "answer": 1,
+      "explanation": "whose 為關係代名詞所有格，用來修飾其後的名詞 expertise (專業知識)。"
+    },
+    {
+      "id": "p5_b365627c",
+      "type": "part5",
+      "question": "Employees are encouraged to seek ________ from their supervisors regarding their performance goals during the annual review.",
+      "options": [
+        "clarification",
+        "compensation",
+        "obligation",
+        "resolution"
+      ],
+      "answer": 0,
+      "explanation": "clarification 意為「澄清、說明」。句意為鼓勵員工針對績效目標尋求主管的進一步說明。"
+    },
+    {
+      "id": "p5_597ba949",
+      "type": "part5",
+      "question": "________ the budget constraints, the research team managed to produce high-quality results within the specified deadline.",
+      "options": [
+        "Although",
+        "Despite",
+        "Nevertheless",
+        "Even though"
+      ],
+      "answer": 1,
+      "explanation": "Despite 是介系詞，後接名詞短語 budget constraints。Although 與 Even though 後需接子句。"
+    },
+    {
+      "id": "p5_0406ccdc",
+      "type": "part5",
+      "question": "The legal team is ________ examining the contract terms to ensure there are no loopholes that could harm the company.",
+      "options": [
+        "tentatively",
+        "meticulously",
+        "marginally",
+        "redundantly"
+      ],
+      "answer": 1,
+      "explanation": "meticulously 意為「細心地、嚴謹地」。法律團隊正在嚴謹地審查合約條款。"
+    },
+    {
+      "id": "p5_0d8dfcd0",
+      "type": "part5",
+      "question": "Had the technical issues been reported sooner, the system upgrade ________ completed on schedule last month.",
+      "options": [
+        "would have been",
+        "will be",
+        "had been",
+        "was"
+      ],
+      "answer": 0,
+      "explanation": "這是與過去事實相反的假設語氣，if 被省略而產生倒裝 (Had...)，主句應使用 would have + p.p.。"
+    },
+    {
+      "id": "p5_45e8dcfb",
+      "type": "part5",
+      "question": "Management is ______ to announce that the annual dividends will be increased by 15 percent this year due to record-breaking profits.",
+      "options": [
+        "pleased",
+        "pleasing",
+        "pleasant",
+        "pleasure"
+      ],
+      "answer": 0,
+      "explanation": "be pleased to do something 為固定用法，表示「很榮幸、很高興做某事」，主詞通常為人或組織。"
+    },
+    {
+      "id": "p5_e1583121",
+      "type": "part5",
+      "question": "Despite the _______ economic climate, the tech startup managed to secure another round of funding from its primary investors.",
+      "options": [
+        "adversity",
+        "adverse",
+        "adversely",
+        "adverseness"
+      ],
+      "answer": 1,
+      "explanation": "adverse 為形容詞，意為「不利的、負面的」，在此修飾後方的名詞 economic climate（經濟氣候）。"
+    },
+    {
+      "id": "p5_db3b6845",
+      "type": "part5",
+      "question": "The CEO suggested that the marketing team _______ the promotional strategy before the next quarterly review to improve brand visibility.",
+      "options": [
+        "revise",
+        "revises",
+        "revised",
+        "revising"
+      ],
+      "answer": 0,
+      "explanation": "在 suggest, recommend, insist 等動詞後的 that 子句中，動詞需用原形（省略了 should），此為擬議語氣 (Mandative Subjunctive)。"
+    },
+    {
+      "id": "p5_f73ac7ef",
+      "type": "part5",
+      "question": "The legal department has requested that all ______ information regarding the upcoming merger be stored exclusively on the encrypted server.",
+      "options": [
+        "confidential",
+        "confidence",
+        "confidentially",
+        "confident"
+      ],
+      "answer": 0,
+      "explanation": "confidential 為形容詞，意為「機密的」。在此修飾名詞 information。"
+    },
+    {
+      "id": "p5_78d4c3e3",
+      "type": "part5",
+      "question": "Mr. Henderson was ______ for the success of the merger, as his negotiation skills were instrumental in closing the deal.",
+      "options": [
+        "credited",
+        "attributed",
+        "accounted",
+        "responsible"
+      ],
+      "answer": 0,
+      "explanation": "be credited for/with something 意為「歸功於...」或「因某事而受到讚揚」。"
+    },
+    {
+      "id": "p5_0e21a831",
+      "type": "part5",
+      "question": "The newly implemented software is ______ more efficient than the previous version, reducing processing time by nearly 40 percent.",
+      "options": [
+        "marginally",
+        "substantially",
+        "reluctantly",
+        "superficially"
+      ],
+      "answer": 1,
+      "explanation": "substantially 意為「大幅地、顯著地」，常用於修飾比較級 (more efficient)，形容提升程度巨大。"
+    },
+    {
+      "id": "p5_5fb99c83",
+      "type": "part5",
+      "question": "Employees are strongly encouraged to _______ themselves of the professional development courses offered by the company during the summer break.",
+      "options": [
+        "apply",
+        "avail",
+        "benefit",
+        "participate"
+      ],
+      "answer": 1,
+      "explanation": "avail oneself of something 是固定片語，意指「利用（機會、資源、優勢等）」。"
+    },
+    {
+      "id": "p5_929b1b88",
+      "type": "part5",
+      "question": "Had the board members known the full extent of the liabilities, they ______ the acquisition proposal during the last meeting.",
+      "options": [
+        "will reject",
+        "would reject",
+        "would have rejected",
+        "rejected"
+      ],
+      "answer": 2,
+      "explanation": "此為與過去事實相反的假設語氣。從句 Had the board members known 為 If the board members had known 的倒裝，主句應使用 would have + p.p.。"
+    },
+    {
+      "id": "p5_4e78e645",
+      "type": "part5",
+      "question": "The project manager is looking for a candidate who possesses not only technical expertise ______ strong leadership qualities to guide the team.",
+      "options": [
+        "and",
+        "or",
+        "but also",
+        "as well"
+      ],
+      "answer": 2,
+      "explanation": "相關連結詞 not only A but also B，意為「不僅 A 而且 B」。"
+    },
+    {
+      "id": "p5_2909d03c",
+      "type": "part5",
+      "question": "To ensure a seamless ______ to the new payroll system, all staff members must attend the mandatory training session on Friday afternoon.",
+      "options": [
+        "transition",
+        "transmission",
+        "transaction",
+        "translation"
+      ],
+      "answer": 0,
+      "explanation": "transition 意為「轉變、過渡」。seamless transition 指的是不同系統或階段之間的「無縫銜接」。"
+    }
+  ]
+}

@@ -1,58 +1,84 @@
 ﻿# CLAUDE.md
 
-## Repo 現況（請先讀）
-此專案已重構為 **Vite + React + Firebase + Gemini**，並已接上 Stitch 設計流程。
+## Project Snapshot
+This repo is now a serverless TOEIC app on:
+- Vite + React (`src/`)
+- Firebase Auth + Firestore (user-scoped data sync)
+- Gemini routing (`2.5-flash` for question generation, `3-flash` for analysis, `2.5-flash` fallback)
+- GitHub Pages base path: `/toeic-90days-challenge/`
 
-- runtime: `src/`
-- legacy backup: `legacy/`（不可刪）
-- deploy: `.github/workflows/deploy.yml`
+Legacy static site is preserved in `legacy/`.
 
-## 核心決策（不可回退）
-1. Firestore 路徑固定 user-scoped：`users/{uid}` 與子集合
-2. 模型路由預設：
-   - 出題：`gemini-2.5-flash`
-   - 解析主：`gemini-3-flash`
-   - 解析備援：`gemini-2.5-flash`
-3. Backoff/cooldown/UI retry hint 不可移除
-4. `vite.config.js` base 維持 `/toeic-90days-challenge/`
-5. Stitch key 僅允許存在本機 MCP 設定，不進前端與資料庫
+## Current Product Behaviors
+- Practice flow is exam-oriented (not topic input):
+  - setup -> taking -> submit -> detailed explanations -> history review
+- Modes:
+  - Part 5 / Part 6 / Part 7 / Mixed
+- Presets:
+  - `10x5` and `20x10`
+- Mixed ratio:
+  - `10`: 5/3/2 (P5/P6/P7)
+  - `20`: 8/6/6 (P5/P6/P7)
+- Local banks used first from `public/data/questions-part*.json`
+- If insufficient (especially Part 7), Gemini auto-fills missing questions
+- Post-submit analysis is batch-based and includes:
+  - question zh
+  - options zh
+  - correct reason
+  - trap explanation
+  - per-option review
 
-## Stitch 協作現況
-- MCP `stitch` 已可連線並可讀取專案
-- 目前 UI 已採用 Ethereal Playground 骨架：
-  - 固定 TopBar
-  - Desktop SideNav
-  - Mobile BottomNav
-  - Hero + Bento 內容布局
-- 若要「完全 1:1」，請在既有骨架上做逐頁細部對齊，不要推倒重做
+## Route Map
+- `/dashboard`
+- `/progress`
+- `/vocabulary`
+- `/review` (SRS vocab review)
+- `/vocab-game` (vocab mini-game)
+- `/practice`
+- `/grammar`
+- `/mistakes`
+- `/settings`
 
-## 關鍵檔案
-- `src/lib/aiModels.js`: 模型預設與正規化
-- `src/lib/geminiClient.js`: backoff + jitter
-- `src/lib/geminiService.js`: 模型路由、fallback、cooldown
-- `src/lib/firestoreService.js`: profile/history/mistakes/stats CRUD
-- `src/ui/*`: 共用 UI 元件
-- `src/styles.css`: Stitch/Ethereal 全域風格
+## Firestore Collections (all under `users/{uid}`)
+- root doc:
+  - `email`, `geminiApiKey`
+  - `settings.level`, `settings.part`
+  - `settings.examPreset`
+  - `settings.reminder.{enabled,time}`
+  - `settings.ai.{questionModel,analysisModel,analysisFallbackModel}`
+- subcollections:
+  - `examAttempts`
+  - `history`
+  - `mistakes`
+  - `bookmarks`
+  - `srs`
+  - `stats/summary`
 
-## 資料模型（user doc）
-- `email`
-- `geminiApiKey`
-- `settings.level`
-- `settings.part`
-- `settings.ai.questionModel`
-- `settings.ai.analysisModel`
-- `settings.ai.analysisFallbackModel`
+## Key Files Changed
+- App shell/routing/pages:
+  - `src/App.jsx`
+  - `src/components/AppShell.jsx`
+  - `src/ui/NavBar.jsx`
+  - `src/pages/*.jsx`
+- Data/AI services:
+  - `src/lib/firestoreService.js`
+  - `src/lib/geminiService.js`
+  - `src/lib/localData.js`
+- PWA assets:
+  - `public/manifest.webmanifest`
+  - `public/sw.js`
+  - `public/icons/*`
+- Runtime data for frontend fetch:
+  - `public/data/vocabulary.json`
+  - `public/data/grammar.json`
+  - `public/data/questions-part5.json`
+  - `public/data/questions-part6.json`
+  - `public/data/questions-part7.json`
 
-## 開發指令
-```bash
-npm install
-npm run dev
-npm run build
-```
-
-## 提交建議
-```bash
-git add .
-git commit -m "feat: align stitch ui and gemini routing"
-git push
-```
+## Collaboration Notes for Claude Code
+- Do not reintroduce topic-based practice input.
+- Keep exam snapshots in `examAttempts` for review playback.
+- Keep analysis in batch mode to reduce API pressure.
+- Keep retry UX surfaced to users (backoff waiting hints).
+- Keep `public/data/*` as runtime source for local banks.
+- If adding dark mode/shortcuts later, preserve current CSS variable structure and sidebar collapse behavior.

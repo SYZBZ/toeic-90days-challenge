@@ -1,41 +1,54 @@
-﻿# PLAN.md — Stitch 對齊與 Gemini 路由現況
+﻿# PLAN.md
 
-## 已完成
-1. Gemini 模型路由重構
-- 出題：`gemini-2.5-flash`
-- 解析主：`gemini-3-flash`
-- 解析備援：`gemini-2.5-flash`
-- 支援配額/服務忙碌/模型不可用時自動降級
+## TOEIC 90 Days 重構計畫（已落地版本）
 
-2. 韌性與穩定性
-- `429/503` 指數退避 + jitter
-- 主模型 cooldown，避免連續撞同一限制
-- UI 會顯示等待重試提示
+### Phase 1：核心可用版
+- 考試流程重構：設定 -> 作答 -> 交卷 -> 詳解 -> 歷史回顧
+- 模式：Part 5 / Part 6 / Part 7 / 綜合
+- 題數時間：10x5、20x10
+- 綜合配比：
+  - 10 題：Part5/6/7 = 5/3/2
+  - 20 題：Part5/6/7 = 8/6/6
+- 題源：本地題庫優先，不足時 Gemini 補題（Part 7 必定補題）
+- 解析：交卷後批次解析（題目中譯、選項中譯、正解理由、陷阱）
+- 歷史回顧：儲存完整考卷快照，可回看當次內容
+- 單字庫：接 `data/vocabulary.json`，支援搜尋/篩選/收藏
+- 語法頁：接 `data/grammar.json`，10 單元 + 小測
+- 頁面拆分：
+  - `/progress` 進度頁
+  - `/mistakes` 錯題本
+  - `/review` 單字複習（SRS）
 
-3. Firestore 設定同步
-- 新增 `settings.ai`：
-  - `questionModel`
-  - `analysisModel`
-  - `analysisFallbackModel`
-- 設定頁可儲存與檢查模型可用性
+### Phase 2：中期體驗版
+- 每日提醒（Web Notifications）
+- PWA 離線（manifest + service worker）
+- Sidebar 折疊（桌面，64px icon-only）
+- Topbar 真資料（已熟練單字、連續天數、帳號頭像）
+- 單字小遊戲（中英配對 + 拼字，5 秒節奏）
 
-4. Stitch 連線與 UI 套用
-- Stitch MCP 已可用（專案可讀）
-- 已套用 Stitch 匯出版型骨架：TopBar + Desktop SideNav + Mobile BottomNav
-- Dashboard 與 Practice 版型已改為 Ethereal 風格主結構
+## 資料模型
+- `users/{uid}`
+  - `settings.examPreset`: `10x5 | 20x10`
+  - `settings.reminder`: `{ enabled, time }`
+  - `settings.ai`: `{ questionModel, analysisModel, analysisFallbackModel }`
+- `users/{uid}/examAttempts/{attemptId}`：完整考卷
+- `users/{uid}/mistakes/{mistakeId}`：錯題
+- `users/{uid}/bookmarks/{wordId}`：收藏
+- `users/{uid}/srs/{wordId}`：SRS 狀態
+- `users/{uid}/stats/summary`
+  - `masteredWords`
+  - `dayX`
 
-## 目前下一步（可選）
-1. 做逐頁 1:1 pixel tuning（優先 Dashboard -> Practice -> Settings）
-2. 對齊 Stitch 截圖中的字級、區塊密度、間距比例
-3. 補齊卡片細節（圖示陰影、氣泡尾巴、互動微動效）
+## 目前決策
+- Part 7 題源：混合來源（本地優先，不足補 Gemini）
+- 詳解生成：交卷後批次解析
+- SRS 熟練定義：單字答對 >= 3 次
+- 本輪不做：暗色模式（8）、快捷鍵（9）
 
-## 驗收條件
-- `npm run build` 成功
-- 設定頁模型調整後跨裝置可讀
-- `gemini-3-flash` 不可用時可自動切換到 `gemini-2.5-flash`
-- 手機/桌面皆可用，導航與作答流程不中斷
-
-## 協作約定
-- `legacy/` 僅備份，不刪除
-- Stitch Key 僅本機工具鏈使用，不入 repo
-- Firestore 僅允許 `users/{uid}` 與其子集合
+## 驗收重點
+- 四種模式都能開考、時間到自動交卷
+- 每題詳解含：題目翻譯 + 選項翻譯 + 正解理由 + 陷阱解析
+- 歷史可回看完整考卷
+- 單字/語法頁不再顯示「內容搬移中」
+- Progress/Mistakes/Review 各自獨立
+- PWA 可安裝、提醒可設定與測試

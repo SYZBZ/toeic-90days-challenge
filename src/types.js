@@ -1,4 +1,15 @@
 ﻿/**
+ * @typedef {Object} ReminderSettings
+ * @property {boolean} enabled
+ * @property {string} time
+ */
+
+/**
+ * @typedef {Object} ExamSettings
+ * @property {number} freshRate
+ */
+
+/**
  * @typedef {Object} AiSettings
  * @property {string} questionModel
  * @property {string} analysisModel
@@ -9,48 +20,61 @@
  * @typedef {Object} UserProfile
  * @property {string} email
  * @property {string} geminiApiKey
- * @property {{level?: string, part?: string, ai?: AiSettings}} settings
+ * @property {{level?: string, part?: string, examPreset?: "10x5"|"20x10", exam?: ExamSettings, reminder?: ReminderSettings, ai?: AiSettings}} settings
  */
 
 /**
- * @typedef {Object} GeminiRoutingRequest
- * @property {string} part
- * @property {string} topic
- * @property {string} level
+ * @typedef {Object} PassageGroup
+ * @property {string} passage
+ * @property {string} passage_zh
+ * @property {QuestionItem[]} questions
+ */
+
+/**
+ * @typedef {Object} PoolDoc
+ * @property {string} poolDocId
+ * @property {"part5"|"part6"|"part7"} part
+ * @property {"single"|"passage_group"} kind
+ * @property {string} hashId
+ * @property {number} size
+ * @property {QuestionItem|PassageGroup} payload
+ */
+
+/**
+ * @typedef {Object} PoolStock
+ * @property {number} part5
+ * @property {number} part6
+ * @property {number} part7
+ * @property {number} mixed
+ */
+
+/**
+ * @typedef {Object} DispatchPlan
+ * @property {number} mustNew
+ * @property {number} allowedStock
+ * @property {number} actualStock
+ * @property {number} apiFetch
  */
 
 /**
  * @typedef {Object} QuestionItem
+ * @property {string} id
+ * @property {string} type
+ * @property {string=} passage
  * @property {string} question
  * @property {string[]} options
- * @property {{part: string, topic: string, level: string, questionModel?: string}} meta
+ * @property {number} answer
+ * @property {string=} explanation
  */
 
 /**
  * @typedef {Object} AnalysisResult
- * @property {number} correctAnswerIndex
- * @property {string} translationZh
+ * @property {string} questionZh
+ * @property {string[]} optionsZh
  * @property {string} trapExplanationZh
  * @property {string} correctReasonZh
  * @property {string[]} optionReviewZh
  * @property {string=} modelUsed
- */
-
-/**
- * @typedef {Object} HistoryRecord
- * @property {string} question
- * @property {string[]} options
- * @property {number} userAnswer
- * @property {number} correctAnswer
- * @property {boolean} correct
- */
-
-/**
- * @typedef {Object} MistakeRecord
- * @property {string} id
- * @property {string} question
- * @property {number|string} yourAnswer
- * @property {number|string} correctAnswer
  */
 
 /**
@@ -60,6 +84,8 @@
  * @property {number} streakDays
  * @property {string} lastStudyDate
  * @property {number} dayProgress
+ * @property {number} masteredWords
+ * @property {number} dayX
  */
 
 export {};

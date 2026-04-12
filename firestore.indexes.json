@@ -1,4 +1,29 @@
-{
-  "indexes": [],
+﻿{
+  "indexes": [
+    {
+      "collectionGroup": "question_pool",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "part",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pool_history",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "consumedAt",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
   "fieldOverrides": []
 }

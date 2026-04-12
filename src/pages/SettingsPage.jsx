@@ -2,7 +2,7 @@
 import { useAuth } from "../context/AuthContext";
 import { DEFAULT_AI_SETTINGS, normalizeAiSettings } from "../lib/aiModels";
 import { probeModelAvailability } from "../lib/geminiService";
-import { importLegacyLocalData, saveUserKey } from "../lib/firestoreService";
+import { importLegacyLocalData, saveUserKey, saveUserSettings } from "../lib/firestoreService";
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -18,6 +18,9 @@ export default function SettingsPage() {
   const { user, profile, refreshProfile, signOut } = useAuth();
   const [apiKey, setApiKey] = useState("");
   const [aiSettings, setAiSettings] = useState(DEFAULT_AI_SETTINGS);
+  const [examPreset, setExamPreset] = useState("10x5");
+  const [reminderEnabled, setReminderEnabled] = useState(false);
+  const [reminderTime, setReminderTime] = useState("20:30");
   const [message, setMessage] = useState("");
   const [saving, setSaving] = useState(false);
   const [checking, setChecking] = useState(false);
@@ -25,7 +28,10 @@ export default function SettingsPage() {
   useEffect(() => {
     setApiKey(profile?.geminiApiKey || "");
     setAiSettings(normalizeAiSettings(profile?.settings?.ai || {}));
-  }, [profile?.geminiApiKey, profile?.settings?.ai]);
+    setExamPreset(profile?.settings?.examPreset || "10x5");
+    setReminderEnabled(!!profile?.settings?.reminder?.enabled);
+    setReminderTime(profile?.settings?.reminder?.time || "20:30");
+  }, [profile?.geminiApiKey, profile?.settings]);
 
   const modelCheckList = useMemo(() => {
     const values = [aiSettings.questionModel, aiSettings.analysisModel, aiSettings.analysisFallbackModel]
@@ -34,21 +40,60 @@ export default function SettingsPage() {
     return [...new Set(values)];
   }, [aiSettings]);
 
-  const onSave = async () => {
+  const modelSuggestions = useMemo(() => {
+    return [...new Set([
+      ...MODEL_PRESETS,
+      aiSettings.questionModel,
+      aiSettings.analysisModel,
+      aiSettings.analysisFallbackModel,
+      profile?.settings?.ai?.questionModel,
+      profile?.settings?.ai?.analysisModel,
+      profile?.settings?.ai?.analysisFallbackModel,
+    ].filter(Boolean).map((x) => String(x).trim()))];
+  }, [aiSettings, profile?.settings?.ai]);
+
+  const onSaveAll = async () => {
     setSaving(true);
     setMessage("");
 
-    const normalized = normalizeAiSettings(aiSettings);
+    const normalizedAi = normalizeAiSettings(aiSettings);
     try {
-      await saveUserKey(user.uid, apiKey.trim(), normalized);
-      localStorage.setItem("toeic.ai.settings", JSON.stringify(normalized));
+      await saveUserKey(user.uid, apiKey.trim(), normalizedAi, {
+        examPreset,
+        reminder: {
+          enabled: reminderEnabled,
+          time: reminderTime,
+        },
+      });
+      localStorage.setItem("toeic.ai.settings", JSON.stringify(normalizedAi));
       await refreshProfile(user.uid);
-      setMessage("已儲存，模型與 API Key 會在其他裝置自動同步。");
+      setMessage("已儲存：API Key、模型、考試預設與每日提醒設定已同步。");
     } catch (err) {
       setMessage(err.message || "儲存失敗");
     } finally {
       setSaving(false);
     }
+  };
+
+  const onSaveModelsOnly = async () => {
+    setSaving(true);
+    setMessage("");
+    try {
+      const normalizedAi = normalizeAiSettings(aiSettings);
+      await saveUserSettings(user.uid, { ai: normalizedAi });
+      localStorage.setItem("toeic.ai.settings", JSON.stringify(normalizedAi));
+      await refreshProfile(user.uid);
+      setMessage("模型設定已儲存（可自訂任意模型 ID）。");
+    } catch (err) {
+      setMessage(err.message || "儲存模型失敗");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const onResetModelsToDefault = () => {
+    setAiSettings(DEFAULT_AI_SETTINGS);
+    setMessage("已套用預設模型，記得按「僅儲存模型設定」或「儲存全部設定」。");
   };
 
   const onCheckModels = async () => {
@@ -92,20 +137,54 @@ export default function SettingsPage() {
     setAiSettings((prev) => ({ ...prev, [key]: value }));
   };
 
+  const requestNotifyPermission = async () => {
+    if (!("Notification" in window)) {
+      setMessage("此瀏覽器不支援 Web Notifications。");
+      return;
+    }
+
+    const permission = await Notification.requestPermission();
+    setMessage(`通知權限狀態：${permission}`);
+  };
+
+  const sendTestNotification = () => {
+    if (!("Notification" in window) || Notification.permission !== "granted") {
+      setMessage("請先開啟通知權限。");
+      return;
+    }
+
+    new Notification("TOEIC 90 Days", {
+      body: "這是測試提醒：記得回來打卡刷題。",
+      icon: `${import.meta.env.BASE_URL}icons/icon-192.svg`,
+    });
+  };
+
+  const onSaveReminderOnly = async () => {
+    setSaving(true);
+    try {
+      await saveUserSettings(user.uid, {
+        reminder: { enabled: reminderEnabled, time: reminderTime },
+        examPreset,
+      });
+      await refreshProfile(user.uid);
+      setMessage("提醒與預設已儲存。");
+    } catch (err) {
+      setMessage(err.message || "儲存失敗");
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
     <div className="stack-lg">
       <section className="hero-panel compact">
         <p className="eyebrow">SETTINGS</p>
-        <h2>帳號與模型設定</h2>
-        <p className="muted">Gemini Key 與模型偏好都會同步到你的 Firestore user 文件。</p>
-        <div className="mascot-tip compact">
-          <span className="mascot-avatar" aria-hidden="true">🛠️</span>
-          <p>先檢查模型可用性，再開始刷題，流程會更順。</p>
-        </div>
+        <h2>帳號與學習設定</h2>
+        <p className="muted">Gemini Key、模型、考試預設、提醒時間都會同步到 Firestore。</p>
       </section>
 
       <Card>
-        <h3>Gemini API Key（跨裝置同步）</h3>
+        <h3>Gemini API Key</h3>
         <InputField
           label="GEMINI_API_KEY"
           type="password"
@@ -115,40 +194,75 @@ export default function SettingsPage() {
         />
 
         <div className="row wrap">
-          <Button onClick={onSave} disabled={saving}>儲存 Key 與模型</Button>
+          <Button onClick={onSaveAll} disabled={saving}>儲存全部設定</Button>
           <Button variant="secondary" onClick={onCheckModels} disabled={checking || saving}>檢查模型可用性</Button>
           <Button variant="ghost" onClick={onImport} disabled={saving}>匯入舊版 localStorage</Button>
         </div>
-
-        <p className="muted">僅儲存在 `users/{'{uid}'}`，不會公開給其他人。</p>
       </Card>
 
       <Card>
-        <h3>AI 模型路由</h3>
-        <p className="muted">預設策略：2.5 出題、3 解析，失敗時自動降級到 2.5。</p>
+        <h3>AI 模型路由（可自訂）</h3>
+        <p className="muted">可自行輸入任何模型 ID，不會被預設鎖住。儲存後跨裝置同步。</p>
 
         <InputField
           label="出題模型"
           value={aiSettings.questionModel}
           onChange={(e) => onAiField("questionModel", e.target.value)}
           list="gemini-model-list"
+          placeholder="例如：gemini-2.5-flash"
         />
         <InputField
           label="解析主模型"
           value={aiSettings.analysisModel}
           onChange={(e) => onAiField("analysisModel", e.target.value)}
           list="gemini-model-list"
+          placeholder="例如：gemini-3-flash"
         />
         <InputField
           label="解析備援模型"
           value={aiSettings.analysisFallbackModel}
           onChange={(e) => onAiField("analysisFallbackModel", e.target.value)}
           list="gemini-model-list"
+          placeholder="例如：gemini-2.5-flash"
         />
 
         <datalist id="gemini-model-list">
-          {MODEL_PRESETS.map((m) => <option key={m} value={m} />)}
+          {modelSuggestions.map((m) => <option key={m} value={m} />)}
         </datalist>
+
+        <div className="row wrap">
+          <Button variant="secondary" onClick={onSaveModelsOnly} disabled={saving}>僅儲存模型設定</Button>
+          <Button variant="ghost" onClick={onResetModelsToDefault} disabled={saving}>套用預設模型</Button>
+        </div>
+      </Card>
+
+      <Card>
+        <h3>考試與提醒</h3>
+        <label className="field-wrap">
+          <span className="field-label">預設考試題數</span>
+          <select className="field-input" value={examPreset} onChange={(e) => setExamPreset(e.target.value)}>
+            <option value="10x5">10 題 / 5 分鐘</option>
+            <option value="20x10">20 題 / 10 分鐘</option>
+          </select>
+        </label>
+
+        <label className="checkbox-row">
+          <input type="checkbox" checked={reminderEnabled} onChange={(e) => setReminderEnabled(e.target.checked)} />
+          <span>開啟每日提醒</span>
+        </label>
+
+        <InputField
+          label="提醒時間"
+          type="time"
+          value={reminderTime}
+          onChange={(e) => setReminderTime(e.target.value)}
+        />
+
+        <div className="row wrap">
+          <Button variant="secondary" onClick={requestNotifyPermission}>開啟通知權限</Button>
+          <Button variant="ghost" onClick={sendTestNotification}>發送測試通知</Button>
+          <Button onClick={onSaveReminderOnly} disabled={saving}>只儲存提醒/預設</Button>
+        </div>
       </Card>
 
       {message && (
