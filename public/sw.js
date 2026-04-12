@@ -1,7 +1,8 @@
-﻿const CACHE_NAME = "toeic90-static-v1";
+﻿const CACHE_NAME = "toeic90-static-v2";
 const BASE = "/toeic-90days-challenge/";
 const PRECACHE = [
   `${BASE}`,
+  `${BASE}404.html`,
   `${BASE}manifest.webmanifest`,
   `${BASE}icons/icon-192.svg`,
   `${BASE}icons/icon-512.svg`,
@@ -29,14 +30,21 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((res) => {
-        const clone = res.clone();
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
+
+  event.respondWith((async () => {
+    try {
+      const response = await fetch(event.request);
+      if (response && response.ok) {
+        const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)).catch(() => {});
-        return res;
-      }).catch(() => caches.match(`${BASE}`));
-    }),
-  );
+      }
+      return response;
+    } catch {
+      const cached = await caches.match(event.request);
+      if (cached) return cached;
+      return caches.match(`${BASE}`);
+    }
+  })());
 });
