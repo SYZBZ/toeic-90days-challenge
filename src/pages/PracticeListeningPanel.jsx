@@ -625,7 +625,7 @@ export default function PracticeListeningPanel() {
             ) : null}
 
             <div className="row wrap">
-              <Button variant="secondary" onClick={playCurrentAudio}>? 播放音檔</Button>
+              <Button variant="secondary" onClick={playCurrentAudio}>播放音檔</Button>
               <Button variant="ghost" onClick={stopAudio} disabled={!isPlaying}>■ 停止</Button>
               <button type="button" className="text-btn" onClick={() => setShowTranscript((v) => !v)}>
                 {showTranscript ? "隱藏 transcript" : "顯示 transcript"}
@@ -698,7 +698,7 @@ export default function PracticeListeningPanel() {
 
                   {q.audioUrl ? (
                     <div className="row wrap">
-                      <Button variant="ghost" onClick={() => audioManager.playUrl(q.audioUrl)}>? 重播此題音檔</Button>
+                      <Button variant="ghost" onClick={() => audioManager.playUrl(q.audioUrl)}>重播此題音檔</Button>
                     </div>
                   ) : null}
 
@@ -736,3 +736,5 @@ export default function PracticeListeningPanel() {
     </div>
   );
 }
+
+

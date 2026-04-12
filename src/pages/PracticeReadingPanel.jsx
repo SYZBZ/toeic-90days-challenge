@@ -628,7 +628,7 @@ export default function PracticeReadingPanel() {
               <div className="row wrap">
                 <Button onClick={startExam}>開始測驗</Button>
                 <Button variant="secondary" onClick={expandPoolInBackground} disabled={isExpanding}>
-                  {isExpanding ? "擴充中..." : "?? 背景擴充題庫"}
+                  {isExpanding ? "擴充中..." : "背景擴充題庫"}
                 </Button>
                 <Link className="link-btn ghost-link" to="/settings">設定 API Key</Link>
               </div>
@@ -805,6 +805,8 @@ export default function PracticeReadingPanel() {
     </div>
   );
 }
+
+
 
 
 
