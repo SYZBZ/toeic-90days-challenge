@@ -38,6 +38,10 @@ jobs:
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET || vars.VITE_FIREBASE_STORAGE_BUCKET }}
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID || vars.VITE_FIREBASE_MESSAGING_SENDER_ID }}
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID || vars.VITE_FIREBASE_APP_ID }}
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY || vars.VITE_GEMINI_API_KEY }}
+          VITE_TTS_API_KEY: ${{ secrets.VITE_TTS_API_KEY || vars.VITE_TTS_API_KEY }}
+          VITE_VERTEX_AI_KEY: ${{ secrets.VITE_VERTEX_AI_KEY || vars.VITE_VERTEX_AI_KEY }}
+          VITE_GOOGLE_API_KEY: ${{ secrets.VITE_GOOGLE_API_KEY || vars.VITE_GOOGLE_API_KEY }}
         run: npm run build
 
       - name: Setup Pages

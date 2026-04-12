@@ -25,7 +25,7 @@ import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 
-const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GOOGLE_API_KEY || "";
 
 const STATUS = {
   SETUP: "setup",
@@ -251,8 +251,8 @@ export default function PracticeReadingPanel() {
   async function expandPoolInBackground() {
     if (!user?.uid) return;
     if (isExpanding) return;
-    if (!GOOGLE_API_KEY) {
-      setError("請先在 .env 設定 VITE_GOOGLE_API_KEY。");
+    if (!GEMINI_API_KEY) {
+      setError("請先在 .env 設定 VITE_GEMINI_API_KEY。");
       return;
     }
 
@@ -269,7 +269,7 @@ export default function PracticeReadingPanel() {
       for (const [part, count] of Object.entries(dist)) {
         const generated = await generateExamQuestions(
           { part: `Part ${partNumber(part)}`, count, targetScore, targetLevel },
-          GOOGLE_API_KEY,
+          GEMINI_API_KEY,
           onRetry,
         );
         const result = await appendToQuestionPool(user.uid, part, generated, {
@@ -304,7 +304,7 @@ export default function PracticeReadingPanel() {
     if (apiFetch > 0) {
       const raw = await generateExamQuestions(
         { part: `Part ${partNumber(part)}`, count: apiFetch, targetScore: scoreTarget, targetLevel: levelTarget },
-        GOOGLE_API_KEY,
+        GEMINI_API_KEY,
         onRetry,
       );
       generated = raw.map((x) => normalizeQuestion(x, part));
@@ -338,8 +338,8 @@ export default function PracticeReadingPanel() {
     setScore(0);
     setReviewAttempt(null);
 
-    if (!GOOGLE_API_KEY) {
-      setError("請先在 .env 設定 VITE_GOOGLE_API_KEY，才能出題與產生完整中譯詳解。");
+    if (!GEMINI_API_KEY) {
+      setError("請先在 .env 設定 VITE_GEMINI_API_KEY，才能出題與產生完整中譯詳解。");
       return;
     }
 
@@ -421,7 +421,7 @@ export default function PracticeReadingPanel() {
       setAnalysisProgress("正在產生中譯與詳解（1/2）...");
       const analysisResult = await analyzeExamBatch(
         { questions: currentQuestions, answers: answerArr },
-        GOOGLE_API_KEY,
+        GEMINI_API_KEY,
         onRetry,
         ({ done, total }) => setAnalysisProgress(`正在產生中譯與詳解（${done}/${total}）...`),
       );
@@ -805,6 +805,7 @@ export default function PracticeReadingPanel() {
     </div>
   );
 }
+
 
 
 

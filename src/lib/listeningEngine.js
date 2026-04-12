@@ -5,7 +5,9 @@ import { buildSsmlFromSegments } from "./ssmlService";
 import { uploadAudioBase64, uploadImageBase64 } from "./storageUploadService";
 import { appendToQuestionPool } from "./questionPoolService";
 
-const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GOOGLE_API_KEY || "";
+const TTS_API_KEY = import.meta.env.VITE_TTS_API_KEY || "";
+const VERTEX_AI_KEY = import.meta.env.VITE_VERTEX_AI_KEY || "";
 
 function readAiSettings() {
   const raw = localStorage.getItem("toeic.ai.settings");
@@ -17,11 +19,25 @@ function readAiSettings() {
   }
 }
 
-function ensureGoogleKey() {
-  if (!GOOGLE_API_KEY) {
-    throw new Error("缺少 VITE_GOOGLE_API_KEY，請先在 .env 設定後重啟。");
+function ensureGeminiKey() {
+  if (!GEMINI_API_KEY) {
+    throw new Error("缺少 VITE_GEMINI_API_KEY（或舊版 VITE_GOOGLE_API_KEY），請先在 .env 設定後重啟。");
   }
-  return GOOGLE_API_KEY;
+  return GEMINI_API_KEY;
+}
+
+function ensureTtsKey() {
+  if (!TTS_API_KEY) {
+    throw new Error("缺少 VITE_TTS_API_KEY，請先在 .env 設定後重啟。");
+  }
+  return TTS_API_KEY;
+}
+
+function ensureVertexAiKey() {
+  if (!VERTEX_AI_KEY) {
+    throw new Error("缺少 VITE_VERTEX_AI_KEY，請先在 .env 設定後重啟。");
+  }
+  return VERTEX_AI_KEY;
 }
 
 function normalizeSegments(segments = []) {
@@ -243,7 +259,7 @@ function toPlainTtsText(segments = []) {
 }
 
 export async function synthesizeTtsBase64({ part, segments, useSsml = false, speakingRate = 0.95, onRetry }) {
-  const apiKey = ensureGoogleKey();
+  const apiKey = ensureTtsKey();
   const normalizedPart = normalizePart(part);
   const safeSegments = normalizeSegments(segments);
   if (!safeSegments.length) throw new Error("TTS 缺少可朗讀內容。");
@@ -300,7 +316,7 @@ export async function synthesizeTtsBase64({ part, segments, useSsml = false, spe
 }
 
 export async function generateImagenBase64({ prompt, onRetry }) {
-  const apiKey = ensureGoogleKey();
+  const apiKey = ensureVertexAiKey();
   const model = "imagen-3.0-generate-002";
   const maxRetries = 2;
   let attempt = 0;
@@ -349,7 +365,7 @@ export async function generateImagenBase64({ prompt, onRetry }) {
 }
 
 export async function generateListeningBlueprint({ part, count, targetScore, targetLevel, onRetry }) {
-  const apiKey = ensureGoogleKey();
+  const apiKey = ensureGeminiKey();
   const ai = readAiSettings();
   const model = ai.questionModel || DEFAULT_AI_SETTINGS.questionModel;
 
@@ -522,7 +538,7 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
 }
 
 export async function analyzeListeningBatch(payload, onRetry) {
-  const apiKey = ensureGoogleKey();
+  const apiKey = ensureGeminiKey();
   const ai = readAiSettings();
   const model = ai.analysisModel || DEFAULT_AI_SETTINGS.analysisModel;
 

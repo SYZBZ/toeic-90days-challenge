@@ -51,8 +51,17 @@ VITE_FIREBASE_PROJECT_ID=
 VITE_FIREBASE_STORAGE_BUCKET=
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
+VITE_GEMINI_API_KEY=
+VITE_TTS_API_KEY=
+VITE_VERTEX_AI_KEY=
+# Legacy fallback (optional)
 VITE_GOOGLE_API_KEY=
 ```
+
+3-key 策略對應：
+- `VITE_GEMINI_API_KEY`：Gemini 出題/解析
+- `VITE_TTS_API_KEY`：Cloud Text-to-Speech 合成
+- `VITE_VERTEX_AI_KEY`：Imagen 生圖（Part 1）
 
 3. 啟動開發
 ```bash
@@ -112,4 +121,6 @@ npm run preview
 - Stitch API Key 僅用於本機 MCP 工具鏈，不進前端程式碼、不寫入 Firestore。
 - `service worker` 目前採 network-first 策略，降低 GitHub Pages 舊版快取殘留問題。
 - Spark 方案下無 Cloud Functions；本專案聽力多模態生成完全在前端執行。
+- 請在 GitHub Repository Secrets/Variables 同步設定三把 key（`VITE_GEMINI_API_KEY`、`VITE_TTS_API_KEY`、`VITE_VERTEX_AI_KEY`），避免 Pages 版本缺 key。
 - 請同步部署 `storage.rules`（`users/{uid}/audio/*`、`users/{uid}/images/*` 僅 owner 可讀寫）。
+
