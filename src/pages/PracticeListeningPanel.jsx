@@ -36,10 +36,12 @@ const PART_LABEL = {
 
 const PART_PRESETS = {
   part1: {
+    "1x1": { count: 1, minutes: 1 },
     "10x5": { count: 10, minutes: 5 },
     "20x10": { count: 20, minutes: 10 },
   },
   part2: {
+    "1x1": { count: 1, minutes: 1 },
     "10x5": { count: 10, minutes: 5 },
     "20x10": { count: 20, minutes: 10 },
   },
@@ -499,7 +501,7 @@ export default function PracticeListeningPanel() {
         <>
           <Card>
             <h3>聽力模擬考設定</h3>
-            <p className="muted">目標難度：{targetLabel}。Part 3/4 為固定 3 題一組（僅提供 9/18 題）。</p>
+            <p className="muted">目標難度：{targetLabel}。Part 1/2 支援 1 題快速測試；Part 3/4 為固定 3 題一組（提供 9/18 題）。</p>
 
             <div className="stack-sm">
               <div className="row wrap">
