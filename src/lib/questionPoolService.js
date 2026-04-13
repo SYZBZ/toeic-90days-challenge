@@ -532,9 +532,7 @@ export async function archiveConsumedPool(uid, consumedDocs, sessionId) {
       consumedAtMs: Date.now(),
       attemptSessionId: sessionId || item.attemptSessionId || "",
     });
-
-    const poolRef = doc(db, "users", uid, "question_pool", item.poolDocId);
-    batch.delete(poolRef);
+    // Keep questions in pool so users can repeatedly practice the same items.
     archivedQuestions += Number(item.size || 0);
   }
 
