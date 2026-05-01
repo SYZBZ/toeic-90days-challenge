@@ -2,8 +2,7 @@
 import { DEFAULT_AI_SETTINGS, normalizeAiSettings } from "./aiModels";
 import { getPromptInjectByLevel, normalizeTargetLevel, normalizeTargetScore } from "./targetDifficulty";
 import { buildSsmlFromSegments } from "./ssmlService";
-import { uploadAudioBase64, uploadImageBase64 } from "./storageUploadService";
-import { appendToQuestionPool } from "./questionPoolService";
+import { getPart1ImageById, pickPart1Images } from "../data/part1ImageBank";
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 const TTS_API_KEY = import.meta.env.VITE_TTS_API_KEY || "";
@@ -19,25 +18,28 @@ function readAiSettings() {
   }
 }
 
-function ensureGeminiKey() {
-  if (!GEMINI_API_KEY) {
-    throw new Error("缺少 VITE_GEMINI_API_KEY，請先在 .env 設定後重啟。");
+function ensureGeminiKey(overrideKey = "") {
+  const key = String(overrideKey || GEMINI_API_KEY || "").trim();
+  if (!key) {
+    throw new Error("缺少 Gemini API Key，請先到設定頁填入，或在本機 .env 設定 VITE_GEMINI_API_KEY。");
   }
-  return GEMINI_API_KEY;
+  return key;
 }
 
-function ensureTtsKey() {
-  if (!TTS_API_KEY) {
-    throw new Error("缺少 VITE_TTS_API_KEY，請先在 .env 設定後重啟。");
+function ensureTtsKey(overrideKey = "") {
+  const key = String(overrideKey || TTS_API_KEY || "").trim();
+  if (!key) {
+    throw new Error("缺少 Text-to-Speech API Key，請先到設定頁填入，或在本機 .env 設定 VITE_TTS_API_KEY。");
   }
-  return TTS_API_KEY;
+  return key;
 }
 
-function ensureVertexAiKey() {
-  if (!VERTEX_AI_KEY) {
-    throw new Error("缺少 VITE_VERTEX_AI_KEY，請先在 .env 設定後重啟。");
+function ensureVertexAiKey(overrideKey = "") {
+  const key = String(overrideKey || VERTEX_AI_KEY || "").trim();
+  if (!key) {
+    throw new Error("缺少 Imagen / Vertex AI API Key，請先到設定頁填入，或在本機 .env 設定 VITE_VERTEX_AI_KEY。");
   }
-  return VERTEX_AI_KEY;
+  return key;
 }
 
 function normalizeSegments(segments = []) {
@@ -61,35 +63,55 @@ function toPromptPartLabel(part) {
   return part.toUpperCase().replace("PART", "Part ");
 }
 
-function buildListeningPrompt({ part, count, targetScore, targetLevel, promptInject }) {
+function buildListeningPrompt({ part, count, targetScore, targetLevel, promptInject, imageBankItems = [] }) {
   const partLabel = toPromptPartLabel(part);
   const groupCount = (part === "part3" || part === "part4") ? Math.floor(count / 3) : count;
 
   if (part === "part1") {
+    const imageContext = imageBankItems.map((item, index) => ({
+      idx: index,
+      imageId: item.id,
+      scene: item.scene,
+      objects: item.objects,
+      actions: item.actions,
+      tags: item.tags,
+      prompt: item.prompt,
+    }));
+
     return `
 你是 TOEIC Listening ${partLabel}（Photographs）出題器。
-請產生剛好 ${count} 題，難度對應 ${targetScore}+ (${targetLevel})。
+請根據下方圖片庫 metadata 產生剛好 ${count} 題，難度對應 ${targetScore}+ (${targetLevel})。
 難度規則：${promptInject}
 
+圖片庫 metadata：
+${JSON.stringify(imageContext, null, 2)}
+
 每題格式：
-- imagePrompt: 提供給 Imagen 的英文畫面描述（詳細可生成辦公室場景）
+- imageId: 必須使用圖片庫中的 imageId，且每題盡量不同
 - transcript.segments: 音檔要朗讀的內容（含 4 個選項敘述）
 - options: 四個英文敘述（A/B/C/D）
 - answer: 0~3
-- questionZh/optionsZh/explanationZh
+- questionZh/optionsZh/explanationZh/trapExplanationZh/optionReviewZh
 - difficulty 必須是 "${targetLevel}"
+
+出題規則：
+1. 正解必須符合圖片 metadata 中可見場景、物件或動作。
+2. 干擾選項可以合理但不可與圖片 metadata 明顯衝突到荒謬。
+3. 不要描述圖片 metadata 沒有提到的具體人物身份或品牌。
 
 只輸出 JSON：
 {
   "items": [
     {
-      "imagePrompt": "...",
+      "imageId": "...",
       "transcript": { "segments": [{"speaker":"NARRATOR","text":"A. ...","accent":"us","gender":"female"}] },
       "options": ["...","...","...","..."],
       "answer": 0,
       "questionZh": "...",
       "optionsZh": ["...","...","...","..."],
       "explanationZh": "...",
+      "trapExplanationZh": "...",
+      "optionReviewZh": ["...","...","...","..."],
       "difficulty": "${targetLevel}"
     }
   ]
@@ -106,7 +128,7 @@ function buildListeningPrompt({ part, count, targetScore, targetLevel, promptInj
 - transcript.segments：包含提問與 3 句回應
 - options：三個回應句
 - answer：0~2
-- questionZh/optionsZh/explanationZh
+- questionZh/optionsZh/explanationZh/trapExplanationZh/optionReviewZh
 - difficulty 必須是 "${targetLevel}"
 
 只輸出 JSON：
@@ -119,6 +141,8 @@ function buildListeningPrompt({ part, count, targetScore, targetLevel, promptInj
       "questionZh": "...",
       "optionsZh": ["...","...","..."],
       "explanationZh": "...",
+      "trapExplanationZh": "...",
+      "optionReviewZh": ["...","...","..."],
       "difficulty": "${targetLevel}"
     }
   ]
@@ -134,7 +158,7 @@ function buildListeningPrompt({ part, count, targetScore, targetLevel, promptInj
 - transcript.segments：對話/獨白內容，需包含 speaker、text、accent(us|uk|au)、gender(male|female)
 - questions：固定 3 題，每題 4 選 1
 - answer：0~3
-- questionZh/optionsZh/explanationZh
+- questionZh/optionsZh/explanationZh/trapExplanationZh/optionReviewZh
 - difficulty 必須是 "${targetLevel}"
 
 只輸出 JSON：
@@ -150,6 +174,8 @@ function buildListeningPrompt({ part, count, targetScore, targetLevel, promptInj
           "questionZh": "...",
           "optionsZh": ["...","...","...","..."],
           "explanationZh": "...",
+          "trapExplanationZh": "...",
+          "optionReviewZh": ["...","...","...","..."],
           "difficulty": "${targetLevel}"
         }
       ]
@@ -180,10 +206,13 @@ function normalizeListeningBlueprintItem(part, item, idx, targetLevel) {
       answer,
       difficulty,
       explanation: String(item.explanationZh || ""),
+      trapExplanationZh: String(item.trapExplanationZh || ""),
+      optionReviewZh: Array.isArray(item.optionReviewZh) ? item.optionReviewZh.map((x) => String(x || "")) : [],
       question_zh: String(item.questionZh || ""),
       options_zh: optionsZh,
       transcript: { segments },
       imagePrompt: String(item.imagePrompt || "").trim(),
+      imageId: String(item.imageId || "").trim(),
     };
   }
 
@@ -206,6 +235,8 @@ function normalizeListeningBlueprintItem(part, item, idx, targetLevel) {
       answer,
       difficulty,
       explanation: String(item.explanationZh || ""),
+      trapExplanationZh: String(item.trapExplanationZh || ""),
+      optionReviewZh: Array.isArray(item.optionReviewZh) ? item.optionReviewZh.map((x) => String(x || "")) : [],
       question_zh: String(item.questionZh || ""),
       options_zh: optionsZh,
       transcript: { segments },
@@ -232,6 +263,8 @@ function normalizeListeningBlueprintItem(part, item, idx, targetLevel) {
       answer,
       difficulty,
       explanation: String(q.explanationZh || ""),
+      trapExplanationZh: String(q.trapExplanationZh || ""),
+      optionReviewZh: Array.isArray(q.optionReviewZh) ? q.optionReviewZh.map((x) => String(x || "")) : [],
       question_zh: String(q.questionZh || ""),
       options_zh: optionsZh,
       transcript: { segments },
@@ -258,8 +291,125 @@ function toPlainTtsText(segments = []) {
     .join(" ");
 }
 
-export async function synthesizeTtsBase64({ part, segments, useSsml = false, speakingRate = 0.95, onRetry }) {
-  const apiKey = ensureTtsKey();
+function toDataUrl(contentType, base64) {
+  return `data:${contentType};base64,${base64}`;
+}
+
+function escapeXml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function wrapWords(text, maxLineLength = 48, maxLines = 5) {
+  const words = String(text || "").trim().split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = "";
+
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length > maxLineLength && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = next;
+    }
+    if (lines.length >= maxLines) break;
+  }
+
+  if (current && lines.length < maxLines) lines.push(current);
+  return lines.length ? lines : ["Professional office scene"];
+}
+
+function promptToFallbackImageUrl(prompt) {
+  const lines = wrapWords(prompt || "Professional office scene");
+  const tspans = lines
+    .map((line, idx) => `<tspan x="48" y="${184 + idx * 34}">${escapeXml(line)}</tspan>`)
+    .join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <rect x="44" y="72" width="872" height="396" rx="20" fill="#ffffff" stroke="#94a3b8" stroke-width="3"/>
+  <text x="48" y="128" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0f172a">TOEIC Part 1 Visual Prompt</text>
+  <text font-family="Arial, sans-serif" font-size="26" fill="#334155">${tspans}</text>
+  <text x="48" y="430" font-family="Arial, sans-serif" font-size="20" fill="#64748b">Imagen is unavailable, so this free fallback uses the generated scene description.</text>
+</svg>`;
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+function localPart1OptionSet(image = {}, idx = 0) {
+  const action = image.actions?.[idx % Math.max(1, image.actions.length)] || `a ${image.scene || "workplace"} is shown`;
+  const object = image.objects?.[0] || image.tags?.[0] || "workplace item";
+  const scene = image.scene || "workplace scene";
+  const options = [
+    action.replace(/^./, (ch) => ch.toUpperCase()).replace(/\.$/, ""),
+    "A vehicle is being repaired outside.",
+    "Several packages are floating on the water.",
+    "A person is cooking in a private kitchen.",
+  ];
+
+  return {
+    options,
+    answer: 0,
+    questionZh: `請選出最符合圖片「${scene}」的描述。`,
+    optionsZh: [
+      `圖片中可見：${action}。`,
+      "車輛正在戶外維修。",
+      "幾個包裹漂浮在水面上。",
+      "有人正在私人廚房烹飪。",
+    ],
+    explanation: `正解描述了圖片 metadata 中的主要場景或動作：${action}。`,
+    trapExplanationZh: `其他選項加入了圖片 metadata 未出現的場景，例如車輛維修、水面包裹或私人廚房。`,
+    optionReviewZh: [
+      `符合圖片中的 ${object} / ${scene} 線索。`,
+      "圖片 metadata 沒有戶外修車情境。",
+      "圖片 metadata 沒有水面或漂浮物。",
+      "圖片 metadata 沒有私人廚房烹飪情境。",
+    ],
+  };
+}
+
+function buildLocalPart1Blueprints(images = [], targetLevel = "gold") {
+  return images.map((image, idx) => {
+    const set = localPart1OptionSet(image, idx);
+    return {
+      id: `part1_local_${image.id || idx}_${Date.now()}`,
+      type: "part1",
+      question: "",
+      options: set.options,
+      answer: set.answer,
+      difficulty: targetLevel,
+      explanation: set.explanation,
+      trapExplanationZh: set.trapExplanationZh,
+      optionReviewZh: set.optionReviewZh,
+      question_zh: set.questionZh,
+      options_zh: set.optionsZh,
+      transcript: {
+        segments: set.options.map((option, optionIdx) => ({
+          speaker: "NARRATOR",
+          text: `${String.fromCharCode(65 + optionIdx)}. ${option}.`,
+          accent: "us",
+          gender: "female",
+        })),
+      },
+      imagePrompt: image.prompt || "",
+      imageId: image.id || "",
+      localFallback: true,
+    };
+  });
+}
+
+export async function synthesizeTtsBase64({ part, segments, useSsml = false, speakingRate = 0.95, onRetry, apiKey: overrideApiKey = "" }) {
+  const apiKey = ensureTtsKey(overrideApiKey);
   const normalizedPart = normalizePart(part);
   const safeSegments = normalizeSegments(segments);
   if (!safeSegments.length) throw new Error("TTS 缺少可朗讀內容。");
@@ -315,8 +465,8 @@ export async function synthesizeTtsBase64({ part, segments, useSsml = false, spe
   throw new Error("TTS 重試後仍失敗。");
 }
 
-export async function generateImagenBase64({ prompt, onRetry }) {
-  const apiKey = ensureVertexAiKey();
+export async function generateImagenBase64({ prompt, onRetry, apiKey: overrideApiKey = "" }) {
+  const apiKey = ensureVertexAiKey(overrideApiKey);
   const model = "imagen-3.0-generate-002";
   const maxRetries = 2;
   let attempt = 0;
@@ -364,8 +514,8 @@ export async function generateImagenBase64({ prompt, onRetry }) {
   throw new Error("Imagen 重試後仍失敗。");
 }
 
-export async function generateListeningBlueprint({ part, count, targetScore, targetLevel, onRetry }) {
-  const apiKey = ensureGeminiKey();
+export async function generateListeningBlueprint({ part, count, targetScore, targetLevel, onRetry, apiKeys = {}, imageBankItems = [] }) {
+  const apiKey = ensureGeminiKey(apiKeys.geminiApiKey);
   const ai = readAiSettings();
   const model = ai.questionModel || DEFAULT_AI_SETTINGS.questionModel;
 
@@ -381,6 +531,7 @@ export async function generateListeningBlueprint({ part, count, targetScore, tar
     targetScore: score,
     targetLevel: level,
     promptInject,
+    imageBankItems,
   });
 
   const text = await callGeminiWithBackoff({
@@ -411,32 +562,44 @@ export async function generateListeningBlueprint({ part, count, targetScore, tar
   return normalized;
 }
 
-export async function expandListeningPool({ uid, part, count, targetScore, targetLevel, onProgress, onRetry }) {
+export async function expandListeningPool({ uid, part, count, targetScore, targetLevel, onProgress, onRetry, apiKeys = {} }) {
   const normalizedPart = normalizePart(part);
   const expectedCount = Math.max(1, Number(count || 1));
   const level = normalizeTargetLevel(targetLevel, "gold");
+  const part1Images = normalizedPart === "part1" ? pickPart1Images(expectedCount) : [];
 
-  let collectedDocs = [];
   let generatedQuestions = [];
-  let appendedPoolDocs = [];
   let tries = 0;
 
   while (generatedQuestions.length < expectedCount && tries < 4) {
     tries += 1;
     const missing = expectedCount - generatedQuestions.length;
-    const blueprints = await generateListeningBlueprint({
-      part: normalizedPart,
-      count: missing,
-      targetScore,
-      targetLevel: level,
-      onRetry,
-    });
+    const imagesForBatch = normalizedPart === "part1" ? part1Images.slice(generatedQuestions.length, generatedQuestions.length + missing) : [];
+    let blueprints = normalizedPart === "part1" && imagesForBatch.length
+      ? buildLocalPart1Blueprints(imagesForBatch, level)
+      : null;
 
-    const docs = [];
+    try {
+      if (blueprints) {
+        // Part 1 is optimized for speed: local licensed images + metadata templates avoid image/API waits.
+      } else {
+      blueprints = await generateListeningBlueprint({
+        part: normalizedPart,
+        count: missing,
+        targetScore,
+        targetLevel: level,
+        onRetry,
+        apiKeys,
+        imageBankItems: imagesForBatch,
+      });
+      }
+    } catch (error) {
+      if (normalizedPart !== "part1" || !imagesForBatch.length) throw error;
+      blueprints = buildLocalPart1Blueprints(imagesForBatch, level);
+    }
 
     for (let i = 0; i < blueprints.length; i += 1) {
       const blueprint = blueprints[i];
-      const fileName = `${normalizedPart}_${Date.now()}_${tries}_${i}`;
 
       if (typeof onProgress === "function") {
         onProgress({ stage: "media", done: i + 1, total: blueprints.length });
@@ -448,29 +611,41 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
           segments: blueprint.transcript?.segments || [],
           useSsml: false,
           onRetry,
+          apiKey: apiKeys.ttsApiKey,
         });
-        const audio = await uploadAudioBase64(uid, base64, `${fileName}_audio`);
+        const audioUrl = toDataUrl("audio/mpeg", base64);
 
         let imageUrl = "";
+        let imageMeta = null;
         if (normalizedPart === "part1") {
-          const imageBase64 = await generateImagenBase64({
-            prompt: blueprint.imagePrompt || "Professional office scene, high detail",
-            onRetry,
-          });
-          const image = await uploadImageBase64(uid, imageBase64, `${fileName}_image`);
-          imageUrl = image.url;
+          imageMeta = getPart1ImageById(blueprint.imageId) || part1Images[generatedQuestions.length] || null;
+          if (imageMeta?.imageUrl) {
+            imageUrl = imageMeta.imageUrl;
+          } else {
+            try {
+              const imageBase64 = await generateImagenBase64({
+                prompt: blueprint.imagePrompt || "Professional office scene, high detail",
+                onRetry,
+                apiKey: apiKeys.vertexAiKey,
+              });
+              imageUrl = toDataUrl("image/jpeg", imageBase64);
+            } catch {
+              imageUrl = promptToFallbackImageUrl(blueprint.imagePrompt);
+            }
+          }
         }
-
-        docs.push({
-          ...blueprint,
-          audioUrl: audio.url,
-          imageUrl,
-          level,
-        });
 
         generatedQuestions.push({
           ...blueprint,
-          audioUrl: audio.url,
+          imageId: normalizedPart === "part1" ? (blueprint.imageId || imageMeta?.id || "") : "",
+          imageSource: normalizedPart === "part1" && imageMeta ? {
+            title: imageMeta.sourceTitle,
+            url: imageMeta.sourceUrl,
+            author: imageMeta.author,
+            license: imageMeta.license,
+            licenseUrl: imageMeta.licenseUrl,
+          } : null,
+          audioUrl,
           imageUrl,
           level,
         });
@@ -481,18 +656,9 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
           segments,
           useSsml: true,
           onRetry,
+          apiKey: apiKeys.ttsApiKey,
         });
-        const audio = await uploadAudioBase64(uid, base64, `${fileName}_audio`);
-
-        docs.push({
-          ...blueprint,
-          level,
-          payload: {
-            ...blueprint.payload,
-            audioUrl: audio.url,
-            scriptSsml: ssml,
-          },
-        });
+        const audioUrl = toDataUrl("audio/mpeg", base64);
 
         generatedQuestions.push(
           ...(blueprint.payload.questions || []).map((q) => ({
@@ -502,14 +668,12 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
             passage: blueprint.payload?.passage || "",
             passage_zh: blueprint.payload?.passage_zh || "",
             transcript: blueprint.payload?.transcript || null,
-            audioUrl: audio.url,
+            audioUrl,
             scriptSsml: ssml,
           })),
         );
       }
     }
-
-    collectedDocs = collectedDocs.concat(docs);
 
     if (typeof onProgress === "function") {
       onProgress({ stage: "pool", done: generatedQuestions.length, total: expectedCount });
@@ -520,25 +684,21 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
     throw new Error(`Listening 擴充不足，預期 ${expectedCount} 題，實際 ${generatedQuestions.length} 題。`);
   }
 
-  const appendResult = await appendToQuestionPool(uid, normalizedPart, collectedDocs, {
-    source: "api",
-    generatorModel: readAiSettings().questionModel || DEFAULT_AI_SETTINGS.questionModel,
-    level,
-    currentTargetLevel: level,
-  });
-
-  appendedPoolDocs = appendResult.addedPoolDocs || [];
-
   return {
-    ...appendResult,
     part: normalizedPart,
+    addedDocs: 0,
+    addedQuestions: generatedQuestions.length,
+    skippedDuplicates: 0,
+    upgradedDuplicates: 0,
     generatedQuestions: generatedQuestions.slice(0, expectedCount),
-    appendedPoolDocs,
+    appendedPoolDocs: [],
+    persisted: false,
+    mediaMode: "inline-data-url",
   };
 }
 
-export async function analyzeListeningBatch(payload, onRetry) {
-  const apiKey = ensureGeminiKey();
+export async function analyzeListeningBatch(payload, onRetry, apiKeys = {}) {
+  const apiKey = ensureGeminiKey(apiKeys.geminiApiKey);
   const ai = readAiSettings();
   const model = ai.analysisModel || DEFAULT_AI_SETTINGS.analysisModel;
 
@@ -599,18 +759,18 @@ export async function analyzeListeningBatch(payload, onRetry) {
         questionZh: q.question_zh || "",
         optionsZh: q.options_zh || [],
         correctReasonZh: q.explanation || "",
-        trapExplanationZh: "",
-        optionReviewZh: Array.isArray(q.options) ? q.options.map(() => "") : [],
+        trapExplanationZh: q.trapExplanationZh || "",
+        optionReviewZh: Array.isArray(q.optionReviewZh) ? q.optionReviewZh : (Array.isArray(q.options) ? q.options.map(() => "") : []),
       };
     }
     return {
       questionZh: x.questionZh || q.question_zh || "",
       optionsZh: (x.optionsZh?.length || 0) === (q.options?.length || 0) ? x.optionsZh : (q.options_zh || []),
       correctReasonZh: x.correctReasonZh || q.explanation || "",
-      trapExplanationZh: x.trapExplanationZh || "",
+      trapExplanationZh: x.trapExplanationZh || q.trapExplanationZh || "",
       optionReviewZh: (x.optionReviewZh?.length || 0) === (q.options?.length || 0)
         ? x.optionReviewZh
-        : (Array.isArray(q.options) ? q.options.map(() => "") : []),
+        : (Array.isArray(q.optionReviewZh) ? q.optionReviewZh : (Array.isArray(q.options) ? q.options.map(() => "") : [])),
     };
   });
 }

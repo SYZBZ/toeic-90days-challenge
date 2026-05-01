@@ -275,8 +275,10 @@ export default function VocabGamePage() {
                   className="field-input"
                   value={answerInput}
                   onChange={(e) => setAnswerInput(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === "Enter") submitSpelling(); }}
                   placeholder="輸入英文"
                   disabled={isResolving}
+                  autoFocus
                 />
                 <Button onClick={submitSpelling} disabled={isResolving}>提交</Button>
               </div>

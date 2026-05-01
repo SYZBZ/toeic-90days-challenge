@@ -52,6 +52,8 @@ function normalizeQuestionForPool(raw = {}, part, fallbackLevel = "gold") {
     answer: Number(raw.answer),
     difficulty: normalizeLevel(raw.difficulty, fallbackLevel),
     explanation: String(raw.explanation || raw.explanationZh || ""),
+    trapExplanationZh: String(raw.trapExplanationZh || raw.trap_explanation_zh || ""),
+    optionReviewZh: Array.isArray(raw.optionReviewZh) ? raw.optionReviewZh : (Array.isArray(raw.option_review_zh) ? raw.option_review_zh : []),
     question_zh: String(raw.question_zh || raw.questionZh || ""),
     options_zh: Array.isArray(raw.options_zh) ? raw.options_zh : (Array.isArray(raw.optionsZh) ? raw.optionsZh : []),
     passage: String(raw.passage || ""),
@@ -156,6 +158,8 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
           answer: q.answer,
           difficulty: normalizeLevel(q.difficulty, fallbackLevel),
           explanation: q.explanation,
+          trapExplanationZh: q.trapExplanationZh,
+          optionReviewZh: q.optionReviewZh,
           question_zh: q.question_zh,
           options_zh: q.options_zh,
           audioUrl: q.audioUrl,
@@ -231,6 +235,8 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
           answer: q.answer,
           difficulty: normalizeLevel(q.difficulty, groupLevel),
           explanation: q.explanation,
+          trapExplanationZh: q.trapExplanationZh,
+          optionReviewZh: q.optionReviewZh,
           question_zh: q.question_zh,
           options_zh: q.options_zh,
         })),
@@ -532,7 +538,8 @@ export async function archiveConsumedPool(uid, consumedDocs, sessionId) {
       consumedAtMs: Date.now(),
       attemptSessionId: sessionId || item.attemptSessionId || "",
     });
-    // Keep questions in pool so users can repeatedly practice the same items.
+    const activeRef = doc(db, "users", uid, "question_pool", item.poolDocId);
+    batch.delete(activeRef);
     archivedQuestions += Number(item.size || 0);
   }
 

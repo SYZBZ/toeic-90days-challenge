@@ -1,0 +1,295 @@
+[
+  {
+    "id": "office-meeting-01",
+    "fileName": "office-meeting-01.jpg",
+    "scene": "office meeting",
+    "tags": [
+      "office",
+      "meeting",
+      "workers",
+      "table"
+    ],
+    "objects": [
+      "meeting table",
+      "papers",
+      "chairs",
+      "workers"
+    ],
+    "actions": [
+      "workers are seated around a table",
+      "people are discussing documents"
+    ],
+    "prompt": "A workplace meeting with people seated around a table and reviewing documents.",
+    "sourceTitle": "FEMA workers in a meeting in Puerto Rico",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:FEMA_-_39202_-_FEMA_workers_in_a_meeting_in_Puerto_Rico.jpg",
+    "author": "Andrea Booher",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "src": "/toeic-90days-challenge/part1-images/office-meeting-01.jpg",
+    "publicSrc": "/part1-images/office-meeting-01.jpg",
+    "bytes": 113570
+  },
+  {
+    "id": "office-desk-work-02",
+    "fileName": "office-desk-work-02.jpg",
+    "scene": "office desk work",
+    "tags": [
+      "office",
+      "desk",
+      "chairs",
+      "workplace"
+    ],
+    "objects": [
+      "desk chairs",
+      "desk",
+      "office furniture"
+    ],
+    "actions": [
+      "a person is trying office chairs",
+      "chairs are arranged near a desk"
+    ],
+    "prompt": "An office scene with a desk and several chairs arranged in a work area.",
+    "sourceTitle": "Barack Obama trying differents desk chairs in the Oval Office",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barack_Obama_trying_differents_desk_chairs_in_the_Oval_Office.jpg",
+    "author": "The Official White House Photostream",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "src": "/toeic-90days-challenge/part1-images/office-desk-work-02.jpg",
+    "publicSrc": "/part1-images/office-desk-work-02.jpg",
+    "bytes": 175458
+  },
+  {
+    "id": "warehouse-boxes-03",
+    "fileName": "warehouse-boxes-03.jpg",
+    "scene": "warehouse boxes",
+    "tags": [
+      "warehouse",
+      "workers",
+      "large object",
+      "storage"
+    ],
+    "objects": [
+      "warehouse area",
+      "stored items",
+      "workers"
+    ],
+    "actions": [
+      "workers are handling a large item",
+      "materials are stored indoors"
+    ],
+    "prompt": "A warehouse or storage area where workers are handling materials.",
+    "sourceTitle": "Workers with the lintel of Sesostris III in the warehouse",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Medamud._Temple_of_Montu._Workers_with_the_lintel_of_Sesostris_III_in_the_warehouse.jpg",
+    "author": "anonymous",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "src": "/toeic-90days-challenge/part1-images/warehouse-boxes-03.jpg",
+    "publicSrc": "/part1-images/warehouse-boxes-03.jpg",
+    "bytes": 180922
+  },
+  {
+    "id": "airport-check-in-04",
+    "fileName": "airport-check-in-04.jpg",
+    "scene": "airport check-in counter",
+    "tags": [
+      "airport",
+      "counter",
+      "passengers",
+      "terminal"
+    ],
+    "objects": [
+      "check-in counter",
+      "passengers",
+      "terminal area"
+    ],
+    "actions": [
+      "people are standing near a counter",
+      "passengers are waiting in a terminal"
+    ],
+    "prompt": "An airport terminal scene with passengers near a check-in counter.",
+    "sourceTitle": "Miami PanAm Terminal 1940",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Miami_PanAm_Terminal_1940.jpg",
+    "author": "Unknown author",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "src": "/toeic-90days-challenge/part1-images/airport-check-in-04.jpg",
+    "publicSrc": "/part1-images/airport-check-in-04.jpg",
+    "bytes": 123460
+  },
+  {
+    "id": "conference-presentation-05",
+    "fileName": "conference-presentation-01.jpg",
+    "scene": "conference presentation",
+    "tags": [
+      "conference",
+      "audience",
+      "presentation",
+      "seating"
+    ],
+    "objects": [
+      "audience seats",
+      "presentation room",
+      "people"
+    ],
+    "actions": [
+      "people are attending a presentation",
+      "attendees are seated in rows"
+    ],
+    "prompt": "A conference room with people seated as an audience during a presentation.",
+    "sourceTitle": "Audience at #PELC11",
+    "sourceUrl": "https://www.flickr.com/photos/94991702@N00/5603477175",
+    "author": "dougbelshaw",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "src": "/toeic-90days-challenge/part1-images/conference-presentation-01.jpg",
+    "publicSrc": "/part1-images/conference-presentation-01.jpg",
+    "bytes": 31692
+  },
+  {
+    "id": "cafe-counter-06",
+    "fileName": "cafe-counter-03.jpg",
+    "scene": "cafe counter",
+    "tags": [
+      "cafe",
+      "counter",
+      "barista",
+      "service"
+    ],
+    "objects": [
+      "counter",
+      "cups",
+      "cafe equipment",
+      "staff"
+    ],
+    "actions": [
+      "staff are working behind a counter",
+      "a person is serving at a cafe"
+    ],
+    "prompt": "A cafe counter scene with staff working behind the counter.",
+    "sourceTitle": "Barista and waitress - Replete Providore",
+    "sourceUrl": "https://www.flickr.com/photos/10559879@N00/2390398243",
+    "author": "avlxyz",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "src": "/toeic-90days-challenge/part1-images/cafe-counter-03.jpg",
+    "publicSrc": "/part1-images/cafe-counter-03.jpg",
+    "bytes": 26937
+  },
+  {
+    "id": "hotel-reception-07",
+    "fileName": "hotel-reception-04.jpg",
+    "scene": "hotel reception desk",
+    "tags": [
+      "hotel",
+      "reception",
+      "desk",
+      "counter"
+    ],
+    "objects": [
+      "reception desk",
+      "counter",
+      "lobby area"
+    ],
+    "actions": [
+      "a reception desk is shown",
+      "items are arranged on a counter"
+    ],
+    "prompt": "A hotel reception area with a front desk and counter.",
+    "sourceTitle": "Hotel reception desk",
+    "sourceUrl": "https://www.flickr.com/photos/44124348109@N01/11059593346",
+    "author": "jurvetson",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "src": "/toeic-90days-challenge/part1-images/hotel-reception-04.jpg",
+    "publicSrc": "/part1-images/hotel-reception-04.jpg",
+    "bytes": 43856
+  },
+  {
+    "id": "library-desk-08",
+    "fileName": "library-desk-08.jpg",
+    "scene": "library desk",
+    "tags": [
+      "library",
+      "desk",
+      "patrons",
+      "reading"
+    ],
+    "objects": [
+      "tables",
+      "chairs",
+      "books",
+      "library area"
+    ],
+    "actions": [
+      "people are sitting at tables",
+      "patrons are studying or reading"
+    ],
+    "prompt": "A library scene with patrons seated at tables and reading or studying.",
+    "sourceTitle": "library patrons",
+    "sourceUrl": "https://www.flickr.com/photos/53133240@N00/2385531671",
+    "author": "Muffet",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "src": "/toeic-90days-challenge/part1-images/library-desk-08.jpg",
+    "publicSrc": "/part1-images/library-desk-08.jpg",
+    "bytes": 43290
+  },
+  {
+    "id": "classroom-lecture-09",
+    "fileName": "classroom-lecture-11.jpg",
+    "scene": "classroom lecture",
+    "tags": [
+      "classroom",
+      "students",
+      "lecture",
+      "seating"
+    ],
+    "objects": [
+      "classroom seats",
+      "students",
+      "lecture hall"
+    ],
+    "actions": [
+      "students are seated in a lecture hall",
+      "people are attending a class"
+    ],
+    "prompt": "A classroom or lecture hall with students seated during a class.",
+    "sourceTitle": "Large lecture college classes",
+    "sourceUrl": "https://www.flickr.com/photos/12836528@N00/13905987989",
+    "author": "kevin dooley",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "src": "/toeic-90days-challenge/part1-images/classroom-lecture-11.jpg",
+    "publicSrc": "/part1-images/classroom-lecture-11.jpg",
+    "bytes": 54594
+  },
+  {
+    "id": "medical-reception-10",
+    "fileName": "medical-reception-13.jpg",
+    "scene": "medical reception desk",
+    "tags": [
+      "clinic",
+      "reception",
+      "desk",
+      "counter"
+    ],
+    "objects": [
+      "reception desk",
+      "clinic counter",
+      "office equipment"
+    ],
+    "actions": [
+      "a reception desk is arranged in a clinic",
+      "items are placed on a counter"
+    ],
+    "prompt": "A clinic reception area with a desk and counter.",
+    "sourceTitle": "raffles executive clinic",
+    "sourceUrl": "https://www.flickr.com/photos/49215102@N00/3108183478",
+    "author": "goodiesfirst",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "src": "/toeic-90days-challenge/part1-images/medical-reception-13.jpg",
+    "publicSrc": "/part1-images/medical-reception-13.jpg",
+    "bytes": 38392
+  }
+]

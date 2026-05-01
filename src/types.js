@@ -26,6 +26,8 @@
  * @typedef {Object} UserProfile
  * @property {string} email
  * @property {string} geminiApiKey
+ * @property {string=} ttsApiKey
+ * @property {string=} vertexAiKey
  * @property {{level?: string, targetScore?: 470|730|860, targetLevel?: "green"|"blue"|"gold", part?: string, examPreset?: "10x5"|"20x10", exam?: ExamSettings, vocabPlan?: VocabPlanSettings, reminder?: ReminderSettings, ai?: AiSettings}} settings
  */
 

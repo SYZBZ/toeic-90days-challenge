@@ -25,6 +25,8 @@ const TARGET_SCORE_OPTIONS = [
 export default function SettingsPage() {
   const { user, profile, refreshProfile, signOut } = useAuth();
   const [apiKey, setApiKey] = useState("");
+  const [ttsApiKey, setTtsApiKey] = useState("");
+  const [vertexAiKey, setVertexAiKey] = useState("");
   const [aiSettings, setAiSettings] = useState(DEFAULT_AI_SETTINGS);
   const [examPreset, setExamPreset] = useState("10x5");
   const [targetScore, setTargetScore] = useState(860);
@@ -38,6 +40,8 @@ export default function SettingsPage() {
 
   useEffect(() => {
     setApiKey(profile?.geminiApiKey || "");
+    setTtsApiKey(profile?.ttsApiKey || "");
+    setVertexAiKey(profile?.vertexAiKey || "");
     setAiSettings(normalizeAiSettings(profile?.settings?.ai || {}));
     setExamPreset(profile?.settings?.examPreset || "10x5");
     setTargetScore(normalizeTargetSettings(profile?.settings || {}).targetScore);
@@ -45,7 +49,7 @@ export default function SettingsPage() {
     setPlanExamDate(profile?.settings?.vocabPlan?.examDate || "");
     setReminderEnabled(!!profile?.settings?.reminder?.enabled);
     setReminderTime(profile?.settings?.reminder?.time || "20:30");
-  }, [profile?.geminiApiKey, profile?.settings]);
+  }, [profile?.geminiApiKey, profile?.ttsApiKey, profile?.vertexAiKey, profile?.settings]);
 
   const modelCheckList = useMemo(() => {
     const values = [aiSettings.questionModel, aiSettings.analysisModel, aiSettings.analysisFallbackModel]
@@ -99,6 +103,9 @@ export default function SettingsPage() {
           enabled: reminderEnabled,
           time: reminderTime,
         },
+      }, {
+        ttsApiKey: ttsApiKey.trim(),
+        vertexAiKey: vertexAiKey.trim(),
       });
       localStorage.setItem("toeic.ai.settings", JSON.stringify(normalizedAi));
       await refreshProfile(user.uid);
@@ -258,13 +265,28 @@ export default function SettingsPage() {
       </section>
 
       <Card>
-        <h3>Gemini API Key</h3>
+        <h3>API Keys</h3>
+        <p className="muted">GitHub Pages 不建議在 build 階段注入 VITE API Key；這裡儲存到你的使用者資料，只在登入後使用。</p>
         <InputField
           label="GEMINI_API_KEY"
           type="password"
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
           placeholder="AIza..."
+        />
+        <InputField
+          label="Cloud Text-to-Speech API Key"
+          type="password"
+          value={ttsApiKey}
+          onChange={(e) => setTtsApiKey(e.target.value)}
+          placeholder="用於聽力音檔合成"
+        />
+        <InputField
+          label="Imagen / Vertex AI API Key（選填 fallback）"
+          type="password"
+          value={vertexAiKey}
+          onChange={(e) => setVertexAiKey(e.target.value)}
+          placeholder="本地圖片庫不可用時才會使用"
         />
 
         <div className="row wrap">
@@ -368,7 +390,7 @@ export default function SettingsPage() {
         <div className="row wrap">
           <Button variant="secondary" onClick={requestNotifyPermission}>開啟通知權限</Button>
           <Button variant="ghost" onClick={sendTestNotification}>發送測試通知</Button>
-          <Button onClick={onSaveReminderOnly} disabled={saving}>只儲存提醒/預設/目標</Button>
+          <Button onClick={onSaveReminderOnly} disabled={saving}>儲存考試與提醒設定</Button>
         </div>
       </Card>
 

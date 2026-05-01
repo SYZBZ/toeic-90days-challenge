@@ -20,6 +20,7 @@ export default function VocabWordCard({
           className={`star-btn ${isBookmarked ? "active" : ""}`}
           onClick={() => onToggleBookmark?.(word)}
           disabled={!onToggleBookmark}
+          aria-label={isBookmarked ? "取消收藏" : "加入收藏"}
         >
           {isBookmarked ? "★" : "☆"}
         </button>

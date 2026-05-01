@@ -147,9 +147,10 @@ function questionPrompt({ part = "Part 5", count = 1, targetScore = 860, targetL
 0. 題目數量必須「剛好 ${count} 題」，不得多也不得少。
 1. 每題都要 4 選 1。
 2. 必須包含正解 index（0~3）與繁中解析 explanationZh。
-3. Part 6 / Part 7 必須提供 passage；Part 5 不需要 passage。
-4. 每題必須帶 difficulty，且只能是 "${targetLevel}"。
-5. 僅輸出 JSON，不要任何額外文字。
+3. 必須同時包含 questionZh、optionsZh、trapExplanationZh、optionReviewZh，讓使用者交卷後可立即看詳解。
+4. Part 6 / Part 7 必須提供 passage；Part 5 不需要 passage。
+5. 每題必須帶 difficulty，且只能是 "${targetLevel}"。
+6. 僅輸出 JSON，不要任何額外文字。
 
 輸出格式：
 {
@@ -160,7 +161,11 @@ function questionPrompt({ part = "Part 5", count = 1, targetScore = 860, targetL
       "question": "...",
       "options": ["A","B","C","D"],
       "answer": 0,
+      "questionZh": "...",
+      "optionsZh": ["...","...","...","..."],
       "explanationZh": "...",
+      "trapExplanationZh": "...",
+      "optionReviewZh": ["...","...","...","..."],
       "difficulty": "${targetLevel}"
     }
   ]
@@ -227,6 +232,10 @@ function normalizeGeneratedQuestion(item, idx, partLabel, targetLevel = "gold") 
     answer,
     difficulty,
     explanation: String(item?.explanationZh || item?.explanation || "").trim(),
+    trapExplanationZh: String(item?.trapExplanationZh || "").trim(),
+    optionReviewZh: Array.isArray(item?.optionReviewZh) ? item.optionReviewZh.map((x) => String(x || "").trim()) : [],
+    question_zh: String(item?.questionZh || item?.question_zh || "").trim(),
+    options_zh: Array.isArray(item?.optionsZh) ? item.optionsZh.map((x) => String(x || "").trim()) : [],
   };
 }
 

@@ -12,12 +12,13 @@ import {
   upsertMistake,
 } from "../lib/firestoreService";
 import { getTargetLabel, normalizeTargetSettings } from "../lib/targetDifficulty";
-import { appendToQuestionPool, archiveConsumedPool, dequeueFromPoolFIFO, getPoolStock } from "../lib/questionPoolService";
+import { archiveConsumedPool, dequeueFromPoolFIFO, getPoolStock } from "../lib/questionPoolService";
 import { analyzeListeningBatch, expandListeningPool } from "../lib/listeningEngine";
 import { audioManager, useAudioCleanupOnUnmount } from "../lib/audioManager";
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
+import ReviewQuestion from "../components/ReviewQuestion";
 
 const STATUS = {
   SETUP: "setup",
@@ -46,10 +47,12 @@ const PART_PRESETS = {
     "20x10": { count: 20, minutes: 10 },
   },
   part3: {
+    "3x2": { count: 3, minutes: 2 },
     "9x5": { count: 9, minutes: 5 },
     "18x10": { count: 18, minutes: 10 },
   },
   part4: {
+    "3x2": { count: 3, minutes: 2 },
     "9x5": { count: 9, minutes: 5 },
     "18x10": { count: 18, minutes: 10 },
   },
@@ -90,6 +93,49 @@ function firstTranscriptLine(question) {
   return seg.map((x) => x.text).join(" ");
 }
 
+function getEmbeddedListeningAnalysis(q = {}) {
+  const optionsZh = Array.isArray(q.optionsZh) ? q.optionsZh : (Array.isArray(q.options_zh) ? q.options_zh : []);
+  const optionReviewZh = Array.isArray(q.optionReviewZh) ? q.optionReviewZh : [];
+  return {
+    questionZh: q.questionZh || q.question_zh || "",
+    optionsZh,
+    correctReasonZh: q.correctReasonZh || q.explanation || "",
+    trapExplanationZh: q.trapExplanationZh || "",
+    optionReviewZh,
+  };
+}
+
+function hasEmbeddedListeningAnalysis(q = {}) {
+  const analysis = getEmbeddedListeningAnalysis(q);
+  return Boolean(
+    analysis.questionZh
+    || analysis.correctReasonZh
+    || (Array.isArray(analysis.optionsZh) && analysis.optionsZh.length === (q.options || []).length),
+  );
+}
+
+function stripInlineMedia(question = {}) {
+  const audioUrl = String(question.audioUrl || "");
+  const imageUrl = String(question.imageUrl || "");
+  return {
+    ...question,
+    audioUrl: audioUrl.startsWith("data:") ? "" : audioUrl,
+    imageUrl: imageUrl.startsWith("data:") ? "" : imageUrl,
+    scriptSsml: "",
+  };
+}
+
+function ImageCredit({ source }) {
+  if (!source?.url) return null;
+  const label = [source.author, source.license].filter(Boolean).join(" · ");
+  return (
+    <p className="muted tiny">
+      Image: <a href={source.url} target="_blank" rel="noreferrer">{source.title || "source"}</a>
+      {label ? ` (${label})` : ""}
+    </p>
+  );
+}
+
 export default function PracticeListeningPanel() {
   const { user, profile } = useAuth();
   useAudioCleanupOnUnmount();
@@ -113,7 +159,6 @@ export default function PracticeListeningPanel() {
   const [analysisProgress, setAnalysisProgress] = useState("");
   const [isExpanding, setIsExpanding] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showTranscript, setShowTranscript] = useState(false);
 
   const [history, setHistory] = useState([]);
   const [reviewAttempt, setReviewAttempt] = useState(null);
@@ -128,6 +173,11 @@ export default function PracticeListeningPanel() {
   const targetLabel = getTargetLabel(target.targetLevel);
   const presetValue = (PART_PRESETS[part] || PART_PRESETS.part1)[preset] || { count: 10, minutes: 5 };
   const currentQuestion = questions[currentIndex] || null;
+  const apiKeys = useMemo(() => ({
+    geminiApiKey: profile?.geminiApiKey || import.meta.env.VITE_GEMINI_API_KEY || "",
+    ttsApiKey: profile?.ttsApiKey || import.meta.env.VITE_TTS_API_KEY || "",
+    vertexAiKey: profile?.vertexAiKey || import.meta.env.VITE_VERTEX_AI_KEY || "",
+  }), [profile?.geminiApiKey, profile?.ttsApiKey, profile?.vertexAiKey]);
 
   const onRetry = ({ waitMs, attempt, source }) => {
     const sec = (waitMs / 1000).toFixed(1);
@@ -202,7 +252,6 @@ export default function PracticeListeningPanel() {
   useEffect(() => {
     audioManager.stopAll();
     setIsPlaying(false);
-    setShowTranscript(false);
   }, [currentIndex, status]);
 
   async function playCurrentAudio() {
@@ -224,32 +273,10 @@ export default function PracticeListeningPanel() {
 
   async function expandPoolInBackground() {
     if (!user?.uid || isExpanding) return;
-    setIsExpanding(true);
     setError("");
     setRetryHint("");
-    setAnalysisProgress("正在背景擴充聽力題庫...");
-
-    try {
-      const result = await expandListeningPool({
-        uid: user.uid,
-        part,
-        count: presetValue.count,
-        targetScore: target.targetScore,
-        targetLevel: target.targetLevel,
-        onRetry,
-        onProgress: ({ stage, done, total }) => {
-          if (stage === "media") setAnalysisProgress(`正在產生多模態資源（${done}/${total}）...`);
-          if (stage === "pool") setAnalysisProgress(`正在寫入題庫（${done}/${total}）...`);
-        },
-      });
-      const latest = await refreshPool();
-      pushToast(`新增 ${result.addedQuestions} 題，現有庫存 ${latest?.[part] || 0} 題。`, "success");
-    } catch (err) {
-      setError(err?.message || "背景擴充失敗");
-    } finally {
-      setIsExpanding(false);
-      setAnalysisProgress("");
-    }
+    setAnalysisProgress("");
+    pushToast("免費模式不使用 Firebase Storage，聽力題會在開始測驗時即時生成，不會背景保存。", "info");
   }
 
   async function dispatchQuestions(sessionId) {
@@ -276,6 +303,7 @@ export default function PracticeListeningPanel() {
           if (stage === "media") setAnalysisProgress(`正在生成新聽力資源（${done}/${total}）...`);
           if (stage === "pool") setAnalysisProgress(`正在寫入新題（${done}/${total}）...`);
         },
+        apiKeys,
       });
       generatedQuestions = result.generatedQuestions || [];
       generatedPoolDocs = result.appendedPoolDocs || [];
@@ -354,8 +382,31 @@ export default function PracticeListeningPanel() {
     try {
       const answerArr = currentQuestions.map((_, idx) => (Number.isInteger(currentAnswers[idx]) ? currentAnswers[idx] : null));
 
-      setAnalysisProgress("正在產生聽力詳解（1/2）...");
-      const analysis = await analyzeListeningBatch({ questions: currentQuestions, answers: answerArr }, onRetry);
+      const analysis = [];
+      const missing = currentQuestions
+        .map((q, idx) => ({ q, idx }))
+        .filter(({ q }) => !hasEmbeddedListeningAnalysis(q));
+
+      currentQuestions.forEach((q, idx) => {
+        analysis[idx] = getEmbeddedListeningAnalysis(q);
+      });
+
+      if (missing.length > 0) {
+        setAnalysisProgress(`正在補齊聽力詳解（${missing.length} 題）...`);
+        const missingAnalysis = await analyzeListeningBatch(
+          {
+            questions: missing.map(({ q }) => q),
+            answers: missing.map(({ idx }) => answerArr[idx]),
+          },
+          onRetry,
+          apiKeys,
+        );
+        missing.forEach(({ idx }, localIdx) => {
+          analysis[idx] = missingAnalysis[localIdx] || analysis[idx];
+        });
+      } else {
+        setAnalysisProgress("已使用題庫內建詳解，正在整理結果...");
+      }
 
       const finalQuestions = currentQuestions.map((q, idx) => {
         const a = analysis[idx] || {};
@@ -391,7 +442,7 @@ export default function PracticeListeningPanel() {
           autoSubmitted: isAuto,
           listeningPart: part,
         },
-        questions: finalQuestions,
+        questions: finalQuestions.map(stripInlineMedia),
       });
 
       for (const q of finalQuestions) {
@@ -623,26 +674,14 @@ export default function PracticeListeningPanel() {
             {part === "part1" && currentQuestion.imageUrl ? (
               <div className="passage-box" style={{ textAlign: "center" }}>
                 <img src={currentQuestion.imageUrl} alt="listening visual" style={{ maxWidth: "100%", borderRadius: "12px" }} />
+                <ImageCredit source={currentQuestion.imageSource} />
               </div>
             ) : null}
 
             <div className="row wrap">
               <Button variant="secondary" onClick={playCurrentAudio}>播放音檔</Button>
               <Button variant="ghost" onClick={stopAudio} disabled={!isPlaying}>■ 停止</Button>
-              <button type="button" className="text-btn" onClick={() => setShowTranscript((v) => !v)}>
-                {showTranscript ? "隱藏 transcript" : "顯示 transcript"}
-              </button>
             </div>
-
-            {showTranscript && currentQuestion?.transcript?.segments?.length ? (
-              <div className="passage-box">
-                {currentQuestion.transcript.segments.map((seg, idx) => (
-                  <p key={`${currentQuestion.id}_seg_${idx}`} className="muted">
-                    <strong>{seg.speaker}:</strong> {seg.text}
-                  </p>
-                ))}
-              </div>
-            ) : null}
 
             {currentQuestion.question ? <p className="question">{currentQuestion.question}</p> : <p className="muted">請依音檔內容選擇最適合答案。</p>}
 
@@ -655,7 +694,7 @@ export default function PracticeListeningPanel() {
                   onClick={() => setAnswers((prev) => ({ ...prev, [currentIndex]: idx }))}
                 >
                   <span className="option-key">{String.fromCharCode(65 + idx)}</span>
-                  <span>{opt}</span>
+                  {(part === "part3" || part === "part4") ? <span>{opt}</span> : <span>選項 {String.fromCharCode(65 + idx)}</span>}
                 </button>
               ))}
             </div>
@@ -684,52 +723,32 @@ export default function PracticeListeningPanel() {
             </div>
           </div>
 
-          <div className="stack">
+          <div className="review-list">
             {(status === STATUS.REVIEW ? (reviewAttempt?.questions || []) : questions).map((q, idx) => {
-              const optionsZh = Array.isArray(q.optionsZh) ? q.optionsZh : (q.options_zh || []);
-              const optionReview = Array.isArray(q.optionReviewZh) ? q.optionReviewZh : (Array.isArray(q.options) ? q.options.map(() => "") : []);
-              const userAnswer = q.userAnswer;
-              const isCorrect = userAnswer != null && userAnswer === q.answer;
-
-              return (
-                <div key={`${q.id}_${idx}`} className="review-question">
-                  <div className="row between">
-                    <strong>Q{idx + 1}</strong>
-                    <span className={`pill ${isCorrect ? "ok" : "ng"}`}>{isCorrect ? "答對" : "答錯"}</span>
-                  </div>
-
+              const extras = (q.audioUrl || q.imageUrl) ? (
+                <div className="review-media">
                   {q.audioUrl ? (
-                    <div className="row wrap">
-                      <Button variant="ghost" onClick={() => audioManager.playUrl(q.audioUrl)}>重播此題音檔</Button>
-                    </div>
+                    <Button variant="ghost" onClick={() => audioManager.playUrl(q.audioUrl)}>重播此題音檔</Button>
                   ) : null}
-
                   {q.imageUrl ? (
-                    <div className="passage-box" style={{ textAlign: "center" }}>
-                      <img src={q.imageUrl} alt="review visual" style={{ maxWidth: "100%", borderRadius: "12px" }} />
+                    <div className="review-image">
+                      <img src={q.imageUrl} alt="review visual" />
+                      <ImageCredit source={q.imageSource} />
                     </div>
                   ) : null}
-
-                  {q.question ? <p>{q.question}</p> : null}
-                  {q.questionZh ? <p className="inline-zh">中譯：{q.questionZh}</p> : null}
-
-                  <ul className="list stack-sm">
-                    {q.options.map((opt, optionIdx) => (
-                      <li
-                        key={`${q.id}_opt_${optionIdx}`}
-                        className={`option-review ${q.answer === optionIdx ? "correct" : ""} ${userAnswer === optionIdx && q.answer !== optionIdx ? "wrong" : ""}`}
-                      >
-                        <p><strong>{String.fromCharCode(65 + optionIdx)}.</strong> {opt}</p>
-                        {optionsZh[optionIdx] ? <p className="inline-zh">{optionsZh[optionIdx]}</p> : null}
-                        {optionReview[optionIdx] ? <p className="muted">{optionReview[optionIdx]}</p> : null}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p><strong>正解：</strong>{String.fromCharCode(65 + q.answer)}</p>
-                  <p><strong>正解理由：</strong>{q.correctReasonZh || q.explanation || ""}</p>
-                  {q.trapExplanationZh ? <p><strong>陷阱解析：</strong>{q.trapExplanationZh}</p> : null}
+                  {q.transcript?.segments?.length ? (
+                    <div className="passage-box">
+                      {q.transcript.segments.map((seg, segIdx) => (
+                        <p key={`${q.id}_review_seg_${segIdx}`} className="muted">
+                          <strong>{seg.speaker}:</strong> {seg.text}
+                        </p>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
+              ) : null;
+              return (
+                <ReviewQuestion key={`${q.id}_${idx}`} question={q} index={idx} extraHeader={extras} />
               );
             })}
           </div>

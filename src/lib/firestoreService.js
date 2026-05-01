@@ -5,6 +5,7 @@
   doc,
   getDoc,
   getDocs,
+  increment,
   limit,
   orderBy,
   query,
@@ -158,6 +159,8 @@ export async function ensureUserProfile(uid, email) {
     await setDoc(ref, {
       email: email || "",
       geminiApiKey: "",
+      ttsApiKey: "",
+      vertexAiKey: "",
       settings: {
         level: "850+",
         targetScore: 860,
@@ -195,7 +198,7 @@ export async function loadUserProfile(uid) {
   };
 }
 
-export async function saveUserKey(uid, geminiApiKey, aiSettings, extraSettings = {}) {
+export async function saveUserKey(uid, geminiApiKey, aiSettings, extraSettings = {}, extraApiKeys = {}) {
   const snap = await getDoc(doc(db, "users", uid));
   const oldSettings = snap.exists() ? snap.data()?.settings || {} : {};
 
@@ -206,6 +209,8 @@ export async function saveUserKey(uid, geminiApiKey, aiSettings, extraSettings =
 
   await setDoc(doc(db, "users", uid), {
     geminiApiKey,
+    ttsApiKey: extraApiKeys.ttsApiKey || "",
+    vertexAiKey: extraApiKeys.vertexAiKey || "",
     settings: mergedSettings,
     updatedAt: serverTimestamp(),
   }, { merge: true });
@@ -315,7 +320,7 @@ export async function upsertMistake(uid, record) {
   const id = record.id || mistakeDocId(record.question || "", String(record.correctAnswer ?? ""));
   await setDoc(doc(db, "users", uid, "mistakes", id), sanitizeForFirestore({
     ...record,
-    count: (record.count || 0) + 1,
+    count: increment(1),
     resolved: false,
     updatedAt: serverTimestamp(),
   }), { merge: true });
