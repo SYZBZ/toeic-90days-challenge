@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { fetchBookmarks, fetchSrsDue, reviewSrsWord } from "../lib/firestoreService";
+import { Banner } from "../ui/Banner";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 
@@ -12,6 +13,7 @@ export default function ReviewPage() {
   const [index, setIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -50,7 +52,12 @@ export default function ReviewPage() {
     }, grade);
 
     setShowAnswer(false);
-    setIndex((i) => (i + 1 >= list.length ? 0 : i + 1));
+    if (index + 1 >= list.length) {
+      setCompleted(true);
+      setIndex(0);
+    } else {
+      setIndex((i) => i + 1);
+    }
   }
 
   if (loading) return <Card>載入單字複習中...</Card>;
@@ -62,6 +69,8 @@ export default function ReviewPage() {
         <h2>單字複習</h2>
         <p className="muted">優先顯示到期單字，沒有到期時會用收藏清單補位。</p>
       </section>
+
+      {completed && <Banner tone="info">已完成一輪複習，從頭開始。</Banner>}
 
       {!current ? (
         <Card>

@@ -1,7 +1,8 @@
-﻿export const DEFAULT_AI_SETTINGS = {
+export const DEFAULT_AI_SETTINGS = {
   questionModel: "gemini-2.5-flash",
   analysisModel: "gemini-3-flash",
   analysisFallbackModel: "gemini-2.5-flash",
+  listeningPlaybackMode: "browser",
 };
 
 function normalizeModelName(value, fallback) {
@@ -10,10 +11,12 @@ function normalizeModelName(value, fallback) {
 }
 
 export function normalizeAiSettings(ai = {}) {
+  const playbackMode = String(ai.listeningPlaybackMode || "").trim().toLowerCase();
   return {
     questionModel: normalizeModelName(ai.questionModel, DEFAULT_AI_SETTINGS.questionModel),
     analysisModel: normalizeModelName(ai.analysisModel, DEFAULT_AI_SETTINGS.analysisModel),
     analysisFallbackModel: normalizeModelName(ai.analysisFallbackModel, DEFAULT_AI_SETTINGS.analysisFallbackModel),
+    listeningPlaybackMode: playbackMode === "tts" ? "tts" : DEFAULT_AI_SETTINGS.listeningPlaybackMode,
   };
 }
 

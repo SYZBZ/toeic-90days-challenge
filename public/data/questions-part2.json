@@ -1,0 +1,1065 @@
+{
+  "part": 2,
+  "questions": [
+    {
+      "id": "p2_local_001",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "On Mr. Lee's desk, please.",
+        "They were very expensive.",
+        "I printed it yesterday."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"On Mr. Lee's desk, please.\" because it answers the question naturally.",
+      "questionZh": "這些發票應該放在哪裡？",
+      "optionsZh": [
+        "On Mr. Lee's desk, please.",
+        "They were very expensive.",
+        "I printed it yesterday."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "On Mr. Lee's desk, please.: 自然回答提問。",
+        "They were very expensive.: 沒有回答問題，或語意方向錯誤。",
+        "I printed it yesterday.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Where should I put these invoices?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. On Mr. Lee's desk, please.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. They were very expensive.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. I printed it yesterday.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_002",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Yes, for Thursday afternoon.",
+        "The room is quite small.",
+        "I met him last week."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Yes, for Thursday afternoon.\" because it answers the question naturally.",
+      "questionZh": "需要我預訂小會議室嗎？",
+      "optionsZh": [
+        "Yes, for Thursday afternoon.",
+        "The room is quite small.",
+        "I met him last week."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Yes, for Thursday afternoon.: 自然回答提問。",
+        "The room is quite small.: 沒有回答問題，或語意方向錯誤。",
+        "I met him last week.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Would you like me to reserve the small meeting room?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Yes, for Thursday afternoon.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The room is quite small.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. I met him last week.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_003",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Maria handles that now.",
+        "It was updated yesterday.",
+        "The list is on my laptop."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Maria handles that now.\" because it answers the question naturally.",
+      "questionZh": "誰負責更新客戶名單？",
+      "optionsZh": [
+        "Maria handles that now.",
+        "It was updated yesterday.",
+        "The list is on my laptop."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Maria handles that now.: 自然回答提問。",
+        "It was updated yesterday.: 沒有回答問題，或語意方向錯誤。",
+        "The list is on my laptop.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Who is responsible for updating the client list?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Maria handles that now.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. It was updated yesterday.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. The list is on my laptop.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_004",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "At nine thirty tomorrow.",
+        "It is about workplace safety.",
+        "The trainer is very helpful."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"At nine thirty tomorrow.\" because it answers the question naturally.",
+      "questionZh": "新的訓練課何時開始？",
+      "optionsZh": [
+        "At nine thirty tomorrow.",
+        "It is about workplace safety.",
+        "The trainer is very helpful."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "At nine thirty tomorrow.: 自然回答提問。",
+        "It is about workplace safety.: 沒有回答問題，或語意方向錯誤。",
+        "The trainer is very helpful.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "When does the new training session start?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. At nine thirty tomorrow.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. It is about workplace safety.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. The trainer is very helpful.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_005",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "The address label was incorrect.",
+        "It will arrive by noon.",
+        "There are twenty boxes."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"The address label was incorrect.\" because it answers the question naturally.",
+      "questionZh": "為什麼貨件被退回？",
+      "optionsZh": [
+        "The address label was incorrect.",
+        "It will arrive by noon.",
+        "There are twenty boxes."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "The address label was incorrect.: 自然回答提問。",
+        "It will arrive by noon.: 沒有回答問題，或語意方向錯誤。",
+        "There are twenty boxes.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Why was the shipment returned?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. The address label was incorrect.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. It will arrive by noon.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. There are twenty boxes.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_006",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Sure, I will e-mail it now.",
+        "The conference starts at ten.",
+        "It was a long meeting."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Sure, I will e-mail it now.\" because it answers the question naturally.",
+      "questionZh": "你可以寄修改後的時程給我嗎？",
+      "optionsZh": [
+        "Sure, I will e-mail it now.",
+        "The conference starts at ten.",
+        "It was a long meeting."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Sure, I will e-mail it now.: 自然回答提問。",
+        "The conference starts at ten.: 沒有回答問題，或語意方向錯誤。",
+        "It was a long meeting.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Could you send me the revised schedule?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Sure, I will e-mail it now.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The conference starts at ten.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. It was a long meeting.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_007",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Once every month.",
+        "Near the north entrance.",
+        "Because one was repaired."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Once every month.\" because it answers the question naturally.",
+      "questionZh": "維修團隊多久檢查一次電梯？",
+      "optionsZh": [
+        "Once every month.",
+        "Near the north entrance.",
+        "Because one was repaired."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Once every month.: 自然回答提問。",
+        "Near the north entrance.: 沒有回答問題，或語意方向錯誤。",
+        "Because one was repaired.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "How often does the maintenance team inspect the elevators?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Once every month.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. Near the north entrance.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. Because one was repaired.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_008",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Yes, we are almost out.",
+        "The printer is beside the window.",
+        "I read the paper this morning."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Yes, we are almost out.\" because it answers the question naturally.",
+      "questionZh": "我們應該多訂一些影印紙嗎？",
+      "optionsZh": [
+        "Yes, we are almost out.",
+        "The printer is beside the window.",
+        "I read the paper this morning."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Yes, we are almost out.: 自然回答提問。",
+        "The printer is beside the window.: 沒有回答問題，或語意方向錯誤。",
+        "I read the paper this morning.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Should we order more printer paper?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Yes, we are almost out.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The printer is beside the window.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. I read the paper this morning.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_009",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "I think it is Daniel's.",
+        "The projector is new.",
+        "Please connect the cable."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"I think it is Daniel's.\" because it answers the question naturally.",
+      "questionZh": "誰的筆電連著投影機？",
+      "optionsZh": [
+        "I think it is Daniel's.",
+        "The projector is new.",
+        "Please connect the cable."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "I think it is Daniel's.: 自然回答提問。",
+        "The projector is new.: 沒有回答問題，或語意方向錯誤。",
+        "Please connect the cable.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Whose laptop is connected to the projector?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. I think it is Daniel's.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The projector is new.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. Please connect the cable.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_010",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Yes, they sent a confirmation number.",
+        "The hotel is downtown.",
+        "I prefer a larger room."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Yes, they sent a confirmation number.\" because it answers the question naturally.",
+      "questionZh": "你確認飯店訂房了嗎？",
+      "optionsZh": [
+        "Yes, they sent a confirmation number.",
+        "The hotel is downtown.",
+        "I prefer a larger room."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Yes, they sent a confirmation number.: 自然回答提問。",
+        "The hotel is downtown.: 沒有回答問題，或語意方向錯誤。",
+        "I prefer a larger room.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Did you confirm the hotel reservation?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Yes, they sent a confirmation number.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The hotel is downtown.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. I prefer a larger room.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_011",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Around three o'clock.",
+        "At the front desk.",
+        "It weighs two kilograms."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Around three o'clock.\" because it answers the question naturally.",
+      "questionZh": "快遞什麼時候會來取件？",
+      "optionsZh": [
+        "Around three o'clock.",
+        "At the front desk.",
+        "It weighs two kilograms."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Around three o'clock.: 自然回答提問。",
+        "At the front desk.: 沒有回答問題，或語意方向錯誤。",
+        "It weighs two kilograms.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "What time will the courier pick up the package?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Around three o'clock.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. At the front desk.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. It weighs two kilograms.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_012",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "That sounds like a good plan.",
+        "The proposal has ten pages.",
+        "Lunch was delivered late."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"That sounds like a good plan.\" because it answers the question naturally.",
+      "questionZh": "我們午餐後審提案如何？",
+      "optionsZh": [
+        "That sounds like a good plan.",
+        "The proposal has ten pages.",
+        "Lunch was delivered late."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "That sounds like a good plan.: 自然回答提問。",
+        "The proposal has ten pages.: 沒有回答問題，或語意方向錯誤。",
+        "Lunch was delivered late.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Why don't we review the proposal after lunch?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. That sounds like a good plan.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The proposal has ten pages.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. Lunch was delivered late.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_013",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Not yet; I am checking the links.",
+        "Customers were very friendly.",
+        "It was sent by courier."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Not yet; I am checking the links.\" because it answers the question naturally.",
+      "questionZh": "客戶問卷準備好可以寄出了嗎？",
+      "optionsZh": [
+        "Not yet; I am checking the links.",
+        "Customers were very friendly.",
+        "It was sent by courier."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Not yet; I am checking the links.: 自然回答提問。",
+        "Customers were very friendly.: 沒有回答問題，或語意方向錯誤。",
+        "It was sent by courier.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Is the customer survey ready to send?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Not yet; I am checking the links.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. Customers were very friendly.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. It was sent by courier.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_014",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "At the security desk.",
+        "They are visiting from Canada.",
+        "The badges expire tomorrow."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"At the security desk.\" because it answers the question naturally.",
+      "questionZh": "訪客在哪裡領臨時識別證？",
+      "optionsZh": [
+        "At the security desk.",
+        "They are visiting from Canada.",
+        "The badges expire tomorrow."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "At the security desk.: 自然回答提問。",
+        "They are visiting from Canada.: 沒有回答問題，或語意方向錯誤。",
+        "The badges expire tomorrow.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Where can visitors get temporary badges?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. At the security desk.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. They are visiting from Canada.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. The badges expire tomorrow.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_015",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "The finance director did.",
+        "It increased by ten percent.",
+        "The budget report is attached."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"The finance director did.\" because it answers the question naturally.",
+      "questionZh": "誰批准預算增加？",
+      "optionsZh": [
+        "The finance director did.",
+        "It increased by ten percent.",
+        "The budget report is attached."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "The finance director did.: 自然回答提問。",
+        "It increased by ten percent.: 沒有回答問題，或語意方向錯誤。",
+        "The budget report is attached.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Who approved the budget increase?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. The finance director did.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. It increased by ten percent.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. The budget report is attached.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_016",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "No problem; I can do it now.",
+        "The webinar was popular.",
+        "Audio files are in the folder."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"No problem; I can do it now.\" because it answers the question naturally.",
+      "questionZh": "你介意在網路研討會前檢查音訊嗎？",
+      "optionsZh": [
+        "No problem; I can do it now.",
+        "The webinar was popular.",
+        "Audio files are in the folder."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "No problem; I can do it now.: 自然回答提問。",
+        "The webinar was popular.: 沒有回答問題，或語意方向錯誤。",
+        "Audio files are in the folder.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Would you mind checking the audio before the webinar?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. No problem; I can do it now.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The webinar was popular.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. Audio files are in the folder.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_017",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "She asked for a detailed breakdown.",
+        "We estimated the delivery time.",
+        "The client is in Singapore."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"She asked for a detailed breakdown.\" because it answers the question naturally.",
+      "questionZh": "客戶對估價如何回應？",
+      "optionsZh": [
+        "She asked for a detailed breakdown.",
+        "We estimated the delivery time.",
+        "The client is in Singapore."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "She asked for a detailed breakdown.: 自然回答提問。",
+        "We estimated the delivery time.: 沒有回答問題，或語意方向錯誤。",
+        "The client is in Singapore.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "How did the client respond to our estimate?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. She asked for a detailed breakdown.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. We estimated the delivery time.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. The client is in Singapore.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_018",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Yes, until the end of June.",
+        "The parts are in the cabinet.",
+        "We replaced them last week."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Yes, until the end of June.\" because it answers the question naturally.",
+      "questionZh": "替換零件還在保固內嗎？",
+      "optionsZh": [
+        "Yes, until the end of June.",
+        "The parts are in the cabinet.",
+        "We replaced them last week."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Yes, until the end of June.: 自然回答提問。",
+        "The parts are in the cabinet.: 沒有回答問題，或語意方向錯誤。",
+        "We replaced them last week.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Are the replacement parts still under warranty?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Yes, until the end of June.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The parts are in the cabinet.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. We replaced them last week.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_019",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Sorry, we are not allowed to share them.",
+        "The card reader is near the stairs.",
+        "I accessed the report online."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"Sorry, we are not allowed to share them.\" because it answers the question naturally.",
+      "questionZh": "我可以借你的門禁卡一下嗎？",
+      "optionsZh": [
+        "Sorry, we are not allowed to share them.",
+        "The card reader is near the stairs.",
+        "I accessed the report online."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "Sorry, we are not allowed to share them.: 自然回答提問。",
+        "The card reader is near the stairs.: 沒有回答問題，或語意方向錯誤。",
+        "I accessed the report online.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Could I borrow your access card for a moment?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. Sorry, we are not allowed to share them.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The card reader is near the stairs.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. I accessed the report online.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p2_local_020",
+      "type": "part2",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "The blue one with the new logo.",
+        "The table seats six people.",
+        "Registration closes tonight."
+      ],
+      "answer": 0,
+      "explanation": "The best response is \"The blue one with the new logo.\" because it answers the question naturally.",
+      "questionZh": "我們應該把哪一本手冊放在報到桌？",
+      "optionsZh": [
+        "The blue one with the new logo.",
+        "The table seats six people.",
+        "Registration closes tonight."
+      ],
+      "trapExplanationZh": "Part 2 要聽語意功能，不要只被重複單字吸引。",
+      "optionReviewZh": [
+        "The blue one with the new logo.: 自然回答提問。",
+        "The table seats six people.: 沒有回答問題，或語意方向錯誤。",
+        "Registration closes tonight.: 沒有回答問題，或語意方向錯誤。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Which brochure should we place at the registration table?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "A. The blue one with the new logo.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "B. The table seats six people.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "C. Registration closes tonight.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      }
+    }
+  ]
+}

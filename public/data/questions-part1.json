@@ -1,0 +1,1305 @@
+{
+  "part": 1,
+  "questions": [
+    {
+      "id": "p1_local_001",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "People are standing near a counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: people are standing near a counter.",
+      "questionZh": "請選出最符合圖片「airport check-in counter」的描述。",
+      "optionsZh": [
+        "People are standing near a counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "People are standing near a counter: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. People are standing near a counter.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "airport-check-in-04",
+      "imageUrl": "/toeic-90days-challenge/part1-images/airport-check-in-04.jpg",
+      "imageSource": {
+        "title": "Miami PanAm Terminal 1940",
+        "url": "https://commons.wikimedia.org/wiki/File:Miami_PanAm_Terminal_1940.jpg",
+        "author": "Unknown author",
+        "license": "Public domain",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_002",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "A schedule sign is displayed near a shelter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: a schedule sign is displayed near a shelter.",
+      "questionZh": "請選出最符合圖片「transit stop」的描述。",
+      "optionsZh": [
+        "A schedule sign is displayed near a shelter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "A schedule sign is displayed near a shelter: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. A schedule sign is displayed near a shelter.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "bus-stop-18",
+      "imageUrl": "/toeic-90days-challenge/part1-images/bus-stop-18.jpg",
+      "imageSource": {
+        "title": "Generated transit stop scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_003",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Staff are working behind a counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: staff are working behind a counter.",
+      "questionZh": "請選出最符合圖片「cafe counter」的描述。",
+      "optionsZh": [
+        "Staff are working behind a counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Staff are working behind a counter: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Staff are working behind a counter.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "cafe-counter-06",
+      "imageUrl": "/toeic-90days-challenge/part1-images/cafe-counter-03.jpg",
+      "imageSource": {
+        "title": "Barista and waitress - Replete Providore",
+        "url": "https://www.flickr.com/photos/10559879@N00/2390398243",
+        "author": "avlxyz",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    },
+    {
+      "id": "p1_local_004",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "People are attending a class",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: people are attending a class.",
+      "questionZh": "請選出最符合圖片「classroom lecture」的描述。",
+      "optionsZh": [
+        "People are attending a class",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "People are attending a class: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. People are attending a class.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "classroom-lecture-09",
+      "imageUrl": "/toeic-90days-challenge/part1-images/classroom-lecture-11.jpg",
+      "imageSource": {
+        "title": "Large lecture college classes",
+        "url": "https://www.flickr.com/photos/12836528@N00/13905987989",
+        "author": "kevin dooley",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "p1_local_005",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "People are attending a presentation",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: people are attending a presentation.",
+      "questionZh": "請選出最符合圖片「conference presentation」的描述。",
+      "optionsZh": [
+        "People are attending a presentation",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "People are attending a presentation: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. People are attending a presentation.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "conference-presentation-05",
+      "imageUrl": "/toeic-90days-challenge/part1-images/conference-presentation-01.jpg",
+      "imageSource": {
+        "title": "Audience at #PELC11",
+        "url": "https://www.flickr.com/photos/94991702@N00/5603477175",
+        "author": "dougbelshaw",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "p1_local_006",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Paper boxes are stored in a copy room",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: paper boxes are stored in a copy room.",
+      "questionZh": "請選出最符合圖片「copy room」的描述。",
+      "optionsZh": [
+        "Paper boxes are stored in a copy room",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Paper boxes are stored in a copy room: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Paper boxes are stored in a copy room.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "copy-room-20",
+      "imageUrl": "/toeic-90days-challenge/part1-images/copy-room-20.jpg",
+      "imageSource": {
+        "title": "Generated copy room scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_007",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Workers are gathered in a factory area",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: workers are gathered in a factory area.",
+      "questionZh": "請選出最符合圖片「factory work area」的描述。",
+      "optionsZh": [
+        "Workers are gathered in a factory area",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Workers are gathered in a factory area: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Workers are gathered in a factory area.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "factory-workers-16",
+      "imageUrl": "/toeic-90days-challenge/part1-images/factory-workers-16.jpg",
+      "imageSource": {
+        "title": "Factory workers (4951753946).jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Factory_workers_(4951753946).jpg",
+        "author": "University of Washington Libraries Digital Collections",
+        "license": "Public domain",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_008",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Items are arranged on a counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: items are arranged on a counter.",
+      "questionZh": "請選出最符合圖片「hotel reception desk」的描述。",
+      "optionsZh": [
+        "Items are arranged on a counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Items are arranged on a counter: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Items are arranged on a counter.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "hotel-reception-07",
+      "imageUrl": "/toeic-90days-challenge/part1-images/hotel-reception-04.jpg",
+      "imageSource": {
+        "title": "Hotel reception desk",
+        "url": "https://www.flickr.com/photos/44124348109@N01/11059593346",
+        "author": "jurvetson",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "p1_local_009",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "A worker is standing beside laboratory equipment",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: a worker is standing beside laboratory equipment.",
+      "questionZh": "請選出最符合圖片「laboratory counter」的描述。",
+      "optionsZh": [
+        "A worker is standing beside laboratory equipment",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "A worker is standing beside laboratory equipment: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. A worker is standing beside laboratory equipment.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "laboratory-counter-19",
+      "imageUrl": "/toeic-90days-challenge/part1-images/laboratory-counter-19.jpg",
+      "imageSource": {
+        "title": "Generated laboratory counter scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_010",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Patrons are studying or reading",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: patrons are studying or reading.",
+      "questionZh": "請選出最符合圖片「library desk」的描述。",
+      "optionsZh": [
+        "Patrons are studying or reading",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Patrons are studying or reading: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Patrons are studying or reading.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "library-desk-08",
+      "imageUrl": "/toeic-90days-challenge/part1-images/library-desk-08.jpg",
+      "imageSource": {
+        "title": "library patrons",
+        "url": "https://www.flickr.com/photos/53133240@N00/2385531671",
+        "author": "Muffet",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "p1_local_011",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "A reception desk is arranged in a clinic",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: a reception desk is arranged in a clinic.",
+      "questionZh": "請選出最符合圖片「medical reception desk」的描述。",
+      "optionsZh": [
+        "A reception desk is arranged in a clinic",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "A reception desk is arranged in a clinic: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. A reception desk is arranged in a clinic.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "medical-reception-10",
+      "imageUrl": "/toeic-90days-challenge/part1-images/medical-reception-13.jpg",
+      "imageSource": {
+        "title": "raffles executive clinic",
+        "url": "https://www.flickr.com/photos/49215102@N00/3108183478",
+        "author": "goodiesfirst",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    },
+    {
+      "id": "p1_local_012",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Chairs are arranged near a desk",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: chairs are arranged near a desk.",
+      "questionZh": "請選出最符合圖片「office desk work」的描述。",
+      "optionsZh": [
+        "Chairs are arranged near a desk",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Chairs are arranged near a desk: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Chairs are arranged near a desk.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "office-desk-work-02",
+      "imageUrl": "/toeic-90days-challenge/part1-images/office-desk-work-02.jpg",
+      "imageSource": {
+        "title": "Barack Obama trying differents desk chairs in the Oval Office",
+        "url": "https://commons.wikimedia.org/wiki/File:Barack_Obama_trying_differents_desk_chairs_in_the_Oval_Office.jpg",
+        "author": "The Official White House Photostream",
+        "license": "Public domain",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_013",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Workers are seated around a table",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: workers are seated around a table.",
+      "questionZh": "請選出最符合圖片「office meeting」的描述。",
+      "optionsZh": [
+        "Workers are seated around a table",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Workers are seated around a table: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Workers are seated around a table.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "office-meeting-01",
+      "imageUrl": "/toeic-90days-challenge/part1-images/office-meeting-01.jpg",
+      "imageSource": {
+        "title": "FEMA workers in a meeting in Puerto Rico",
+        "url": "https://commons.wikimedia.org/wiki/File:FEMA_-_39202_-_FEMA_workers_in_a_meeting_in_Puerto_Rico.jpg",
+        "author": "Andrea Booher",
+        "license": "Public domain",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_014",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Paper is stacked beside a machine",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: paper is stacked beside a machine.",
+      "questionZh": "請選出最符合圖片「office printer area」的描述。",
+      "optionsZh": [
+        "Paper is stacked beside a machine",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Paper is stacked beside a machine: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Paper is stacked beside a machine.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "office-printer-14",
+      "imageUrl": "/toeic-90days-challenge/part1-images/office-printer-14.jpg",
+      "imageSource": {
+        "title": "Generated office printer scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_015",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Staff are standing behind a restaurant counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: staff are standing behind a restaurant counter.",
+      "questionZh": "請選出最符合圖片「restaurant counter」的描述。",
+      "optionsZh": [
+        "Staff are standing behind a restaurant counter",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Staff are standing behind a restaurant counter: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Staff are standing behind a restaurant counter.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "restaurant-counter-17",
+      "imageUrl": "/toeic-90days-challenge/part1-images/restaurant-counter-17.jpg",
+      "imageSource": {
+        "title": "Generated restaurant counter scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_016",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Shopping bags are placed near a register",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: shopping bags are placed near a register.",
+      "questionZh": "請選出最符合圖片「retail checkout counter」的描述。",
+      "optionsZh": [
+        "Shopping bags are placed near a register",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Shopping bags are placed near a register: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Shopping bags are placed near a register.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "retail-checkout-13",
+      "imageUrl": "/toeic-90days-challenge/part1-images/retail-checkout-13.jpg",
+      "imageSource": {
+        "title": "Generated retail checkout scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_017",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Workers are standing near stacked boxes",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: workers are standing near stacked boxes.",
+      "questionZh": "請選出最符合圖片「shipping dock」的描述。",
+      "optionsZh": [
+        "Workers are standing near stacked boxes",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Workers are standing near stacked boxes: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Workers are standing near stacked boxes.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "shipping-dock-15",
+      "imageUrl": "/toeic-90days-challenge/part1-images/shipping-dock-15.jpg",
+      "imageSource": {
+        "title": "Generated shipping dock scene",
+        "url": "",
+        "author": "Generated locally by Codex",
+        "license": "Project asset",
+        "licenseUrl": ""
+      }
+    },
+    {
+      "id": "p1_local_018",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "A station lobby is prepared for travelers",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: a station lobby is prepared for travelers.",
+      "questionZh": "請選出最符合圖片「railway ticket counters」的描述。",
+      "optionsZh": [
+        "A station lobby is prepared for travelers",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "A station lobby is prepared for travelers: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. A station lobby is prepared for travelers.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "station-ticket-counters-12",
+      "imageUrl": "/toeic-90days-challenge/part1-images/station-ticket-counters-12.jpg",
+      "imageSource": {
+        "title": "Newark Penn Station Amtrak Ticket Counters.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Newark_Penn_Station_Amtrak_Ticket_Counters.jpg",
+        "author": "Bonnachoven",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    },
+    {
+      "id": "p1_local_019",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "A ticket counter is shown in a station",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: a ticket counter is shown in a station.",
+      "questionZh": "請選出最符合圖片「train station ticket counter」的描述。",
+      "optionsZh": [
+        "A ticket counter is shown in a station",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "A ticket counter is shown in a station: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. A ticket counter is shown in a station.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "train-ticket-counter-11",
+      "imageUrl": "/toeic-90days-challenge/part1-images/train-ticket-counter-11.jpg",
+      "imageSource": {
+        "title": "Union Station, SD ticket counter.JPG",
+        "url": "https://commons.wikimedia.org/wiki/File:Union_Station,_SD_ticket_counter.JPG",
+        "author": "BrokenSphere",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    },
+    {
+      "id": "p1_local_020",
+      "type": "part1",
+      "difficulty": "gold",
+      "question": "",
+      "options": [
+        "Materials are stored indoors",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "answer": 0,
+      "explanation": "The correct statement matches the visible scene: materials are stored indoors.",
+      "questionZh": "請選出最符合圖片「warehouse boxes」的描述。",
+      "optionsZh": [
+        "Materials are stored indoors",
+        "A vehicle is being repaired on the side of a road",
+        "Several packages are floating on the water",
+        "A person is cooking alone in a private kitchen"
+      ],
+      "trapExplanationZh": "其他選項加入圖片中沒有的場景，例如修車、水面包裹或私人廚房。",
+      "optionReviewZh": [
+        "Materials are stored indoors: 符合圖片中的主要場景或動作。",
+        "A vehicle is being repaired on the side of a road: 與圖片 metadata 的場景不一致。",
+        "Several packages are floating on the water: 與圖片 metadata 的場景不一致。",
+        "A person is cooking alone in a private kitchen: 與圖片 metadata 的場景不一致。"
+      ],
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "A. Materials are stored indoors.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "B. A vehicle is being repaired on the side of a road.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "C. Several packages are floating on the water.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "NARRATOR",
+            "text": "D. A person is cooking alone in a private kitchen.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "imageId": "warehouse-boxes-03",
+      "imageUrl": "/toeic-90days-challenge/part1-images/warehouse-boxes-03.jpg",
+      "imageSource": {
+        "title": "Workers with the lintel of Sesostris III in the warehouse",
+        "url": "https://commons.wikimedia.org/wiki/File:Medamud._Temple_of_Montu._Workers_with_the_lintel_of_Sesostris_III_in_the_warehouse.jpg",
+        "author": "anonymous",
+        "license": "Public domain",
+        "licenseUrl": ""
+      }
+    }
+  ]
+}

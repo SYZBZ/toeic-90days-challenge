@@ -1,0 +1,1535 @@
+{
+  "part": 3,
+  "questions": [
+    {
+      "id": "part3_local_01_1",
+      "type": "part3",
+      "passage": "part3-1",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The client moved tomorrow's presentation to ten o'clock.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Then I will update the slides this afternoon and reserve the larger room.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Good. Please send the revised agenda before five.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What are the speakers discussing?",
+      "options": [
+        "A changed presentation time",
+        "A delayed shipment",
+        "A hotel reservation",
+        "A hiring decision"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The presentation was moved to ten o'clock.",
+      "questionZh": "說話者在討論什麼？",
+      "optionsZh": [
+        "A changed presentation time",
+        "A delayed shipment",
+        "A hotel reservation",
+        "A hiring decision"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A changed presentation time: 符合音檔內容。",
+        "A delayed shipment: 音檔未提到或與音檔細節不一致。",
+        "A hotel reservation: 音檔未提到或與音檔細節不一致。",
+        "A hiring decision: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_01_2",
+      "type": "part3",
+      "passage": "part3-1",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The client moved tomorrow's presentation to ten o'clock.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Then I will update the slides this afternoon and reserve the larger room.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Good. Please send the revised agenda before five.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will the man do this afternoon?",
+      "options": [
+        "Update the slides",
+        "Meet the client at lunch",
+        "Cancel the room",
+        "Print invoices"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "He says he will update the slides.",
+      "questionZh": "男士下午會做什麼？",
+      "optionsZh": [
+        "Update the slides",
+        "Meet the client at lunch",
+        "Cancel the room",
+        "Print invoices"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Update the slides: 符合音檔內容。",
+        "Meet the client at lunch: 音檔未提到或與音檔細節不一致。",
+        "Cancel the room: 音檔未提到或與音檔細節不一致。",
+        "Print invoices: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_01_3",
+      "type": "part3",
+      "passage": "part3-1",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The client moved tomorrow's presentation to ten o'clock.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Then I will update the slides this afternoon and reserve the larger room.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Good. Please send the revised agenda before five.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What does the woman ask for?",
+      "options": [
+        "A revised agenda",
+        "A travel receipt",
+        "A price estimate",
+        "A security badge"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "She asks him to send the revised agenda.",
+      "questionZh": "女士要求什麼？",
+      "optionsZh": [
+        "A revised agenda",
+        "A travel receipt",
+        "A price estimate",
+        "A security badge"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A revised agenda: 符合音檔內容。",
+        "A travel receipt: 音檔未提到或與音檔細節不一致。",
+        "A price estimate: 音檔未提到或與音檔細節不一致。",
+        "A security badge: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_02_1",
+      "type": "part3",
+      "passage": "part3-2",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The printer in the copy room keeps jamming.",
+            "accent": "au",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I called the service company. A technician can come after lunch.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Great. I will move the urgent print jobs to the machine upstairs.",
+            "accent": "au",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What problem is mentioned?",
+      "options": [
+        "A printer is jamming",
+        "A copier was delivered late",
+        "A room is too cold",
+        "A document was missing"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The printer keeps jamming.",
+      "questionZh": "提到什麼問題？",
+      "optionsZh": [
+        "A printer is jamming",
+        "A copier was delivered late",
+        "A room is too cold",
+        "A document was missing"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A printer is jamming: 符合音檔內容。",
+        "A copier was delivered late: 音檔未提到或與音檔細節不一致。",
+        "A room is too cold: 音檔未提到或與音檔細節不一致。",
+        "A document was missing: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_02_2",
+      "type": "part3",
+      "passage": "part3-2",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The printer in the copy room keeps jamming.",
+            "accent": "au",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I called the service company. A technician can come after lunch.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Great. I will move the urgent print jobs to the machine upstairs.",
+            "accent": "au",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "Who has been contacted?",
+      "options": [
+        "A service company",
+        "A new client",
+        "The sales director",
+        "The building owner"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The woman called the service company.",
+      "questionZh": "已聯絡誰？",
+      "optionsZh": [
+        "A service company",
+        "A new client",
+        "The sales director",
+        "The building owner"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A service company: 符合音檔內容。",
+        "A new client: 音檔未提到或與音檔細節不一致。",
+        "The sales director: 音檔未提到或與音檔細節不一致。",
+        "The building owner: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_02_3",
+      "type": "part3",
+      "passage": "part3-2",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The printer in the copy room keeps jamming.",
+            "accent": "au",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I called the service company. A technician can come after lunch.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Great. I will move the urgent print jobs to the machine upstairs.",
+            "accent": "au",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What will the man do next?",
+      "options": [
+        "Use another machine",
+        "Cancel a repair visit",
+        "Order more coffee",
+        "Close the copy room"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "He will move urgent jobs to another machine.",
+      "questionZh": "男士接下來會做什麼？",
+      "optionsZh": [
+        "Use another machine",
+        "Cancel a repair visit",
+        "Order more coffee",
+        "Close the copy room"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Use another machine: 符合音檔內容。",
+        "Cancel a repair visit: 音檔未提到或與音檔細節不一致。",
+        "Order more coffee: 音檔未提到或與音檔細節不一致。",
+        "Close the copy room: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_03_1",
+      "type": "part3",
+      "passage": "part3-3",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Welcome to the Lakeside Hotel. Do you have a reservation?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Yes, under Nakamura. I also requested a quiet room.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I see it here. Your room is on the eighth floor, away from the elevator.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where does the conversation take place?",
+      "options": [
+        "At a hotel",
+        "At an airport gate",
+        "At a restaurant",
+        "At a bank"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The woman welcomes the guest to a hotel.",
+      "questionZh": "對話發生在哪裡？",
+      "optionsZh": [
+        "At a hotel",
+        "At an airport gate",
+        "At a restaurant",
+        "At a bank"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "At a hotel: 符合音檔內容。",
+        "At an airport gate: 音檔未提到或與音檔細節不一致。",
+        "At a restaurant: 音檔未提到或與音檔細節不一致。",
+        "At a bank: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_03_2",
+      "type": "part3",
+      "passage": "part3-3",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Welcome to the Lakeside Hotel. Do you have a reservation?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Yes, under Nakamura. I also requested a quiet room.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I see it here. Your room is on the eighth floor, away from the elevator.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What did the man request?",
+      "options": [
+        "A quiet room",
+        "A late dinner",
+        "A rental car",
+        "A meeting projector"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "He requested a quiet room.",
+      "questionZh": "男士要求什麼？",
+      "optionsZh": [
+        "A quiet room",
+        "A late dinner",
+        "A rental car",
+        "A meeting projector"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A quiet room: 符合音檔內容。",
+        "A late dinner: 音檔未提到或與音檔細節不一致。",
+        "A rental car: 音檔未提到或與音檔細節不一致。",
+        "A meeting projector: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_03_3",
+      "type": "part3",
+      "passage": "part3-3",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Welcome to the Lakeside Hotel. Do you have a reservation?",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Yes, under Nakamura. I also requested a quiet room.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I see it here. Your room is on the eighth floor, away from the elevator.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where is the man's room?",
+      "options": [
+        "On the eighth floor",
+        "Next to the elevator",
+        "Above the restaurant",
+        "Near the lobby"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The room is on the eighth floor.",
+      "questionZh": "男士的房間在哪裡？",
+      "optionsZh": [
+        "On the eighth floor",
+        "Next to the elevator",
+        "Above the restaurant",
+        "Near the lobby"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "On the eighth floor: 符合音檔內容。",
+        "Next to the elevator: 音檔未提到或與音檔細節不一致。",
+        "Above the restaurant: 音檔未提到或與音檔細節不一致。",
+        "Near the lobby: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_04_1",
+      "type": "part3",
+      "passage": "part3-4",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The product photos for the catalog are still missing.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "The photographer uploaded them this morning, but the file names are confusing.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Let's sort them by product number before sending them to design.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What are the speakers preparing?",
+      "options": [
+        "A product catalog",
+        "A staff schedule",
+        "A training video",
+        "A travel report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "They mention product photos for the catalog.",
+      "questionZh": "說話者正在準備什麼？",
+      "optionsZh": [
+        "A product catalog",
+        "A staff schedule",
+        "A training video",
+        "A travel report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A product catalog: 符合音檔內容。",
+        "A staff schedule: 音檔未提到或與音檔細節不一致。",
+        "A training video: 音檔未提到或與音檔細節不一致。",
+        "A travel report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_04_2",
+      "type": "part3",
+      "passage": "part3-4",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The product photos for the catalog are still missing.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "The photographer uploaded them this morning, but the file names are confusing.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Let's sort them by product number before sending them to design.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What is the problem with the photos?",
+      "options": [
+        "The file names are confusing",
+        "The photos are too dark",
+        "The photographer lost them",
+        "The product numbers changed"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The woman says the file names are confusing.",
+      "questionZh": "照片有什麼問題？",
+      "optionsZh": [
+        "The file names are confusing",
+        "The photos are too dark",
+        "The photographer lost them",
+        "The product numbers changed"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The file names are confusing: 符合音檔內容。",
+        "The photos are too dark: 音檔未提到或與音檔細節不一致。",
+        "The photographer lost them: 音檔未提到或與音檔細節不一致。",
+        "The product numbers changed: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_04_3",
+      "type": "part3",
+      "passage": "part3-4",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The product photos for the catalog are still missing.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "The photographer uploaded them this morning, but the file names are confusing.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Let's sort them by product number before sending them to design.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What do the speakers decide to do?",
+      "options": [
+        "Sort the photos by product number",
+        "Retake all photos",
+        "Hire another designer",
+        "Delay the upload"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "They will sort the photos by product number.",
+      "questionZh": "他們決定做什麼？",
+      "optionsZh": [
+        "Sort the photos by product number",
+        "Retake all photos",
+        "Hire another designer",
+        "Delay the upload"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Sort the photos by product number: 符合音檔內容。",
+        "Retake all photos: 音檔未提到或與音檔細節不一致。",
+        "Hire another designer: 音檔未提到或與音檔細節不一致。",
+        "Delay the upload: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_05_1",
+      "type": "part3",
+      "passage": "part3-5",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Our shipment of display shelves has been delayed until Monday.",
+            "accent": "uk",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "The store opening is Saturday. Should we use the temporary shelves from storage?",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Yes, and please ask the warehouse team to bring them down this afternoon.",
+            "accent": "uk",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What has been delayed?",
+      "options": [
+        "A shipment of display shelves",
+        "A store opening",
+        "A warehouse inspection",
+        "A sales report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The display shelf shipment is delayed.",
+      "questionZh": "什麼延遲了？",
+      "optionsZh": [
+        "A shipment of display shelves",
+        "A store opening",
+        "A warehouse inspection",
+        "A sales report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A shipment of display shelves: 符合音檔內容。",
+        "A store opening: 音檔未提到或與音檔細節不一致。",
+        "A warehouse inspection: 音檔未提到或與音檔細節不一致。",
+        "A sales report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_05_2",
+      "type": "part3",
+      "passage": "part3-5",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Our shipment of display shelves has been delayed until Monday.",
+            "accent": "uk",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "The store opening is Saturday. Should we use the temporary shelves from storage?",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Yes, and please ask the warehouse team to bring them down this afternoon.",
+            "accent": "uk",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "When is the store opening?",
+      "options": [
+        "Saturday",
+        "Monday",
+        "This afternoon",
+        "Next month"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The man says the opening is Saturday.",
+      "questionZh": "商店何時開幕？",
+      "optionsZh": [
+        "Saturday",
+        "Monday",
+        "This afternoon",
+        "Next month"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Saturday: 符合音檔內容。",
+        "Monday: 音檔未提到或與音檔細節不一致。",
+        "This afternoon: 音檔未提到或與音檔細節不一致。",
+        "Next month: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_05_3",
+      "type": "part3",
+      "passage": "part3-5",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Our shipment of display shelves has been delayed until Monday.",
+            "accent": "uk",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "The store opening is Saturday. Should we use the temporary shelves from storage?",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Yes, and please ask the warehouse team to bring them down this afternoon.",
+            "accent": "uk",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will the man probably do?",
+      "options": [
+        "Contact the warehouse team",
+        "Cancel the opening",
+        "Order new signs",
+        "Prepare a sales report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The woman asks him to contact the warehouse team.",
+      "questionZh": "男士可能會做什麼？",
+      "optionsZh": [
+        "Contact the warehouse team",
+        "Cancel the opening",
+        "Order new signs",
+        "Prepare a sales report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Contact the warehouse team: 符合音檔內容。",
+        "Cancel the opening: 音檔未提到或與音檔細節不一致。",
+        "Order new signs: 音檔未提到或與音檔細節不一致。",
+        "Prepare a sales report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_06_1",
+      "type": "part3",
+      "passage": "part3-6",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I registered for the safety workshop, but I cannot find the room number.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "It was moved to Room 318 because Room 204 needs projector repairs.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Thanks. I will go there after I pick up the printed handouts.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What is the woman looking for?",
+      "options": [
+        "A room number",
+        "A projector cable",
+        "A registration form",
+        "A parking pass"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "She cannot find the room number.",
+      "questionZh": "女士在找什麼？",
+      "optionsZh": [
+        "A room number",
+        "A projector cable",
+        "A registration form",
+        "A parking pass"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A room number: 符合音檔內容。",
+        "A projector cable: 音檔未提到或與音檔細節不一致。",
+        "A registration form: 音檔未提到或與音檔細節不一致。",
+        "A parking pass: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_06_2",
+      "type": "part3",
+      "passage": "part3-6",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I registered for the safety workshop, but I cannot find the room number.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "It was moved to Room 318 because Room 204 needs projector repairs.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Thanks. I will go there after I pick up the printed handouts.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Why was the room changed?",
+      "options": [
+        "A projector needs repairs",
+        "More people registered",
+        "The room is locked",
+        "The handouts are missing"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "Room 204 needs projector repairs.",
+      "questionZh": "為什麼換教室？",
+      "optionsZh": [
+        "A projector needs repairs",
+        "More people registered",
+        "The room is locked",
+        "The handouts are missing"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A projector needs repairs: 符合音檔內容。",
+        "More people registered: 音檔未提到或與音檔細節不一致。",
+        "The room is locked: 音檔未提到或與音檔細節不一致。",
+        "The handouts are missing: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_06_3",
+      "type": "part3",
+      "passage": "part3-6",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I registered for the safety workshop, but I cannot find the room number.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "It was moved to Room 318 because Room 204 needs projector repairs.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Thanks. I will go there after I pick up the printed handouts.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will the woman pick up?",
+      "options": [
+        "Printed handouts",
+        "A laptop bag",
+        "A visitor badge",
+        "A lunch order"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "She will pick up printed handouts.",
+      "questionZh": "女士會拿什麼？",
+      "optionsZh": [
+        "Printed handouts",
+        "A laptop bag",
+        "A visitor badge",
+        "A lunch order"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Printed handouts: 符合音檔內容。",
+        "A laptop bag: 音檔未提到或與音檔細節不一致。",
+        "A visitor badge: 音檔未提到或與音檔細節不一致。",
+        "A lunch order: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_07_1",
+      "type": "part3",
+      "passage": "part3-7",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The customer wants to change the lunch order from sandwiches to salad boxes.",
+            "accent": "au",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "That is fine, but we need the final count by eleven.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I will call her now and confirm the number of guests.",
+            "accent": "au",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What is being changed?",
+      "options": [
+        "A lunch order",
+        "A meeting location",
+        "A delivery truck",
+        "A payment method"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The lunch order is changing from sandwiches to salad boxes.",
+      "questionZh": "什麼正在變更？",
+      "optionsZh": [
+        "A lunch order",
+        "A meeting location",
+        "A delivery truck",
+        "A payment method"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A lunch order: 符合音檔內容。",
+        "A meeting location: 音檔未提到或與音檔細節不一致。",
+        "A delivery truck: 音檔未提到或與音檔細節不一致。",
+        "A payment method: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_07_2",
+      "type": "part3",
+      "passage": "part3-7",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The customer wants to change the lunch order from sandwiches to salad boxes.",
+            "accent": "au",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "That is fine, but we need the final count by eleven.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I will call her now and confirm the number of guests.",
+            "accent": "au",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What does the woman need by eleven?",
+      "options": [
+        "The final count",
+        "The invoice number",
+        "The new address",
+        "The catering menu"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "She needs the final count.",
+      "questionZh": "女士十一點前需要什麼？",
+      "optionsZh": [
+        "The final count",
+        "The invoice number",
+        "The new address",
+        "The catering menu"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The final count: 符合音檔內容。",
+        "The invoice number: 音檔未提到或與音檔細節不一致。",
+        "The new address: 音檔未提到或與音檔細節不一致。",
+        "The catering menu: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_07_3",
+      "type": "part3",
+      "passage": "part3-7",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The customer wants to change the lunch order from sandwiches to salad boxes.",
+            "accent": "au",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "That is fine, but we need the final count by eleven.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "I will call her now and confirm the number of guests.",
+            "accent": "au",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What will the man do now?",
+      "options": [
+        "Call the customer",
+        "Prepare sandwiches",
+        "Print the menu",
+        "Deliver salad boxes"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "He will call the customer.",
+      "questionZh": "男士現在會做什麼？",
+      "optionsZh": [
+        "Call the customer",
+        "Prepare sandwiches",
+        "Print the menu",
+        "Deliver salad boxes"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Call the customer: 符合音檔內容。",
+        "Prepare sandwiches: 音檔未提到或與音檔細節不一致。",
+        "Print the menu: 音檔未提到或與音檔細節不一致。",
+        "Deliver salad boxes: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_08_1",
+      "type": "part3",
+      "passage": "part3-8",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The supply cabinet is almost empty again.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I noticed that. We should set a monthly order instead of buying items one at a time.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Please draft a list of the supplies each department uses most often.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What are the speakers discussing?",
+      "options": [
+        "Office supplies",
+        "Monthly sales",
+        "Cabinet repairs",
+        "Department budgets"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "They discuss an empty supply cabinet.",
+      "questionZh": "說話者在討論什麼？",
+      "optionsZh": [
+        "Office supplies",
+        "Monthly sales",
+        "Cabinet repairs",
+        "Department budgets"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Office supplies: 符合音檔內容。",
+        "Monthly sales: 音檔未提到或與音檔細節不一致。",
+        "Cabinet repairs: 音檔未提到或與音檔細節不一致。",
+        "Department budgets: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_08_2",
+      "type": "part3",
+      "passage": "part3-8",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The supply cabinet is almost empty again.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I noticed that. We should set a monthly order instead of buying items one at a time.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Please draft a list of the supplies each department uses most often.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What does the man suggest?",
+      "options": [
+        "Setting a monthly order",
+        "Locking the cabinet",
+        "Changing departments",
+        "Canceling purchases"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "He suggests a monthly order.",
+      "questionZh": "男士建議什麼？",
+      "optionsZh": [
+        "Setting a monthly order",
+        "Locking the cabinet",
+        "Changing departments",
+        "Canceling purchases"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Setting a monthly order: 符合音檔內容。",
+        "Locking the cabinet: 音檔未提到或與音檔細節不一致。",
+        "Changing departments: 音檔未提到或與音檔細節不一致。",
+        "Canceling purchases: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_08_3",
+      "type": "part3",
+      "passage": "part3-8",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The supply cabinet is almost empty again.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I noticed that. We should set a monthly order instead of buying items one at a time.",
+            "accent": "uk",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Please draft a list of the supplies each department uses most often.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What does the woman ask the man to prepare?",
+      "options": [
+        "A supply list",
+        "A budget report",
+        "A meeting agenda",
+        "A cabinet key"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "She asks for a list of supplies.",
+      "questionZh": "女士請男士準備什麼？",
+      "optionsZh": [
+        "A supply list",
+        "A budget report",
+        "A meeting agenda",
+        "A cabinet key"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A supply list: 符合音檔內容。",
+        "A budget report: 音檔未提到或與音檔細節不一致。",
+        "A meeting agenda: 音檔未提到或與音檔細節不一致。",
+        "A cabinet key: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_09_1",
+      "type": "part3",
+      "passage": "part3-9",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The client liked the design, but she asked for a clearer cost breakdown.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I can revise the estimate and separate labor, materials, and delivery fees.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Please send it before the follow-up call tomorrow morning.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What did the client request?",
+      "options": [
+        "A clearer cost breakdown",
+        "A new design team",
+        "An earlier delivery",
+        "A larger meeting room"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The client asked for a clearer cost breakdown.",
+      "questionZh": "客戶要求什麼？",
+      "optionsZh": [
+        "A clearer cost breakdown",
+        "A new design team",
+        "An earlier delivery",
+        "A larger meeting room"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A clearer cost breakdown: 符合音檔內容。",
+        "A new design team: 音檔未提到或與音檔細節不一致。",
+        "An earlier delivery: 音檔未提到或與音檔細節不一致。",
+        "A larger meeting room: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_09_2",
+      "type": "part3",
+      "passage": "part3-9",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The client liked the design, but she asked for a clearer cost breakdown.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I can revise the estimate and separate labor, materials, and delivery fees.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Please send it before the follow-up call tomorrow morning.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "What will the woman revise?",
+      "options": [
+        "The estimate",
+        "The contract date",
+        "The delivery address",
+        "The product design"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "She will revise the estimate.",
+      "questionZh": "女士會修改什麼？",
+      "optionsZh": [
+        "The estimate",
+        "The contract date",
+        "The delivery address",
+        "The product design"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The estimate: 符合音檔內容。",
+        "The contract date: 音檔未提到或與音檔細節不一致。",
+        "The delivery address: 音檔未提到或與音檔細節不一致。",
+        "The product design: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_09_3",
+      "type": "part3",
+      "passage": "part3-9",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The client liked the design, but she asked for a clearer cost breakdown.",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "I can revise the estimate and separate labor, materials, and delivery fees.",
+            "accent": "us",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Please send it before the follow-up call tomorrow morning.",
+            "accent": "us",
+            "gender": "male"
+          }
+        ]
+      },
+      "question": "When is the follow-up call?",
+      "options": [
+        "Tomorrow morning",
+        "This afternoon",
+        "Next Monday",
+        "Before lunch today"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "It is tomorrow morning.",
+      "questionZh": "後續電話何時進行？",
+      "optionsZh": [
+        "Tomorrow morning",
+        "This afternoon",
+        "Next Monday",
+        "Before lunch today"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Tomorrow morning: 符合音檔內容。",
+        "This afternoon: 音檔未提到或與音檔細節不一致。",
+        "Next Monday: 音檔未提到或與音檔細節不一致。",
+        "Before lunch today: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_10_1",
+      "type": "part3",
+      "passage": "part3-10",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The weekend promotion brought in many new customers.",
+            "accent": "uk",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Good. Should we extend the discount through Friday?",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Yes, but only for members who signed up this month.",
+            "accent": "uk",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What are the speakers discussing?",
+      "options": [
+        "A sales promotion",
+        "A hiring interview",
+        "A shipping delay",
+        "A training schedule"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "They talk about a weekend promotion and discount.",
+      "questionZh": "說話者在討論什麼？",
+      "optionsZh": [
+        "A sales promotion",
+        "A hiring interview",
+        "A shipping delay",
+        "A training schedule"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A sales promotion: 符合音檔內容。",
+        "A hiring interview: 音檔未提到或與音檔細節不一致。",
+        "A shipping delay: 音檔未提到或與音檔細節不一致。",
+        "A training schedule: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_10_2",
+      "type": "part3",
+      "passage": "part3-10",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The weekend promotion brought in many new customers.",
+            "accent": "uk",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Good. Should we extend the discount through Friday?",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Yes, but only for members who signed up this month.",
+            "accent": "uk",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What does the man suggest?",
+      "options": [
+        "Extending a discount",
+        "Closing on Friday",
+        "Changing membership cards",
+        "Calling new customers"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "He asks about extending the discount.",
+      "questionZh": "男士建議什麼？",
+      "optionsZh": [
+        "Extending a discount",
+        "Closing on Friday",
+        "Changing membership cards",
+        "Calling new customers"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Extending a discount: 符合音檔內容。",
+        "Closing on Friday: 音檔未提到或與音檔細節不一致。",
+        "Changing membership cards: 音檔未提到或與音檔細節不一致。",
+        "Calling new customers: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part3_local_10_3",
+      "type": "part3",
+      "passage": "part3-10",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "SPEAKER_A",
+            "text": "The weekend promotion brought in many new customers.",
+            "accent": "uk",
+            "gender": "female"
+          },
+          {
+            "speaker": "SPEAKER_B",
+            "text": "Good. Should we extend the discount through Friday?",
+            "accent": "us",
+            "gender": "male"
+          },
+          {
+            "speaker": "SPEAKER_A",
+            "text": "Yes, but only for members who signed up this month.",
+            "accent": "uk",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Who will receive the discount?",
+      "options": [
+        "Members who signed up this month",
+        "All weekend shoppers",
+        "Employees only",
+        "Customers with receipts from last year"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "Only new members who signed up this month.",
+      "questionZh": "誰可以得到折扣？",
+      "optionsZh": [
+        "Members who signed up this month",
+        "All weekend shoppers",
+        "Employees only",
+        "Customers with receipts from last year"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Members who signed up this month: 符合音檔內容。",
+        "All weekend shoppers: 音檔未提到或與音檔細節不一致。",
+        "Employees only: 音檔未提到或與音檔細節不一致。",
+        "Customers with receipts from last year: 音檔未提到或與音檔細節不一致。"
+      ]
+    }
+  ]
+}

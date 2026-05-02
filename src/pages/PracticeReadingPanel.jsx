@@ -24,6 +24,7 @@ import {
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
+import ReviewQuestion from "../components/ReviewQuestion";
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 
@@ -36,6 +37,7 @@ const STATUS = {
 };
 
 const PRESETS = {
+  "1x1": { count: 1, minutes: 1 },
   "10x5": { count: 10, minutes: 5 },
   "20x10": { count: 20, minutes: 10 },
 };
@@ -54,6 +56,7 @@ function normalizeMode(value) {
 }
 
 function normalizePreset(value) {
+  if (value === "1x1") return "1x1";
   return value === "20x10" ? "20x10" : "10x5";
 }
 
@@ -61,6 +64,28 @@ function normalizeFreshRate(value) {
   const n = Number(value);
   if (!Number.isFinite(n)) return 0.3;
   return Math.min(1, Math.max(0, n));
+}
+
+function getEmbeddedAnalysis(q = {}) {
+  const optionsZh = Array.isArray(q.optionsZh) ? q.optionsZh : (Array.isArray(q.options_zh) ? q.options_zh : []);
+  const optionReviewZh = Array.isArray(q.optionReviewZh) ? q.optionReviewZh : [];
+  return {
+    questionZh: q.questionZh || q.question_zh || "",
+    optionsZh,
+    correctReasonZh: q.correctReasonZh || q.explanation || "",
+    trapExplanationZh: q.trapExplanationZh || "",
+    optionReviewZh,
+    modelUsed: q.modelUsed || "embedded",
+  };
+}
+
+function hasEmbeddedAnalysis(q = {}) {
+  const analysis = getEmbeddedAnalysis(q);
+  return Boolean(
+    analysis.questionZh
+    || analysis.correctReasonZh
+    || (Array.isArray(analysis.optionsZh) && analysis.optionsZh.length === (q.options || []).length),
+  );
 }
 
 function partNumber(part) {
@@ -101,6 +126,8 @@ function normalizeQuestion(item, part) {
     answer: item.answer,
     difficulty: item.difficulty || item.level || "",
     explanation: item.explanation || item.explanationZh || "",
+    trapExplanationZh: item.trapExplanationZh || "",
+    optionReviewZh: Array.isArray(item.optionReviewZh) ? item.optionReviewZh : [],
     question_zh: item.question_zh || item.questionZh || "",
     options_zh: item.options_zh || item.optionsZh || [],
     passage_zh: item.passage_zh || item.passageZh || "",
@@ -154,6 +181,7 @@ export default function PracticeReadingPanel() {
   const targetScore = target.targetScore;
   const targetLevel = target.targetLevel;
   const targetLabel = getTargetLabel(targetLevel);
+  const geminiApiKey = profile?.geminiApiKey || GEMINI_API_KEY;
 
   const onRetry = ({ waitMs, attempt }) => {
     const sec = (waitMs / 1000).toFixed(1);
@@ -251,8 +279,8 @@ export default function PracticeReadingPanel() {
   async function expandPoolInBackground() {
     if (!user?.uid) return;
     if (isExpanding) return;
-    if (!GEMINI_API_KEY) {
-      setError("請先在 .env 設定 VITE_GEMINI_API_KEY。");
+    if (!geminiApiKey) {
+      setError("請先到設定頁填入 Gemini API Key，或在本機 .env 設定 VITE_GEMINI_API_KEY。");
       return;
     }
 
@@ -269,7 +297,7 @@ export default function PracticeReadingPanel() {
       for (const [part, count] of Object.entries(dist)) {
         const generated = await generateExamQuestions(
           { part: `Part ${partNumber(part)}`, count, targetScore, targetLevel },
-          GEMINI_API_KEY,
+          geminiApiKey,
           onRetry,
         );
         const result = await appendToQuestionPool(user.uid, part, generated, {
@@ -304,7 +332,7 @@ export default function PracticeReadingPanel() {
     if (apiFetch > 0) {
       const raw = await generateExamQuestions(
         { part: `Part ${partNumber(part)}`, count: apiFetch, targetScore: scoreTarget, targetLevel: levelTarget },
-        GEMINI_API_KEY,
+        geminiApiKey,
         onRetry,
       );
       generated = raw.map((x) => normalizeQuestion(x, part));
@@ -338,8 +366,8 @@ export default function PracticeReadingPanel() {
     setScore(0);
     setReviewAttempt(null);
 
-    if (!GEMINI_API_KEY) {
-      setError("請先在 .env 設定 VITE_GEMINI_API_KEY，才能出題與產生完整中譯詳解。");
+    if (!geminiApiKey) {
+      setError("請先到設定頁填入 Gemini API Key，或在本機 .env 設定 VITE_GEMINI_API_KEY。");
       return;
     }
 
@@ -418,13 +446,32 @@ export default function PracticeReadingPanel() {
     try {
       const answerArr = currentQuestions.map((_, idx) => (Number.isInteger(currentAnswers[idx]) ? currentAnswers[idx] : null));
 
-      setAnalysisProgress("正在產生中譯與詳解（1/2）...");
-      const analysisResult = await analyzeExamBatch(
-        { questions: currentQuestions, answers: answerArr },
-        GEMINI_API_KEY,
-        onRetry,
-        ({ done, total }) => setAnalysisProgress(`正在產生中譯與詳解（${done}/${total}）...`),
-      );
+      const analysisResult = [];
+      const missing = currentQuestions
+        .map((q, idx) => ({ q, idx }))
+        .filter(({ q }) => !hasEmbeddedAnalysis(q));
+
+      currentQuestions.forEach((q, idx) => {
+        analysisResult[idx] = getEmbeddedAnalysis(q);
+      });
+
+      if (missing.length > 0) {
+        setAnalysisProgress(`正在補齊中譯與詳解（${missing.length} 題）...`);
+        const missingAnalysis = await analyzeExamBatch(
+          {
+            questions: missing.map(({ q }) => q),
+            answers: missing.map(({ idx }) => answerArr[idx]),
+          },
+          geminiApiKey,
+          onRetry,
+          ({ done, total }) => setAnalysisProgress(`正在補齊中譯與詳解（${done}/${total}）...`),
+        );
+        missing.forEach(({ idx }, localIdx) => {
+          analysisResult[idx] = missingAnalysis[localIdx] || analysisResult[idx];
+        });
+      } else {
+        setAnalysisProgress("已使用題庫內建詳解，正在整理結果...");
+      }
 
       const finalQuestions = currentQuestions.map((q, idx) => {
         const a = analysisResult[idx] || {};
@@ -758,57 +805,16 @@ export default function PracticeReadingPanel() {
             </div>
           </div>
 
-          <div className="stack">
-            {(status === STATUS.REVIEW ? (reviewAttempt?.questions || []) : questions).map((q, idx) => {
-              const userAnswer = q.userAnswer;
-              const isCorrect = userAnswer != null && userAnswer === q.answer;
-              const optionsZh = Array.isArray(q.optionsZh) ? q.optionsZh : (Array.isArray(q.options_zh) ? q.options_zh : ["", "", "", ""]);
-              const optionReview = Array.isArray(q.optionReviewZh) ? q.optionReviewZh : ["", "", "", ""];
-
-              return (
-                <div key={`${q.id}_${idx}`} className="review-question">
-                  <div className="row between">
-                    <strong>Q{idx + 1}</strong>
-                    <span className={`pill ${isCorrect ? "ok" : "ng"}`}>{isCorrect ? "答對" : "答錯"}</span>
-                  </div>
-
-                  {q.passage ? <p className="muted">{q.passage}</p> : null}
-                  {q.passageZh ? <p className="inline-zh">中譯：{q.passageZh}</p> : null}
-
-                  <p>{q.question}</p>
-                  {q.questionZh ? <p className="inline-zh">中譯：{q.questionZh}</p> : null}
-
-                  <ul className="list stack-sm">
-                    {q.options.map((opt, optionIdx) => (
-                      <li
-                        key={`${q.id}_opt_${optionIdx}`}
-                        className={`option-review ${q.answer === optionIdx ? "correct" : ""} ${userAnswer === optionIdx && q.answer !== optionIdx ? "wrong" : ""}`}
-                      >
-                        <p>
-                          <strong>{String.fromCharCode(65 + optionIdx)}.</strong> {opt}
-                        </p>
-                        {optionsZh[optionIdx] ? <p className="inline-zh">{optionsZh[optionIdx]}</p> : null}
-                        {optionReview[optionIdx] ? <p className="muted">{optionReview[optionIdx]}</p> : null}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <p><strong>正解：</strong>{String.fromCharCode(65 + q.answer)}</p>
-                  <p><strong>正解理由：</strong>{q.correctReasonZh || q.explanation || ""}</p>
-                  {q.trapExplanationZh ? <p><strong>陷阱解析：</strong>{q.trapExplanationZh}</p> : null}
-                </div>
-              );
-            })}
+          <div className="review-list">
+            {(status === STATUS.REVIEW ? (reviewAttempt?.questions || []) : questions).map((q, idx) => (
+              <ReviewQuestion key={`${q.id}_${idx}`} question={q} index={idx} />
+            ))}
           </div>
         </Card>
       )}
     </div>
   );
 }
-
-
-
-
 
 
 

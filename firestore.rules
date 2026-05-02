@@ -10,12 +10,16 @@ service cloud.firestore {
       return request.resource.data.keys().hasOnly([
         "email",
         "geminiApiKey",
+        "ttsApiKey",
+        "vertexAiKey",
         "settings",
         "createdAt",
         "updatedAt"
       ])
       && request.resource.data.email is string
       && request.resource.data.geminiApiKey is string
+      && (!("ttsApiKey" in request.resource.data) || request.resource.data.ttsApiKey is string)
+      && (!("vertexAiKey" in request.resource.data) || request.resource.data.vertexAiKey is string)
       && settings is map
       && settings.keys().hasOnly([
         "level",
