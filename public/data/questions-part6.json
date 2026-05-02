@@ -280,6 +280,354 @@
       ],
       "answer": 0,
       "explanation": "介係詞題。via 表示「透過、經由（某種管道）」，在此指透過線上入口網站提交簡歷。"
+    },
+    {
+      "id": "p6_local_021",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "To: Department Managers\nFrom: Purchasing Office\nSubject: Vendor Evaluation Forms\n\nPlease complete the attached vendor evaluation form by May 15. The purchasing office will use your feedback to ______ (21) suppliers for next year's contracts. When rating a vendor, consider delivery speed, product quality, and customer support. ______ (22). If your department did not work with a listed supplier this year, you may leave that section blank. Completed forms should be sent to procurement@westbridge.example. Your responses will help us make a more ______ (23) decision about future partnerships. We appreciate your ______ (24) attention to this request.",
+      "question": "Question 21",
+      "options": [
+        "evaluate",
+        "evaluating",
+        "evaluation",
+        "evaluated"
+      ],
+      "answer": 0,
+      "explanation": "The infinitive 'to evaluate' expresses purpose after 'will use your feedback'.",
+      "questionZh": "第 21 題需要動詞原形，表示採購部會用回饋來評估供應商。",
+      "optionsZh": [
+        "evaluate",
+        "evaluating",
+        "evaluation",
+        "evaluated"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "evaluate: 放入文章後語意自然，且文法正確。",
+        "evaluating: 放入文章後語意或詞性不自然。",
+        "evaluation: 放入文章後語意或詞性不自然。",
+        "evaluated: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_022",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "To: Department Managers\nFrom: Purchasing Office\nSubject: Vendor Evaluation Forms\n\nPlease complete the attached vendor evaluation form by May 15. The purchasing office will use your feedback to ______ (21) suppliers for next year's contracts. When rating a vendor, consider delivery speed, product quality, and customer support. ______ (22). If your department did not work with a listed supplier this year, you may leave that section blank. Completed forms should be sent to procurement@westbridge.example. Your responses will help us make a more ______ (23) decision about future partnerships. We appreciate your ______ (24) attention to this request.",
+      "question": "Question 22",
+      "options": [
+        "Please provide specific examples whenever possible.",
+        "The office will be closed for a public holiday.",
+        "New desks will arrive next month.",
+        "Parking permits are available at reception."
+      ],
+      "answer": 0,
+      "explanation": "The sentence asks managers to support their vendor ratings with details.",
+      "questionZh": "第 22 題要接續評分表內容，要求盡可能提供具體例子。",
+      "optionsZh": [
+        "Please provide specific examples whenever possible.",
+        "The office will be closed for a public holiday.",
+        "New desks will arrive next month.",
+        "Parking permits are available at reception."
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "Please provide specific examples whenever possible.: 放入文章後語意自然，且文法正確。",
+        "The office will be closed for a public holiday.: 放入文章後語意或詞性不自然。",
+        "New desks will arrive next month.: 放入文章後語意或詞性不自然。",
+        "Parking permits are available at reception.: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_023",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "To: Department Managers\nFrom: Purchasing Office\nSubject: Vendor Evaluation Forms\n\nPlease complete the attached vendor evaluation form by May 15. The purchasing office will use your feedback to ______ (21) suppliers for next year's contracts. When rating a vendor, consider delivery speed, product quality, and customer support. ______ (22). If your department did not work with a listed supplier this year, you may leave that section blank. Completed forms should be sent to procurement@westbridge.example. Your responses will help us make a more ______ (23) decision about future partnerships. We appreciate your ______ (24) attention to this request.",
+      "question": "Question 23",
+      "options": [
+        "informed",
+        "informing",
+        "inform",
+        "information"
+      ],
+      "answer": 0,
+      "explanation": "'Informed decision' is the correct adjective-noun phrase.",
+      "questionZh": "第 23 題需要形容詞，形成 informed decision。",
+      "optionsZh": [
+        "informed",
+        "informing",
+        "inform",
+        "information"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "informed: 放入文章後語意自然，且文法正確。",
+        "informing: 放入文章後語意或詞性不自然。",
+        "inform: 放入文章後語意或詞性不自然。",
+        "information: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_024",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "To: Department Managers\nFrom: Purchasing Office\nSubject: Vendor Evaluation Forms\n\nPlease complete the attached vendor evaluation form by May 15. The purchasing office will use your feedback to ______ (21) suppliers for next year's contracts. When rating a vendor, consider delivery speed, product quality, and customer support. ______ (22). If your department did not work with a listed supplier this year, you may leave that section blank. Completed forms should be sent to procurement@westbridge.example. Your responses will help us make a more ______ (23) decision about future partnerships. We appreciate your ______ (24) attention to this request.",
+      "question": "Question 24",
+      "options": [
+        "prompt",
+        "promptly",
+        "promptness",
+        "prompted"
+      ],
+      "answer": 0,
+      "explanation": "An adjective is needed before 'attention'.",
+      "questionZh": "第 24 題需要形容詞修飾 attention。",
+      "optionsZh": [
+        "prompt",
+        "promptly",
+        "promptness",
+        "prompted"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "prompt: 放入文章後語意自然，且文法正確。",
+        "promptly: 放入文章後語意或詞性不自然。",
+        "promptness: 放入文章後語意或詞性不自然。",
+        "prompted: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_025",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Notice to Tenants\n\nThe lobby renovation will begin on Monday, June 3, and is expected to last two weeks. During this period, the main entrance will be closed between 8 A.M. and 6 P.M. Tenants should use the side entrance on Pine Street ______ (25). Security guards will be posted there to direct visitors. ______ (26). Deliveries may still be received at the loading dock, but drivers must check in with security first. We apologize for any ______ (27) caused by this temporary arrangement and thank you for your ______ (28).",
+      "question": "Question 25",
+      "options": [
+        "instead",
+        "therefore",
+        "although",
+        "besides"
+      ],
+      "answer": 0,
+      "explanation": "'Instead' means tenants should use another entrance in place of the main entrance.",
+      "questionZh": "第 25 題要表達改用側門，因此選 instead。",
+      "optionsZh": [
+        "instead",
+        "therefore",
+        "although",
+        "besides"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "instead: 放入文章後語意自然，且文法正確。",
+        "therefore: 放入文章後語意或詞性不自然。",
+        "although: 放入文章後語意或詞性不自然。",
+        "besides: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_026",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Notice to Tenants\n\nThe lobby renovation will begin on Monday, June 3, and is expected to last two weeks. During this period, the main entrance will be closed between 8 A.M. and 6 P.M. Tenants should use the side entrance on Pine Street ______ (25). Security guards will be posted there to direct visitors. ______ (26). Deliveries may still be received at the loading dock, but drivers must check in with security first. We apologize for any ______ (27) caused by this temporary arrangement and thank you for your ______ (28).",
+      "question": "Question 26",
+      "options": [
+        "Signs will also be placed near the elevators.",
+        "Rent payments are due on the first day of each month.",
+        "The cafeteria has added several lunch options.",
+        "A new accountant joined the management team."
+      ],
+      "answer": 0,
+      "explanation": "The sentence supports the idea of directing people during renovation.",
+      "questionZh": "第 26 題要延續動線引導，電梯附近放置標示最合理。",
+      "optionsZh": [
+        "Signs will also be placed near the elevators.",
+        "Rent payments are due on the first day of each month.",
+        "The cafeteria has added several lunch options.",
+        "A new accountant joined the management team."
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "Signs will also be placed near the elevators.: 放入文章後語意自然，且文法正確。",
+        "Rent payments are due on the first day of each month.: 放入文章後語意或詞性不自然。",
+        "The cafeteria has added several lunch options.: 放入文章後語意或詞性不自然。",
+        "A new accountant joined the management team.: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_027",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Notice to Tenants\n\nThe lobby renovation will begin on Monday, June 3, and is expected to last two weeks. During this period, the main entrance will be closed between 8 A.M. and 6 P.M. Tenants should use the side entrance on Pine Street ______ (25). Security guards will be posted there to direct visitors. ______ (26). Deliveries may still be received at the loading dock, but drivers must check in with security first. We apologize for any ______ (27) caused by this temporary arrangement and thank you for your ______ (28).",
+      "question": "Question 27",
+      "options": [
+        "inconvenience",
+        "inconvenient",
+        "inconveniently",
+        "inconveniences"
+      ],
+      "answer": 0,
+      "explanation": "'Any inconvenience caused' is a standard apology phrase.",
+      "questionZh": "第 27 題需要名詞 inconvenience。",
+      "optionsZh": [
+        "inconvenience",
+        "inconvenient",
+        "inconveniently",
+        "inconveniences"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "inconvenience: 放入文章後語意自然，且文法正確。",
+        "inconvenient: 放入文章後語意或詞性不自然。",
+        "inconveniently: 放入文章後語意或詞性不自然。",
+        "inconveniences: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_028",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Notice to Tenants\n\nThe lobby renovation will begin on Monday, June 3, and is expected to last two weeks. During this period, the main entrance will be closed between 8 A.M. and 6 P.M. Tenants should use the side entrance on Pine Street ______ (25). Security guards will be posted there to direct visitors. ______ (26). Deliveries may still be received at the loading dock, but drivers must check in with security first. We apologize for any ______ (27) caused by this temporary arrangement and thank you for your ______ (28).",
+      "question": "Question 28",
+      "options": [
+        "cooperation",
+        "cooperative",
+        "cooperate",
+        "cooperating"
+      ],
+      "answer": 0,
+      "explanation": "'Thank you for your cooperation' is the correct expression.",
+      "questionZh": "第 28 題使用固定搭配 your cooperation。",
+      "optionsZh": [
+        "cooperation",
+        "cooperative",
+        "cooperate",
+        "cooperating"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "cooperation: 放入文章後語意自然，且文法正確。",
+        "cooperative: 放入文章後語意或詞性不自然。",
+        "cooperate: 放入文章後語意或詞性不自然。",
+        "cooperating: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_029",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Dear Ms. Alvarez,\n\nThank you for registering for our online seminar, Improving Client Presentations. The session will be held on Thursday at 10 A.M. A confirmation link has been sent to the e-mail address you provided. Please test your audio equipment ______ (29) the seminar begins. ______ (30). Participants who complete the session will receive a digital certificate within three business days. If you have questions about the platform, contact our support team at least one day in ______ (31). We look forward to your active ______ (32).",
+      "question": "Question 29",
+      "options": [
+        "before",
+        "despite",
+        "unless",
+        "whether"
+      ],
+      "answer": 0,
+      "explanation": "Participants should test equipment before the seminar starts.",
+      "questionZh": "第 29 題描述研討會開始前測試設備。",
+      "optionsZh": [
+        "before",
+        "despite",
+        "unless",
+        "whether"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "before: 放入文章後語意自然，且文法正確。",
+        "despite: 放入文章後語意或詞性不自然。",
+        "unless: 放入文章後語意或詞性不自然。",
+        "whether: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_030",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Dear Ms. Alvarez,\n\nThank you for registering for our online seminar, Improving Client Presentations. The session will be held on Thursday at 10 A.M. A confirmation link has been sent to the e-mail address you provided. Please test your audio equipment ______ (29) the seminar begins. ______ (30). Participants who complete the session will receive a digital certificate within three business days. If you have questions about the platform, contact our support team at least one day in ______ (31). We look forward to your active ______ (32).",
+      "question": "Question 30",
+      "options": [
+        "A practice room will open fifteen minutes early.",
+        "The office kitchen will be repainted this weekend.",
+        "Printed brochures can be picked up at the warehouse.",
+        "The company picnic was postponed until August."
+      ],
+      "answer": 0,
+      "explanation": "The sentence relates directly to testing access and audio before an online seminar.",
+      "questionZh": "第 30 題要接續線上研討會的準備資訊。",
+      "optionsZh": [
+        "A practice room will open fifteen minutes early.",
+        "The office kitchen will be repainted this weekend.",
+        "Printed brochures can be picked up at the warehouse.",
+        "The company picnic was postponed until August."
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "A practice room will open fifteen minutes early.: 放入文章後語意自然，且文法正確。",
+        "The office kitchen will be repainted this weekend.: 放入文章後語意或詞性不自然。",
+        "Printed brochures can be picked up at the warehouse.: 放入文章後語意或詞性不自然。",
+        "The company picnic was postponed until August.: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_031",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Dear Ms. Alvarez,\n\nThank you for registering for our online seminar, Improving Client Presentations. The session will be held on Thursday at 10 A.M. A confirmation link has been sent to the e-mail address you provided. Please test your audio equipment ______ (29) the seminar begins. ______ (30). Participants who complete the session will receive a digital certificate within three business days. If you have questions about the platform, contact our support team at least one day in ______ (31). We look forward to your active ______ (32).",
+      "question": "Question 31",
+      "options": [
+        "advance",
+        "advanced",
+        "advancing",
+        "advancement"
+      ],
+      "answer": 0,
+      "explanation": "'In advance' means ahead of time.",
+      "questionZh": "第 31 題使用固定片語 in advance。",
+      "optionsZh": [
+        "advance",
+        "advanced",
+        "advancing",
+        "advancement"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "advance: 放入文章後語意自然，且文法正確。",
+        "advanced: 放入文章後語意或詞性不自然。",
+        "advancing: 放入文章後語意或詞性不自然。",
+        "advancement: 放入文章後語意或詞性不自然。"
+      ]
+    },
+    {
+      "id": "p6_local_032",
+      "type": "part6",
+      "difficulty": "medium",
+      "passage": "Dear Ms. Alvarez,\n\nThank you for registering for our online seminar, Improving Client Presentations. The session will be held on Thursday at 10 A.M. A confirmation link has been sent to the e-mail address you provided. Please test your audio equipment ______ (29) the seminar begins. ______ (30). Participants who complete the session will receive a digital certificate within three business days. If you have questions about the platform, contact our support team at least one day in ______ (31). We look forward to your active ______ (32).",
+      "question": "Question 32",
+      "options": [
+        "participation",
+        "participate",
+        "participating",
+        "participant"
+      ],
+      "answer": 0,
+      "explanation": "A noun is needed after 'your active'.",
+      "questionZh": "第 32 題需要名詞 participation。",
+      "optionsZh": [
+        "participation",
+        "participate",
+        "participating",
+        "participant"
+      ],
+      "trapExplanationZh": "Part 6 要同時看空格所在句與前後文銜接，不能只憑單字印象選。",
+      "optionReviewZh": [
+        "participation: 放入文章後語意自然，且文法正確。",
+        "participate: 放入文章後語意或詞性不自然。",
+        "participating: 放入文章後語意或詞性不自然。",
+        "participant: 放入文章後語意或詞性不自然。"
+      ]
     }
   ]
 }

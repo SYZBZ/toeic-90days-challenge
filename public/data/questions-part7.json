@@ -1,4 +1,817 @@
 {
   "part": 7,
-  "questions": []
+  "questions": [
+    {
+      "id": "p7_local_remote_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Company Memo\n\nBeginning June 1, Northstar Design will offer a three-month remote-work trial for employees in the marketing and accounting departments. Participants may work from home up to two days per week, provided that their managers approve the schedule in advance. Employees must remain available during regular office hours and attend all scheduled client meetings either in person or by video call. At the end of August, department heads will review productivity data and employee feedback before deciding whether to continue the program.",
+      "question": "What is the memo mainly about?",
+      "options": [
+        "A temporary remote-work program",
+        "A new accounting software system",
+        "A company-wide salary increase",
+        "A client meeting schedule"
+      ],
+      "answer": 0,
+      "explanation": "The memo announces a three-month remote-work trial.",
+      "questionZh": "根據文章回答：What is the memo mainly about?",
+      "optionsZh": [
+        "A temporary remote-work program",
+        "A new accounting software system",
+        "A company-wide salary increase",
+        "A client meeting schedule"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "A temporary remote-work program: 文章中有直接或可合理推論的依據。",
+        "A new accounting software system: 文章沒有提到，或細節與原文不一致。",
+        "A company-wide salary increase: 文章沒有提到，或細節與原文不一致。",
+        "A client meeting schedule: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_remote_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Company Memo\n\nBeginning June 1, Northstar Design will offer a three-month remote-work trial for employees in the marketing and accounting departments. Participants may work from home up to two days per week, provided that their managers approve the schedule in advance. Employees must remain available during regular office hours and attend all scheduled client meetings either in person or by video call. At the end of August, department heads will review productivity data and employee feedback before deciding whether to continue the program.",
+      "question": "Who must approve an employee's remote-work schedule?",
+      "options": [
+        "The employee's manager",
+        "The accounting department",
+        "A client representative",
+        "The design team"
+      ],
+      "answer": 0,
+      "explanation": "The passage says managers must approve schedules in advance.",
+      "questionZh": "根據文章回答：Who must approve an employee's remote-work schedule?",
+      "optionsZh": [
+        "The employee's manager",
+        "The accounting department",
+        "A client representative",
+        "The design team"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "The employee's manager: 文章中有直接或可合理推論的依據。",
+        "The accounting department: 文章沒有提到，或細節與原文不一致。",
+        "A client representative: 文章沒有提到，或細節與原文不一致。",
+        "The design team: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_remote_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Company Memo\n\nBeginning June 1, Northstar Design will offer a three-month remote-work trial for employees in the marketing and accounting departments. Participants may work from home up to two days per week, provided that their managers approve the schedule in advance. Employees must remain available during regular office hours and attend all scheduled client meetings either in person or by video call. At the end of August, department heads will review productivity data and employee feedback before deciding whether to continue the program.",
+      "question": "When will the company review the program?",
+      "options": [
+        "At the end of August",
+        "At the beginning of June",
+        "Every Friday afternoon",
+        "After each client meeting"
+      ],
+      "answer": 0,
+      "explanation": "The review happens at the end of August.",
+      "questionZh": "根據文章回答：When will the company review the program?",
+      "optionsZh": [
+        "At the end of August",
+        "At the beginning of June",
+        "Every Friday afternoon",
+        "After each client meeting"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "At the end of August: 文章中有直接或可合理推論的依據。",
+        "At the beginning of June: 文章沒有提到，或細節與原文不一致。",
+        "Every Friday afternoon: 文章沒有提到，或細節與原文不一致。",
+        "After each client meeting: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_remote_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Company Memo\n\nBeginning June 1, Northstar Design will offer a three-month remote-work trial for employees in the marketing and accounting departments. Participants may work from home up to two days per week, provided that their managers approve the schedule in advance. Employees must remain available during regular office hours and attend all scheduled client meetings either in person or by video call. At the end of August, department heads will review productivity data and employee feedback before deciding whether to continue the program.",
+      "question": "What are remote employees required to do?",
+      "options": [
+        "Be available during regular office hours",
+        "Work from home five days a week",
+        "Cancel video calls with clients",
+        "Submit travel receipts weekly"
+      ],
+      "answer": 0,
+      "explanation": "They must remain available during regular office hours.",
+      "questionZh": "根據文章回答：What are remote employees required to do?",
+      "optionsZh": [
+        "Be available during regular office hours",
+        "Work from home five days a week",
+        "Cancel video calls with clients",
+        "Submit travel receipts weekly"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Be available during regular office hours: 文章中有直接或可合理推論的依據。",
+        "Work from home five days a week: 文章沒有提到，或細節與原文不一致。",
+        "Cancel video calls with clients: 文章沒有提到，或細節與原文不一致。",
+        "Submit travel receipts weekly: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_delivery_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Lakeside Cafe Staff\nFrom: Daniel Ortiz, Manager\nSubject: Produce Delivery\n\nOur regular produce delivery will arrive at 7 A.M. on Friday instead of Thursday afternoon because of a supplier scheduling issue. Please make sure that the walk-in refrigerator is cleared before closing on Thursday night. The morning shift should check the items against the attached order list and report any missing products to me by 9 A.M. I have already contacted the bakery supplier, and bread deliveries will not be affected.",
+      "question": "Why will the produce delivery arrive later than usual?",
+      "options": [
+        "The supplier changed the schedule.",
+        "The cafe will close for repairs.",
+        "The bakery order was canceled.",
+        "The manager forgot the order list."
+      ],
+      "answer": 0,
+      "explanation": "The e-mail cites a supplier scheduling issue.",
+      "questionZh": "根據文章回答：Why will the produce delivery arrive later than usual?",
+      "optionsZh": [
+        "The supplier changed the schedule.",
+        "The cafe will close for repairs.",
+        "The bakery order was canceled.",
+        "The manager forgot the order list."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "The supplier changed the schedule.: 文章中有直接或可合理推論的依據。",
+        "The cafe will close for repairs.: 文章沒有提到，或細節與原文不一致。",
+        "The bakery order was canceled.: 文章沒有提到，或細節與原文不一致。",
+        "The manager forgot the order list.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_delivery_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Lakeside Cafe Staff\nFrom: Daniel Ortiz, Manager\nSubject: Produce Delivery\n\nOur regular produce delivery will arrive at 7 A.M. on Friday instead of Thursday afternoon because of a supplier scheduling issue. Please make sure that the walk-in refrigerator is cleared before closing on Thursday night. The morning shift should check the items against the attached order list and report any missing products to me by 9 A.M. I have already contacted the bakery supplier, and bread deliveries will not be affected.",
+      "question": "What should staff do before closing on Thursday?",
+      "options": [
+        "Clear the walk-in refrigerator",
+        "Call the bakery supplier",
+        "Prepare a new menu",
+        "Open the cafe earlier"
+      ],
+      "answer": 0,
+      "explanation": "Staff should clear the refrigerator before Thursday closing.",
+      "questionZh": "根據文章回答：What should staff do before closing on Thursday?",
+      "optionsZh": [
+        "Clear the walk-in refrigerator",
+        "Call the bakery supplier",
+        "Prepare a new menu",
+        "Open the cafe earlier"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Clear the walk-in refrigerator: 文章中有直接或可合理推論的依據。",
+        "Call the bakery supplier: 文章沒有提到，或細節與原文不一致。",
+        "Prepare a new menu: 文章沒有提到，或細節與原文不一致。",
+        "Open the cafe earlier: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_delivery_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Lakeside Cafe Staff\nFrom: Daniel Ortiz, Manager\nSubject: Produce Delivery\n\nOur regular produce delivery will arrive at 7 A.M. on Friday instead of Thursday afternoon because of a supplier scheduling issue. Please make sure that the walk-in refrigerator is cleared before closing on Thursday night. The morning shift should check the items against the attached order list and report any missing products to me by 9 A.M. I have already contacted the bakery supplier, and bread deliveries will not be affected.",
+      "question": "By what time should missing products be reported?",
+      "options": [
+        "9 A.M.",
+        "7 A.M.",
+        "Thursday afternoon",
+        "Friday evening"
+      ],
+      "answer": 0,
+      "explanation": "Missing products should be reported by 9 A.M.",
+      "questionZh": "根據文章回答：By what time should missing products be reported?",
+      "optionsZh": [
+        "9 A.M.",
+        "7 A.M.",
+        "Thursday afternoon",
+        "Friday evening"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "9 A.M.: 文章中有直接或可合理推論的依據。",
+        "7 A.M.: 文章沒有提到，或細節與原文不一致。",
+        "Thursday afternoon: 文章沒有提到，或細節與原文不一致。",
+        "Friday evening: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_delivery_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Lakeside Cafe Staff\nFrom: Daniel Ortiz, Manager\nSubject: Produce Delivery\n\nOur regular produce delivery will arrive at 7 A.M. on Friday instead of Thursday afternoon because of a supplier scheduling issue. Please make sure that the walk-in refrigerator is cleared before closing on Thursday night. The morning shift should check the items against the attached order list and report any missing products to me by 9 A.M. I have already contacted the bakery supplier, and bread deliveries will not be affected.",
+      "question": "What is true about bread deliveries?",
+      "options": [
+        "They will not be affected.",
+        "They will arrive on Saturday.",
+        "They require a new supplier.",
+        "They must be checked by 7 A.M."
+      ],
+      "answer": 0,
+      "explanation": "The bakery supplier and bread deliveries are not affected.",
+      "questionZh": "根據文章回答：What is true about bread deliveries?",
+      "optionsZh": [
+        "They will not be affected.",
+        "They will arrive on Saturday.",
+        "They require a new supplier.",
+        "They must be checked by 7 A.M."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "They will not be affected.: 文章中有直接或可合理推論的依據。",
+        "They will arrive on Saturday.: 文章沒有提到，或細節與原文不一致。",
+        "They require a new supplier.: 文章沒有提到，或細節與原文不一致。",
+        "They must be checked by 7 A.M.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_parking_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Building Notice\n\nThe east parking lot at Meridian Plaza will be resurfaced from April 12 to April 16. During the work, tenants may use the visitor lot on Elm Street at no additional charge. Vehicles left in the east lot after 6 P.M. on April 11 may be towed. The west lot will remain open, but spaces there are limited. Tenants who commute by bicycle may continue to use the storage room near the service entrance.",
+      "question": "What will happen from April 12 to April 16?",
+      "options": [
+        "A parking lot will be resurfaced.",
+        "A storage room will be closed.",
+        "A new building will open.",
+        "Visitor fees will increase."
+      ],
+      "answer": 0,
+      "explanation": "The east parking lot will be resurfaced during those dates.",
+      "questionZh": "根據文章回答：What will happen from April 12 to April 16?",
+      "optionsZh": [
+        "A parking lot will be resurfaced.",
+        "A storage room will be closed.",
+        "A new building will open.",
+        "Visitor fees will increase."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "A parking lot will be resurfaced.: 文章中有直接或可合理推論的依據。",
+        "A storage room will be closed.: 文章沒有提到，或細節與原文不一致。",
+        "A new building will open.: 文章沒有提到，或細節與原文不一致。",
+        "Visitor fees will increase.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_parking_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Building Notice\n\nThe east parking lot at Meridian Plaza will be resurfaced from April 12 to April 16. During the work, tenants may use the visitor lot on Elm Street at no additional charge. Vehicles left in the east lot after 6 P.M. on April 11 may be towed. The west lot will remain open, but spaces there are limited. Tenants who commute by bicycle may continue to use the storage room near the service entrance.",
+      "question": "Where may tenants park during the work?",
+      "options": [
+        "In the visitor lot on Elm Street",
+        "In the bicycle storage room",
+        "At the service entrance",
+        "Only in the east lot"
+      ],
+      "answer": 0,
+      "explanation": "The notice allows tenants to use the visitor lot on Elm Street.",
+      "questionZh": "根據文章回答：Where may tenants park during the work?",
+      "optionsZh": [
+        "In the visitor lot on Elm Street",
+        "In the bicycle storage room",
+        "At the service entrance",
+        "Only in the east lot"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "In the visitor lot on Elm Street: 文章中有直接或可合理推論的依據。",
+        "In the bicycle storage room: 文章沒有提到，或細節與原文不一致。",
+        "At the service entrance: 文章沒有提到，或細節與原文不一致。",
+        "Only in the east lot: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_parking_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Building Notice\n\nThe east parking lot at Meridian Plaza will be resurfaced from April 12 to April 16. During the work, tenants may use the visitor lot on Elm Street at no additional charge. Vehicles left in the east lot after 6 P.M. on April 11 may be towed. The west lot will remain open, but spaces there are limited. Tenants who commute by bicycle may continue to use the storage room near the service entrance.",
+      "question": "What may happen to vehicles left in the east lot after April 11?",
+      "options": [
+        "They may be towed.",
+        "They may receive free cleaning.",
+        "They may be moved to the west lot by staff.",
+        "They may be inspected for damage."
+      ],
+      "answer": 0,
+      "explanation": "Vehicles left after 6 P.M. may be towed.",
+      "questionZh": "根據文章回答：What may happen to vehicles left in the east lot after April 11?",
+      "optionsZh": [
+        "They may be towed.",
+        "They may receive free cleaning.",
+        "They may be moved to the west lot by staff.",
+        "They may be inspected for damage."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "They may be towed.: 文章中有直接或可合理推論的依據。",
+        "They may receive free cleaning.: 文章沒有提到，或細節與原文不一致。",
+        "They may be moved to the west lot by staff.: 文章沒有提到，或細節與原文不一致。",
+        "They may be inspected for damage.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_parking_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Building Notice\n\nThe east parking lot at Meridian Plaza will be resurfaced from April 12 to April 16. During the work, tenants may use the visitor lot on Elm Street at no additional charge. Vehicles left in the east lot after 6 P.M. on April 11 may be towed. The west lot will remain open, but spaces there are limited. Tenants who commute by bicycle may continue to use the storage room near the service entrance.",
+      "question": "Who can continue using the storage room?",
+      "options": [
+        "Tenants who commute by bicycle",
+        "Visitors from Elm Street",
+        "Parking lot contractors",
+        "Drivers using the west lot"
+      ],
+      "answer": 0,
+      "explanation": "Bicycle commuters may keep using the storage room.",
+      "questionZh": "根據文章回答：Who can continue using the storage room?",
+      "optionsZh": [
+        "Tenants who commute by bicycle",
+        "Visitors from Elm Street",
+        "Parking lot contractors",
+        "Drivers using the west lot"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Tenants who commute by bicycle: 文章中有直接或可合理推論的依據。",
+        "Visitors from Elm Street: 文章沒有提到，或細節與原文不一致。",
+        "Parking lot contractors: 文章沒有提到，或細節與原文不一致。",
+        "Drivers using the west lot: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_market_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Press Release\n\nGreenleaf Market announced that it will open a second downtown location in September. The new store will focus on prepared meals, local produce, and household essentials for office workers who shop during lunch breaks. According to founder Mina Patel, the company chose the location because several large employers recently moved nearby. Greenleaf will begin hiring cashiers, cooks, and delivery coordinators in July. Applications will be accepted through the company's Web site only.",
+      "question": "When will Greenleaf Market open its new location?",
+      "options": [
+        "In September",
+        "In July",
+        "During lunch breaks",
+        "After applications close"
+      ],
+      "answer": 0,
+      "explanation": "The press release says the second downtown location opens in September.",
+      "questionZh": "根據文章回答：When will Greenleaf Market open its new location?",
+      "optionsZh": [
+        "In September",
+        "In July",
+        "During lunch breaks",
+        "After applications close"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "In September: 文章中有直接或可合理推論的依據。",
+        "In July: 文章沒有提到，或細節與原文不一致。",
+        "During lunch breaks: 文章沒有提到，或細節與原文不一致。",
+        "After applications close: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_market_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Press Release\n\nGreenleaf Market announced that it will open a second downtown location in September. The new store will focus on prepared meals, local produce, and household essentials for office workers who shop during lunch breaks. According to founder Mina Patel, the company chose the location because several large employers recently moved nearby. Greenleaf will begin hiring cashiers, cooks, and delivery coordinators in July. Applications will be accepted through the company's Web site only.",
+      "question": "Why did the company choose the location?",
+      "options": [
+        "Large employers moved nearby.",
+        "Rent was reduced for restaurants.",
+        "The founder lives nearby.",
+        "The current store is closing."
+      ],
+      "answer": 0,
+      "explanation": "The founder mentions nearby large employers.",
+      "questionZh": "根據文章回答：Why did the company choose the location?",
+      "optionsZh": [
+        "Large employers moved nearby.",
+        "Rent was reduced for restaurants.",
+        "The founder lives nearby.",
+        "The current store is closing."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Large employers moved nearby.: 文章中有直接或可合理推論的依據。",
+        "Rent was reduced for restaurants.: 文章沒有提到，或細節與原文不一致。",
+        "The founder lives nearby.: 文章沒有提到，或細節與原文不一致。",
+        "The current store is closing.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_market_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Press Release\n\nGreenleaf Market announced that it will open a second downtown location in September. The new store will focus on prepared meals, local produce, and household essentials for office workers who shop during lunch breaks. According to founder Mina Patel, the company chose the location because several large employers recently moved nearby. Greenleaf will begin hiring cashiers, cooks, and delivery coordinators in July. Applications will be accepted through the company's Web site only.",
+      "question": "Which position is mentioned in the release?",
+      "options": [
+        "Delivery coordinator",
+        "Graphic designer",
+        "Security officer",
+        "Accountant"
+      ],
+      "answer": 0,
+      "explanation": "The release lists cashiers, cooks, and delivery coordinators.",
+      "questionZh": "根據文章回答：Which position is mentioned in the release?",
+      "optionsZh": [
+        "Delivery coordinator",
+        "Graphic designer",
+        "Security officer",
+        "Accountant"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Delivery coordinator: 文章中有直接或可合理推論的依據。",
+        "Graphic designer: 文章沒有提到，或細節與原文不一致。",
+        "Security officer: 文章沒有提到，或細節與原文不一致。",
+        "Accountant: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_market_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Press Release\n\nGreenleaf Market announced that it will open a second downtown location in September. The new store will focus on prepared meals, local produce, and household essentials for office workers who shop during lunch breaks. According to founder Mina Patel, the company chose the location because several large employers recently moved nearby. Greenleaf will begin hiring cashiers, cooks, and delivery coordinators in July. Applications will be accepted through the company's Web site only.",
+      "question": "How should applicants apply?",
+      "options": [
+        "Through the company's Web site",
+        "By visiting the current store",
+        "By calling Mina Patel",
+        "By sending a paper form"
+      ],
+      "answer": 0,
+      "explanation": "Applications will be accepted online only.",
+      "questionZh": "根據文章回答：How should applicants apply?",
+      "optionsZh": [
+        "Through the company's Web site",
+        "By visiting the current store",
+        "By calling Mina Patel",
+        "By sending a paper form"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Through the company's Web site: 文章中有直接或可合理推論的依據。",
+        "By visiting the current store: 文章沒有提到，或細節與原文不一致。",
+        "By calling Mina Patel: 文章沒有提到，或細節與原文不一致。",
+        "By sending a paper form: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_training_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Registered Participants\nSubject: Training Room Change\n\nPlease note that tomorrow's data privacy workshop has been moved from Room 204 to Room 318 because the projector in Room 204 is being repaired. The workshop will still begin at 1:30 P.M. Printed handouts will be available near the entrance to Room 318. Participants who arrive after the first exercise has started should wait until the short break at 2:15 P.M. before entering.",
+      "question": "Why was the workshop moved?",
+      "options": [
+        "A projector is being repaired.",
+        "More participants registered.",
+        "Room 318 is closer to the lobby.",
+        "The instructor changed the topic."
+      ],
+      "answer": 0,
+      "explanation": "Room 204's projector is being repaired.",
+      "questionZh": "根據文章回答：Why was the workshop moved?",
+      "optionsZh": [
+        "A projector is being repaired.",
+        "More participants registered.",
+        "Room 318 is closer to the lobby.",
+        "The instructor changed the topic."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "A projector is being repaired.: 文章中有直接或可合理推論的依據。",
+        "More participants registered.: 文章沒有提到，或細節與原文不一致。",
+        "Room 318 is closer to the lobby.: 文章沒有提到，或細節與原文不一致。",
+        "The instructor changed the topic.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_training_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Registered Participants\nSubject: Training Room Change\n\nPlease note that tomorrow's data privacy workshop has been moved from Room 204 to Room 318 because the projector in Room 204 is being repaired. The workshop will still begin at 1:30 P.M. Printed handouts will be available near the entrance to Room 318. Participants who arrive after the first exercise has started should wait until the short break at 2:15 P.M. before entering.",
+      "question": "What time will the workshop begin?",
+      "options": [
+        "1:30 P.M.",
+        "2:15 P.M.",
+        "Tomorrow morning",
+        "After the first exercise"
+      ],
+      "answer": 0,
+      "explanation": "The workshop still begins at 1:30 P.M.",
+      "questionZh": "根據文章回答：What time will the workshop begin?",
+      "optionsZh": [
+        "1:30 P.M.",
+        "2:15 P.M.",
+        "Tomorrow morning",
+        "After the first exercise"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "1:30 P.M.: 文章中有直接或可合理推論的依據。",
+        "2:15 P.M.: 文章沒有提到，或細節與原文不一致。",
+        "Tomorrow morning: 文章沒有提到，或細節與原文不一致。",
+        "After the first exercise: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_training_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Registered Participants\nSubject: Training Room Change\n\nPlease note that tomorrow's data privacy workshop has been moved from Room 204 to Room 318 because the projector in Room 204 is being repaired. The workshop will still begin at 1:30 P.M. Printed handouts will be available near the entrance to Room 318. Participants who arrive after the first exercise has started should wait until the short break at 2:15 P.M. before entering.",
+      "question": "Where can participants get handouts?",
+      "options": [
+        "Near the entrance to Room 318",
+        "Inside Room 204",
+        "At the reception desk",
+        "On the company Web site"
+      ],
+      "answer": 0,
+      "explanation": "Printed handouts will be near the entrance to Room 318.",
+      "questionZh": "根據文章回答：Where can participants get handouts?",
+      "optionsZh": [
+        "Near the entrance to Room 318",
+        "Inside Room 204",
+        "At the reception desk",
+        "On the company Web site"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Near the entrance to Room 318: 文章中有直接或可合理推論的依據。",
+        "Inside Room 204: 文章沒有提到，或細節與原文不一致。",
+        "At the reception desk: 文章沒有提到，或細節與原文不一致。",
+        "On the company Web site: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_training_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "E-mail\n\nTo: Registered Participants\nSubject: Training Room Change\n\nPlease note that tomorrow's data privacy workshop has been moved from Room 204 to Room 318 because the projector in Room 204 is being repaired. The workshop will still begin at 1:30 P.M. Printed handouts will be available near the entrance to Room 318. Participants who arrive after the first exercise has started should wait until the short break at 2:15 P.M. before entering.",
+      "question": "What should late participants do after the first exercise starts?",
+      "options": [
+        "Wait until the short break",
+        "Enter immediately",
+        "Call the instructor",
+        "Pick up handouts in Room 204"
+      ],
+      "answer": 0,
+      "explanation": "They should wait until the 2:15 P.M. break.",
+      "questionZh": "根據文章回答：What should late participants do after the first exercise starts?",
+      "optionsZh": [
+        "Wait until the short break",
+        "Enter immediately",
+        "Call the instructor",
+        "Pick up handouts in Room 204"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Wait until the short break: 文章中有直接或可合理推論的依據。",
+        "Enter immediately: 文章沒有提到，或細節與原文不一致。",
+        "Call the instructor: 文章沒有提到，或細節與原文不一致。",
+        "Pick up handouts in Room 204: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_fitness_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Membership Notice\n\nHarbor Fitness will replace all treadmills in the cardio area next week. The cardio area will be closed from Monday morning through Wednesday afternoon, but members may use the indoor track during that time. Group yoga and cycling classes will follow the regular schedule. Members who paid for personal training sessions scheduled during the closure may reschedule at no extra cost by speaking with the front desk.",
+      "question": "What is Harbor Fitness going to do?",
+      "options": [
+        "Replace treadmills",
+        "Close permanently",
+        "Add a swimming pool",
+        "Cancel all group classes"
+      ],
+      "answer": 0,
+      "explanation": "The notice says all treadmills in the cardio area will be replaced.",
+      "questionZh": "根據文章回答：What is Harbor Fitness going to do?",
+      "optionsZh": [
+        "Replace treadmills",
+        "Close permanently",
+        "Add a swimming pool",
+        "Cancel all group classes"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Replace treadmills: 文章中有直接或可合理推論的依據。",
+        "Close permanently: 文章沒有提到，或細節與原文不一致。",
+        "Add a swimming pool: 文章沒有提到，或細節與原文不一致。",
+        "Cancel all group classes: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_fitness_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Membership Notice\n\nHarbor Fitness will replace all treadmills in the cardio area next week. The cardio area will be closed from Monday morning through Wednesday afternoon, but members may use the indoor track during that time. Group yoga and cycling classes will follow the regular schedule. Members who paid for personal training sessions scheduled during the closure may reschedule at no extra cost by speaking with the front desk.",
+      "question": "What can members use while the cardio area is closed?",
+      "options": [
+        "The indoor track",
+        "The cycling studio only",
+        "A nearby hotel gym",
+        "The front desk area"
+      ],
+      "answer": 0,
+      "explanation": "Members may use the indoor track during the closure.",
+      "questionZh": "根據文章回答：What can members use while the cardio area is closed?",
+      "optionsZh": [
+        "The indoor track",
+        "The cycling studio only",
+        "A nearby hotel gym",
+        "The front desk area"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "The indoor track: 文章中有直接或可合理推論的依據。",
+        "The cycling studio only: 文章沒有提到，或細節與原文不一致。",
+        "A nearby hotel gym: 文章沒有提到，或細節與原文不一致。",
+        "The front desk area: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_fitness_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Membership Notice\n\nHarbor Fitness will replace all treadmills in the cardio area next week. The cardio area will be closed from Monday morning through Wednesday afternoon, but members may use the indoor track during that time. Group yoga and cycling classes will follow the regular schedule. Members who paid for personal training sessions scheduled during the closure may reschedule at no extra cost by speaking with the front desk.",
+      "question": "Which classes will follow the regular schedule?",
+      "options": [
+        "Yoga and cycling classes",
+        "Personal training sessions",
+        "Outdoor running classes",
+        "Swimming lessons"
+      ],
+      "answer": 0,
+      "explanation": "Yoga and cycling classes continue as scheduled.",
+      "questionZh": "根據文章回答：Which classes will follow the regular schedule?",
+      "optionsZh": [
+        "Yoga and cycling classes",
+        "Personal training sessions",
+        "Outdoor running classes",
+        "Swimming lessons"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Yoga and cycling classes: 文章中有直接或可合理推論的依據。",
+        "Personal training sessions: 文章沒有提到，或細節與原文不一致。",
+        "Outdoor running classes: 文章沒有提到，或細節與原文不一致。",
+        "Swimming lessons: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_fitness_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Membership Notice\n\nHarbor Fitness will replace all treadmills in the cardio area next week. The cardio area will be closed from Monday morning through Wednesday afternoon, but members may use the indoor track during that time. Group yoga and cycling classes will follow the regular schedule. Members who paid for personal training sessions scheduled during the closure may reschedule at no extra cost by speaking with the front desk.",
+      "question": "Who may reschedule at no extra cost?",
+      "options": [
+        "Members with personal training sessions during the closure",
+        "All new members",
+        "Only cycling instructors",
+        "People using the indoor track"
+      ],
+      "answer": 0,
+      "explanation": "Affected personal training sessions can be rescheduled for free.",
+      "questionZh": "根據文章回答：Who may reschedule at no extra cost?",
+      "optionsZh": [
+        "Members with personal training sessions during the closure",
+        "All new members",
+        "Only cycling instructors",
+        "People using the indoor track"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Members with personal training sessions during the closure: 文章中有直接或可合理推論的依據。",
+        "All new members: 文章沒有提到，或細節與原文不一致。",
+        "Only cycling instructors: 文章沒有提到，或細節與原文不一致。",
+        "People using the indoor track: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_printer_1",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Customer Service Chat\n\nCustomer: I purchased an LX-500 printer from your online store last month, but it now makes a clicking sound when printing.\nAgent: I am sorry for the inconvenience. That model has a one-year warranty. Please send us a short video of the sound and a copy of your order confirmation.\nCustomer: Can I bring it to a service center instead?\nAgent: Yes, but submitting the video first will help our technicians decide whether a part should be ordered before your visit. Once we review the materials, we will contact you within two business days.",
+      "question": "What problem does the customer report?",
+      "options": [
+        "The printer makes a clicking sound.",
+        "The printer was never delivered.",
+        "The online order was canceled.",
+        "The warranty has expired."
+      ],
+      "answer": 0,
+      "explanation": "The customer says the printer makes a clicking sound.",
+      "questionZh": "根據文章回答：What problem does the customer report?",
+      "optionsZh": [
+        "The printer makes a clicking sound.",
+        "The printer was never delivered.",
+        "The online order was canceled.",
+        "The warranty has expired."
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "The printer makes a clicking sound.: 文章中有直接或可合理推論的依據。",
+        "The printer was never delivered.: 文章沒有提到，或細節與原文不一致。",
+        "The online order was canceled.: 文章沒有提到，或細節與原文不一致。",
+        "The warranty has expired.: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_printer_2",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Customer Service Chat\n\nCustomer: I purchased an LX-500 printer from your online store last month, but it now makes a clicking sound when printing.\nAgent: I am sorry for the inconvenience. That model has a one-year warranty. Please send us a short video of the sound and a copy of your order confirmation.\nCustomer: Can I bring it to a service center instead?\nAgent: Yes, but submitting the video first will help our technicians decide whether a part should be ordered before your visit. Once we review the materials, we will contact you within two business days.",
+      "question": "What does the agent ask the customer to send?",
+      "options": [
+        "A video and an order confirmation",
+        "A new warranty form",
+        "A photo of the service center",
+        "A replacement part"
+      ],
+      "answer": 0,
+      "explanation": "The agent asks for a short video and order confirmation.",
+      "questionZh": "根據文章回答：What does the agent ask the customer to send?",
+      "optionsZh": [
+        "A video and an order confirmation",
+        "A new warranty form",
+        "A photo of the service center",
+        "A replacement part"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "A video and an order confirmation: 文章中有直接或可合理推論的依據。",
+        "A new warranty form: 文章沒有提到，或細節與原文不一致。",
+        "A photo of the service center: 文章沒有提到，或細節與原文不一致。",
+        "A replacement part: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_printer_3",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Customer Service Chat\n\nCustomer: I purchased an LX-500 printer from your online store last month, but it now makes a clicking sound when printing.\nAgent: I am sorry for the inconvenience. That model has a one-year warranty. Please send us a short video of the sound and a copy of your order confirmation.\nCustomer: Can I bring it to a service center instead?\nAgent: Yes, but submitting the video first will help our technicians decide whether a part should be ordered before your visit. Once we review the materials, we will contact you within two business days.",
+      "question": "Why should the customer submit the video first?",
+      "options": [
+        "To help technicians decide whether to order a part",
+        "To cancel the warranty claim",
+        "To receive a refund immediately",
+        "To compare prices with other stores"
+      ],
+      "answer": 0,
+      "explanation": "The video helps technicians decide if a part should be ordered.",
+      "questionZh": "根據文章回答：Why should the customer submit the video first?",
+      "optionsZh": [
+        "To help technicians decide whether to order a part",
+        "To cancel the warranty claim",
+        "To receive a refund immediately",
+        "To compare prices with other stores"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "To help technicians decide whether to order a part: 文章中有直接或可合理推論的依據。",
+        "To cancel the warranty claim: 文章沒有提到，或細節與原文不一致。",
+        "To receive a refund immediately: 文章沒有提到，或細節與原文不一致。",
+        "To compare prices with other stores: 文章沒有提到，或細節與原文不一致。"
+      ]
+    },
+    {
+      "id": "p7_local_printer_4",
+      "type": "part7",
+      "difficulty": "medium",
+      "passage": "Customer Service Chat\n\nCustomer: I purchased an LX-500 printer from your online store last month, but it now makes a clicking sound when printing.\nAgent: I am sorry for the inconvenience. That model has a one-year warranty. Please send us a short video of the sound and a copy of your order confirmation.\nCustomer: Can I bring it to a service center instead?\nAgent: Yes, but submitting the video first will help our technicians decide whether a part should be ordered before your visit. Once we review the materials, we will contact you within two business days.",
+      "question": "When will the company contact the customer after reviewing the materials?",
+      "options": [
+        "Within two business days",
+        "Last month",
+        "After one year",
+        "Before the order confirmation is sent"
+      ],
+      "answer": 0,
+      "explanation": "The agent says they will contact the customer within two business days.",
+      "questionZh": "根據文章回答：When will the company contact the customer after reviewing the materials?",
+      "optionsZh": [
+        "Within two business days",
+        "Last month",
+        "After one year",
+        "Before the order confirmation is sent"
+      ],
+      "trapExplanationZh": "請回到文章找明確依據；干擾選項通常只改動時間、對象、目的或範圍。",
+      "optionReviewZh": [
+        "Within two business days: 文章中有直接或可合理推論的依據。",
+        "Last month: 文章沒有提到，或細節與原文不一致。",
+        "After one year: 文章沒有提到，或細節與原文不一致。",
+        "Before the order confirmation is sent: 文章沒有提到，或細節與原文不一致。"
+      ]
+    }
+  ]
 }

@@ -260,6 +260,566 @@
       ],
       "answer": 0,
       "explanation": "transition 意為「轉變、過渡」。seamless transition 指的是不同系統或階段之間的「無縫銜接」。"
+    },
+    {
+      "id": "p5_local_021",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The sales team must submit its quarterly forecast ________ Friday afternoon.",
+      "options": [
+        "by",
+        "until",
+        "during",
+        "within"
+      ],
+      "answer": 0,
+      "explanation": "'By Friday afternoon' means no later than that time.",
+      "questionZh": "業務團隊必須在週五下午以前提交季度預測。",
+      "optionsZh": [
+        "by",
+        "until",
+        "during",
+        "within"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "by: 正確符合句意與文法結構。",
+        "until: 不符合空格前後的文法或語意。",
+        "during: 不符合空格前後的文法或語意。",
+        "within: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_022",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "Because the shipment was delayed, the warehouse manager arranged a ________ delivery for several key clients.",
+      "options": [
+        "priority",
+        "prioritize",
+        "prioritized",
+        "prioritizing"
+      ],
+      "answer": 0,
+      "explanation": "A noun is needed to modify 'delivery'; 'priority delivery' is a common collocation.",
+      "questionZh": "因為貨運延誤，倉庫經理為幾位重要客戶安排優先配送。",
+      "optionsZh": [
+        "priority",
+        "prioritize",
+        "prioritized",
+        "prioritizing"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "priority: 正確符合句意與文法結構。",
+        "prioritize: 不符合空格前後的文法或語意。",
+        "prioritized: 不符合空格前後的文法或語意。",
+        "prioritizing: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_023",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "Ms. Chen asked the technician to inspect the printers ________ the training session began.",
+      "options": [
+        "before",
+        "despite",
+        "unless",
+        "whether"
+      ],
+      "answer": 0,
+      "explanation": "'Before' correctly connects the two time clauses.",
+      "questionZh": "陳女士要求技術人員在訓練課開始前檢查印表機。",
+      "optionsZh": [
+        "before",
+        "despite",
+        "unless",
+        "whether"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "before: 正確符合句意與文法結構。",
+        "despite: 不符合空格前後的文法或語意。",
+        "unless: 不符合空格前後的文法或語意。",
+        "whether: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_024",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The conference room is ________ equipped with video screens, microphones, and adjustable lighting.",
+      "options": [
+        "fully",
+        "full",
+        "fuller",
+        "fullness"
+      ],
+      "answer": 0,
+      "explanation": "An adverb is needed to modify 'equipped'.",
+      "questionZh": "這間會議室完整配備螢幕、麥克風和可調式照明。",
+      "optionsZh": [
+        "fully",
+        "full",
+        "fuller",
+        "fullness"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "fully: 正確符合句意與文法結構。",
+        "full: 不符合空格前後的文法或語意。",
+        "fuller: 不符合空格前後的文法或語意。",
+        "fullness: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_025",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "All employees are expected to read the updated travel policy ________ making any reservations.",
+      "options": [
+        "prior to",
+        "instead of",
+        "except for",
+        "because of"
+      ],
+      "answer": 0,
+      "explanation": "'Prior to' means before and fits the timing of the action.",
+      "questionZh": "所有員工在訂位前都應閱讀更新後的差旅政策。",
+      "optionsZh": [
+        "prior to",
+        "instead of",
+        "except for",
+        "because of"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "prior to: 正確符合句意與文法結構。",
+        "instead of: 不符合空格前後的文法或語意。",
+        "except for: 不符合空格前後的文法或語意。",
+        "because of: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_026",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The new inventory system allows staff to locate products more ________ than before.",
+      "options": [
+        "efficiently",
+        "efficient",
+        "efficiency",
+        "efficiencies"
+      ],
+      "answer": 0,
+      "explanation": "The comparative phrase modifies the verb 'locate', so an adverb is required.",
+      "questionZh": "新的庫存系統讓員工能比以前更有效率地定位商品。",
+      "optionsZh": [
+        "efficiently",
+        "efficient",
+        "efficiency",
+        "efficiencies"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "efficiently: 正確符合句意與文法結構。",
+        "efficient: 不符合空格前後的文法或語意。",
+        "efficiency: 不符合空格前後的文法或語意。",
+        "efficiencies: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_027",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The committee will review the application only after all required documents ________ submitted.",
+      "options": [
+        "have been",
+        "having been",
+        "to be",
+        "being"
+      ],
+      "answer": 0,
+      "explanation": "The present perfect passive is needed after 'after' to describe completed submission.",
+      "questionZh": "委員會只會在所有必要文件都已提交後審查申請。",
+      "optionsZh": [
+        "have been",
+        "having been",
+        "to be",
+        "being"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "have been: 正確符合句意與文法結構。",
+        "having been: 不符合空格前後的文法或語意。",
+        "to be: 不符合空格前後的文法或語意。",
+        "being: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_028",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "Please contact the front desk if you need ________ about nearby restaurants.",
+      "options": [
+        "recommendations",
+        "recommends",
+        "recommended",
+        "recommending"
+      ],
+      "answer": 0,
+      "explanation": "A plural noun is needed after 'need'.",
+      "questionZh": "如果你需要附近餐廳的推薦，請聯絡櫃台。",
+      "optionsZh": [
+        "recommendations",
+        "recommends",
+        "recommended",
+        "recommending"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "recommendations: 正確符合句意與文法結構。",
+        "recommends: 不符合空格前後的文法或語意。",
+        "recommended: 不符合空格前後的文法或語意。",
+        "recommending: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_029",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The director praised the team for completing the project ________ the limited budget.",
+      "options": [
+        "within",
+        "along",
+        "toward",
+        "among"
+      ],
+      "answer": 0,
+      "explanation": "'Within the budget' means not exceeding the budget.",
+      "questionZh": "主管稱讚團隊在有限預算內完成專案。",
+      "optionsZh": [
+        "within",
+        "along",
+        "toward",
+        "among"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "within: 正確符合句意與文法結構。",
+        "along: 不符合空格前後的文法或語意。",
+        "toward: 不符合空格前後的文法或語意。",
+        "among: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_030",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The software update will be installed automatically, ________ users have disabled that setting.",
+      "options": [
+        "unless",
+        "while",
+        "although",
+        "so that"
+      ],
+      "answer": 0,
+      "explanation": "'Unless' introduces the exception to the automatic installation.",
+      "questionZh": "除非使用者停用該設定，否則軟體更新會自動安裝。",
+      "optionsZh": [
+        "unless",
+        "while",
+        "although",
+        "so that"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "unless: 正確符合句意與文法結構。",
+        "while: 不符合空格前後的文法或語意。",
+        "although: 不符合空格前後的文法或語意。",
+        "so that: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_031",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "Our customer service representatives respond to most inquiries ________ twenty-four hours.",
+      "options": [
+        "within",
+        "between",
+        "over",
+        "onto"
+      ],
+      "answer": 0,
+      "explanation": "'Within twenty-four hours' describes a time limit.",
+      "questionZh": "客服代表通常會在二十四小時內回覆大多數詢問。",
+      "optionsZh": [
+        "within",
+        "between",
+        "over",
+        "onto"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "within: 正確符合句意與文法結構。",
+        "between: 不符合空格前後的文法或語意。",
+        "over: 不符合空格前後的文法或語意。",
+        "onto: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_032",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The board approved the proposal because it was both practical and ________.",
+      "options": [
+        "cost-effective",
+        "costing-effect",
+        "cost-effect",
+        "costs-effective"
+      ],
+      "answer": 0,
+      "explanation": "'Cost-effective' is the correct adjective meaning economical.",
+      "questionZh": "董事會批准該提案，因為它實用且符合成本效益。",
+      "optionsZh": [
+        "cost-effective",
+        "costing-effect",
+        "cost-effect",
+        "costs-effective"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "cost-effective: 正確符合句意與文法結構。",
+        "costing-effect: 不符合空格前後的文法或語意。",
+        "cost-effect: 不符合空格前後的文法或語意。",
+        "costs-effective: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_033",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The hotel offers a complimentary shuttle service for guests ________ flights arrive after 9 P.M.",
+      "options": [
+        "whose",
+        "which",
+        "whom",
+        "what"
+      ],
+      "answer": 0,
+      "explanation": "'Whose' shows possession: guests whose flights arrive.",
+      "questionZh": "飯店為班機在晚上九點後抵達的旅客提供免費接駁。",
+      "optionsZh": [
+        "whose",
+        "which",
+        "whom",
+        "what"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "whose: 正確符合句意與文法結構。",
+        "which: 不符合空格前後的文法或語意。",
+        "whom: 不符合空格前後的文法或語意。",
+        "what: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_034",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "A final decision regarding the contract will be announced ________ the legal review is complete.",
+      "options": [
+        "once",
+        "despite",
+        "whereas",
+        "provided"
+      ],
+      "answer": 0,
+      "explanation": "'Once' means as soon as and fits the timing.",
+      "questionZh": "合約的最終決定會在法律審查完成後公布。",
+      "optionsZh": [
+        "once",
+        "despite",
+        "whereas",
+        "provided"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "once: 正確符合句意與文法結構。",
+        "despite: 不符合空格前後的文法或語意。",
+        "whereas: 不符合空格前後的文法或語意。",
+        "provided: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_035",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "To reduce energy costs, lights in unused offices should be turned off ________.",
+      "options": [
+        "promptly",
+        "prompt",
+        "promptness",
+        "prompted"
+      ],
+      "answer": 0,
+      "explanation": "An adverb is needed to modify the passive verb phrase.",
+      "questionZh": "為了降低能源成本，未使用辦公室的燈應立即關閉。",
+      "optionsZh": [
+        "promptly",
+        "prompt",
+        "promptness",
+        "prompted"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "promptly: 正確符合句意與文法結構。",
+        "prompt: 不符合空格前後的文法或語意。",
+        "promptness: 不符合空格前後的文法或語意。",
+        "prompted: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_036",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The candidate was selected because of her ________ experience in international logistics.",
+      "options": [
+        "extensive",
+        "extension",
+        "extensively",
+        "extend"
+      ],
+      "answer": 0,
+      "explanation": "An adjective is needed before 'experience'.",
+      "questionZh": "這位候選人因具有豐富的國際物流經驗而被選上。",
+      "optionsZh": [
+        "extensive",
+        "extension",
+        "extensively",
+        "extend"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "extensive: 正確符合句意與文法結構。",
+        "extension: 不符合空格前後的文法或語意。",
+        "extensively: 不符合空格前後的文法或語意。",
+        "extend: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_037",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The repair work has been postponed ________ severe weather conditions in the area.",
+      "options": [
+        "due to",
+        "instead",
+        "whether",
+        "therefore"
+      ],
+      "answer": 0,
+      "explanation": "'Due to' introduces the reason for the postponement.",
+      "questionZh": "維修工作因當地天候惡劣而延期。",
+      "optionsZh": [
+        "due to",
+        "instead",
+        "whether",
+        "therefore"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "due to: 正確符合句意與文法結構。",
+        "instead: 不符合空格前後的文法或語意。",
+        "whether: 不符合空格前後的文法或語意。",
+        "therefore: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_038",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "Employees who park in the visitor area may be asked to move ________ vehicles.",
+      "options": [
+        "their",
+        "theirs",
+        "them",
+        "themselves"
+      ],
+      "answer": 0,
+      "explanation": "A possessive adjective is needed before 'vehicles'.",
+      "questionZh": "停在訪客區的員工可能會被要求移動自己的車輛。",
+      "optionsZh": [
+        "their",
+        "theirs",
+        "them",
+        "themselves"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "their: 正確符合句意與文法結構。",
+        "theirs: 不符合空格前後的文法或語意。",
+        "them: 不符合空格前後的文法或語意。",
+        "themselves: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_039",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The accounting department requested that each receipt ________ attached to the expense report.",
+      "options": [
+        "be",
+        "is",
+        "was",
+        "being"
+      ],
+      "answer": 0,
+      "explanation": "After 'request that', the base-form subjunctive 'be' is used.",
+      "questionZh": "會計部門要求每張收據都附在費用報告中。",
+      "optionsZh": [
+        "be",
+        "is",
+        "was",
+        "being"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "be: 正確符合句意與文法結構。",
+        "is: 不符合空格前後的文法或語意。",
+        "was: 不符合空格前後的文法或語意。",
+        "being: 不符合空格前後的文法或語意。"
+      ]
+    },
+    {
+      "id": "p5_local_040",
+      "type": "part5",
+      "difficulty": "medium",
+      "question": "The training materials are available online for employees who were ________ to attend the workshop.",
+      "options": [
+        "unable",
+        "unablely",
+        "unability",
+        "disable"
+      ],
+      "answer": 0,
+      "explanation": "'Unable to attend' is the correct adjective phrase.",
+      "questionZh": "無法參加工作坊的員工可以在線上取得訓練資料。",
+      "optionsZh": [
+        "unable",
+        "unablely",
+        "unability",
+        "disable"
+      ],
+      "trapExplanationZh": "注意詞性、搭配與句意線索，其他選項不是詞性不合，就是語意方向錯誤。",
+      "optionReviewZh": [
+        "unable: 正確符合句意與文法結構。",
+        "unablely: 不符合空格前後的文法或語意。",
+        "unability: 不符合空格前後的文法或語意。",
+        "disable: 不符合空格前後的文法或語意。"
+      ]
     }
   ]
 }
