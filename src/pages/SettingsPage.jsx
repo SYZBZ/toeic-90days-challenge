@@ -322,6 +322,19 @@ export default function SettingsPage() {
           placeholder="例如：gemini-2.5-flash"
         />
 
+        <label className="field-wrap">
+          <span className="field-label">聽力播放模式</span>
+          <select
+            className="field-input"
+            value={aiSettings.listeningPlaybackMode}
+            onChange={(e) => onAiField("listeningPlaybackMode", e.target.value)}
+          >
+            <option value="browser">免費快速：瀏覽器語音</option>
+            <option value="tts">高品質：Google Text-to-Speech</option>
+          </select>
+          <span className="muted">平常刷題建議用免費快速模式；高品質模式才會呼叫 TTS API。</span>
+        </label>
+
         <datalist id="gemini-model-list">
           {modelSuggestions.map((m) => <option key={m} value={m} />)}
         </datalist>

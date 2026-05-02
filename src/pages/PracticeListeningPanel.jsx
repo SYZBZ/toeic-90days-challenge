@@ -13,7 +13,13 @@ import {
 } from "../lib/firestoreService";
 import { loadQuestionPart } from "../lib/localData";
 import { getTargetLabel, normalizeTargetSettings } from "../lib/targetDifficulty";
-import { archiveConsumedPool, dequeueFromPoolFIFO, getPoolStock, seedQuestionPoolFromLocal } from "../lib/questionPoolService";
+import {
+  appendToQuestionPool,
+  archiveConsumedPool,
+  dequeueFromPoolFIFO,
+  getPoolStock,
+  seedQuestionPoolFromLocal,
+} from "../lib/questionPoolService";
 import { analyzeListeningBatch, expandListeningPool } from "../lib/listeningEngine";
 import { audioManager, useAudioCleanupOnUnmount } from "../lib/audioManager";
 import { speakEnglishSegments, stopEnglishSpeech } from "../lib/speech";
@@ -311,8 +317,40 @@ export default function PracticeListeningPanel() {
     if (!user?.uid || isExpanding) return;
     setError("");
     setRetryHint("");
-    setAnalysisProgress("");
-    pushToast("免費模式不使用 Firebase Storage，聽力題會在開始測驗時即時生成，不會背景保存。", "info");
+    setAnalysisProgress("正在背景擴充聽力題庫...");
+    setIsExpanding(true);
+
+    try {
+      const result = await expandListeningPool({
+        uid: user.uid,
+        part,
+        count: presetValue.count,
+        targetScore: target.targetScore,
+        targetLevel: target.targetLevel,
+        onRetry,
+        onProgress: ({ stage, done, total }) => {
+          if (stage === "media") setAnalysisProgress(`正在整理聽力文字與播放資料（${done}/${total}）...`);
+          if (stage === "pool") setAnalysisProgress(`正在完成背景擴充（${done}/${total}）...`);
+        },
+        apiKeys,
+        playbackMode: "browser",
+      });
+
+      const appended = await appendToQuestionPool(user.uid, part, result.generatedQuestions || [], {
+        source: "api",
+        generatorModel: profile?.settings?.ai?.questionModel || "",
+        level: target.targetLevel,
+        currentTargetLevel: target.targetLevel,
+      });
+
+      const latest = await refreshPool();
+      pushToast(`已背景新增 ${appended.addedQuestions} 題，目前聽力庫存 ${latest?.[part] || 0} 題。`, "success");
+    } catch (err) {
+      setError(err?.message || "背景擴充聽力題庫失敗");
+    } finally {
+      setIsExpanding(false);
+      setAnalysisProgress("");
+    }
   }
 
   async function dispatchQuestions(sessionId) {
@@ -336,7 +374,7 @@ export default function PracticeListeningPanel() {
         targetLevel: target.targetLevel,
         onRetry,
         onProgress: ({ stage, done, total }) => {
-          if (stage === "media") setAnalysisProgress(`正在生成新聽力資源（${done}/${total}）...`);
+          if (stage === "media") setAnalysisProgress(`正在整理聽力文字與播放資料（${done}/${total}）...`);
           if (stage === "pool") setAnalysisProgress(`正在寫入新題（${done}/${total}）...`);
         },
         apiKeys,

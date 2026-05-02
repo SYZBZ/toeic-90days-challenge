@@ -562,10 +562,13 @@ export async function generateListeningBlueprint({ part, count, targetScore, tar
   return normalized;
 }
 
-export async function expandListeningPool({ uid, part, count, targetScore, targetLevel, onProgress, onRetry, apiKeys = {} }) {
+export async function expandListeningPool({ uid, part, count, targetScore, targetLevel, onProgress, onRetry, apiKeys = {}, playbackMode = "" }) {
   const normalizedPart = normalizePart(part);
   const expectedCount = Math.max(1, Number(count || 1));
   const level = normalizeTargetLevel(targetLevel, "gold");
+  const ai = readAiSettings();
+  const resolvedPlaybackMode = String(playbackMode || ai.listeningPlaybackMode || "browser").trim().toLowerCase();
+  const useTts = resolvedPlaybackMode === "tts";
   const part1Images = normalizedPart === "part1" ? pickPart1Images(expectedCount) : [];
 
   let generatedQuestions = [];
@@ -606,14 +609,17 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
       }
 
       if (normalizedPart === "part1" || normalizedPart === "part2") {
-        const { base64 } = await synthesizeTtsBase64({
-          part: normalizedPart,
-          segments: blueprint.transcript?.segments || [],
-          useSsml: false,
-          onRetry,
-          apiKey: apiKeys.ttsApiKey,
-        });
-        const audioUrl = toDataUrl("audio/mpeg", base64);
+        let audioUrl = "";
+        if (useTts) {
+          const { base64 } = await synthesizeTtsBase64({
+            part: normalizedPart,
+            segments: blueprint.transcript?.segments || [],
+            useSsml: false,
+            onRetry,
+            apiKey: apiKeys.ttsApiKey,
+          });
+          audioUrl = toDataUrl("audio/mpeg", base64);
+        }
 
         let imageUrl = "";
         let imageMeta = null;
@@ -651,21 +657,27 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
         });
       } else {
         const segments = blueprint?.payload?.transcript?.segments || [];
-        const { base64, ssml } = await synthesizeTtsBase64({
-          part: normalizedPart,
-          segments,
-          useSsml: true,
-          onRetry,
-          apiKey: apiKeys.ttsApiKey,
-        });
-        const audioUrl = toDataUrl("audio/mpeg", base64);
+        let audioUrl = "";
+        let ssml = "";
+        if (useTts) {
+          const tts = await synthesizeTtsBase64({
+            part: normalizedPart,
+            segments,
+            useSsml: true,
+            onRetry,
+            apiKey: apiKeys.ttsApiKey,
+          });
+          audioUrl = toDataUrl("audio/mpeg", tts.base64);
+          ssml = tts.ssml;
+        }
+        const groupId = blueprint.payload?.passage || `${normalizedPart}_generated_${Date.now()}_${generatedQuestions.length}_${i}`;
 
         generatedQuestions.push(
           ...(blueprint.payload.questions || []).map((q) => ({
             ...q,
             level,
             type: normalizedPart,
-            passage: blueprint.payload?.passage || "",
+            passage: groupId,
             passage_zh: blueprint.payload?.passage_zh || "",
             transcript: blueprint.payload?.transcript || null,
             audioUrl,
@@ -693,7 +705,7 @@ export async function expandListeningPool({ uid, part, count, targetScore, targe
     generatedQuestions: generatedQuestions.slice(0, expectedCount),
     appendedPoolDocs: [],
     persisted: false,
-    mediaMode: "inline-data-url",
+    mediaMode: useTts ? "inline-data-url" : "browser-speech",
   };
 }
 
