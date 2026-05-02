@@ -1,0 +1,1175 @@
+{
+  "part": 4,
+  "questions": [
+    {
+      "id": "part4_local_01_1",
+      "type": "part4",
+      "passage": "part4-1",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Attention passengers. Flight 482 to Denver will now depart from Gate 18 instead of Gate 12. Boarding will begin at 2:40 P.M. Please check the monitors for connecting flight information.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where is this announcement being made?",
+      "options": [
+        "At an airport",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: At an airport.",
+      "questionZh": "第 1 組第 1 題",
+      "optionsZh": [
+        "At an airport",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "At an airport: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_01_2",
+      "type": "part4",
+      "passage": "part4-1",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Attention passengers. Flight 482 to Denver will now depart from Gate 18 instead of Gate 12. Boarding will begin at 2:40 P.M. Please check the monitors for connecting flight information.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What has changed?",
+      "options": [
+        "The departure gate",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: The departure gate.",
+      "questionZh": "第 1 組第 2 題",
+      "optionsZh": [
+        "The departure gate",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The departure gate: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_01_3",
+      "type": "part4",
+      "passage": "part4-1",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Attention passengers. Flight 482 to Denver will now depart from Gate 18 instead of Gate 12. Boarding will begin at 2:40 P.M. Please check the monitors for connecting flight information.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "When will boarding begin?",
+      "options": [
+        "At 2:40 P.M.",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: At 2:40 P.M..",
+      "questionZh": "第 1 組第 3 題",
+      "optionsZh": [
+        "At 2:40 P.M.",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "At 2:40 P.M.: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_02_1",
+      "type": "part4",
+      "passage": "part4-2",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Good morning, shoppers. For today only, all kitchen appliances on the second floor are fifteen percent off. Members can receive an additional coupon at the customer service desk.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where is the announcement probably being made?",
+      "options": [
+        "In a store",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: In a store.",
+      "questionZh": "第 2 組第 1 題",
+      "optionsZh": [
+        "In a store",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "In a store: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_02_2",
+      "type": "part4",
+      "passage": "part4-2",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Good morning, shoppers. For today only, all kitchen appliances on the second floor are fifteen percent off. Members can receive an additional coupon at the customer service desk.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What items are discounted?",
+      "options": [
+        "Kitchen appliances",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Kitchen appliances.",
+      "questionZh": "第 2 組第 2 題",
+      "optionsZh": [
+        "Kitchen appliances",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Kitchen appliances: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_02_3",
+      "type": "part4",
+      "passage": "part4-2",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Good morning, shoppers. For today only, all kitchen appliances on the second floor are fifteen percent off. Members can receive an additional coupon at the customer service desk.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where can members get a coupon?",
+      "options": [
+        "At the customer service desk",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: At the customer service desk.",
+      "questionZh": "第 2 組第 3 題",
+      "optionsZh": [
+        "At the customer service desk",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "At the customer service desk: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_03_1",
+      "type": "part4",
+      "passage": "part4-3",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Welcome to the City History Museum. The guided tour will start in the main lobby in ten minutes. Photography is allowed in most galleries, but flash must be turned off.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What is about to start?",
+      "options": [
+        "A guided tour",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: A guided tour.",
+      "questionZh": "第 3 組第 1 題",
+      "optionsZh": [
+        "A guided tour",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A guided tour: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_03_2",
+      "type": "part4",
+      "passage": "part4-3",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Welcome to the City History Museum. The guided tour will start in the main lobby in ten minutes. Photography is allowed in most galleries, but flash must be turned off.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where should visitors go?",
+      "options": [
+        "To the main lobby",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: To the main lobby.",
+      "questionZh": "第 3 組第 2 題",
+      "optionsZh": [
+        "To the main lobby",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "To the main lobby: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_03_3",
+      "type": "part4",
+      "passage": "part4-3",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Welcome to the City History Museum. The guided tour will start in the main lobby in ten minutes. Photography is allowed in most galleries, but flash must be turned off.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What are visitors told about photography?",
+      "options": [
+        "Flash must be turned off",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Flash must be turned off.",
+      "questionZh": "第 3 組第 3 題",
+      "optionsZh": [
+        "Flash must be turned off",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Flash must be turned off: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_04_1",
+      "type": "part4",
+      "passage": "part4-4",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "This is a reminder that the north elevator will be out of service tomorrow morning for inspection. Employees on floors six through ten should use the south elevator until noon.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will be inspected?",
+      "options": [
+        "The north elevator",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: The north elevator.",
+      "questionZh": "第 4 組第 1 題",
+      "optionsZh": [
+        "The north elevator",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The north elevator: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_04_2",
+      "type": "part4",
+      "passage": "part4-4",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "This is a reminder that the north elevator will be out of service tomorrow morning for inspection. Employees on floors six through ten should use the south elevator until noon.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "When will the inspection happen?",
+      "options": [
+        "Tomorrow morning",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Tomorrow morning.",
+      "questionZh": "第 4 組第 2 題",
+      "optionsZh": [
+        "Tomorrow morning",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Tomorrow morning: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_04_3",
+      "type": "part4",
+      "passage": "part4-4",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "This is a reminder that the north elevator will be out of service tomorrow morning for inspection. Employees on floors six through ten should use the south elevator until noon.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Who should use the south elevator?",
+      "options": [
+        "Employees on floors six through ten",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Employees on floors six through ten.",
+      "questionZh": "第 4 組第 3 題",
+      "optionsZh": [
+        "Employees on floors six through ten",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Employees on floors six through ten: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_05_1",
+      "type": "part4",
+      "passage": "part4-5",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Thank you for joining today's software training. Please log in using the temporary password on your handout. The instructor will collect feedback forms at the end of the session.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What is the talk about?",
+      "options": [
+        "Software training",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: Software training.",
+      "questionZh": "第 5 組第 1 題",
+      "optionsZh": [
+        "Software training",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Software training: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_05_2",
+      "type": "part4",
+      "passage": "part4-5",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Thank you for joining today's software training. Please log in using the temporary password on your handout. The instructor will collect feedback forms at the end of the session.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What should participants use to log in?",
+      "options": [
+        "A temporary password",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: A temporary password.",
+      "questionZh": "第 5 組第 2 題",
+      "optionsZh": [
+        "A temporary password",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "A temporary password: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_05_3",
+      "type": "part4",
+      "passage": "part4-5",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Thank you for joining today's software training. Please log in using the temporary password on your handout. The instructor will collect feedback forms at the end of the session.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will be collected later?",
+      "options": [
+        "Feedback forms",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Feedback forms.",
+      "questionZh": "第 5 組第 3 題",
+      "optionsZh": [
+        "Feedback forms",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Feedback forms: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_06_1",
+      "type": "part4",
+      "passage": "part4-6",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Due to heavy rain, the company picnic has been moved indoors to the cafeteria. The event will still begin at noon, and boxed lunches will be available near the east entrance.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Why was the picnic moved indoors?",
+      "options": [
+        "Because of heavy rain",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: Because of heavy rain.",
+      "questionZh": "第 6 組第 1 題",
+      "optionsZh": [
+        "Because of heavy rain",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Because of heavy rain: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_06_2",
+      "type": "part4",
+      "passage": "part4-6",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Due to heavy rain, the company picnic has been moved indoors to the cafeteria. The event will still begin at noon, and boxed lunches will be available near the east entrance.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where will the event take place?",
+      "options": [
+        "In the cafeteria",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: In the cafeteria.",
+      "questionZh": "第 6 組第 2 題",
+      "optionsZh": [
+        "In the cafeteria",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "In the cafeteria: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_06_3",
+      "type": "part4",
+      "passage": "part4-6",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Due to heavy rain, the company picnic has been moved indoors to the cafeteria. The event will still begin at noon, and boxed lunches will be available near the east entrance.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will be available near the east entrance?",
+      "options": [
+        "Boxed lunches",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Boxed lunches.",
+      "questionZh": "第 6 組第 3 題",
+      "optionsZh": [
+        "Boxed lunches",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Boxed lunches: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_07_1",
+      "type": "part4",
+      "passage": "part4-7",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Your attention, warehouse staff. The carrier for route 7 has arrived early. Please bring the labeled packages to loading bay three within the next fifteen minutes.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Who is the announcement for?",
+      "options": [
+        "Warehouse staff",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: Warehouse staff.",
+      "questionZh": "第 7 組第 1 題",
+      "optionsZh": [
+        "Warehouse staff",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Warehouse staff: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_07_2",
+      "type": "part4",
+      "passage": "part4-7",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Your attention, warehouse staff. The carrier for route 7 has arrived early. Please bring the labeled packages to loading bay three within the next fifteen minutes.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What arrived early?",
+      "options": [
+        "The route 7 carrier",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: The route 7 carrier.",
+      "questionZh": "第 7 組第 2 題",
+      "optionsZh": [
+        "The route 7 carrier",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The route 7 carrier: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_07_3",
+      "type": "part4",
+      "passage": "part4-7",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Your attention, warehouse staff. The carrier for route 7 has arrived early. Please bring the labeled packages to loading bay three within the next fifteen minutes.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where should packages be taken?",
+      "options": [
+        "To loading bay three",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: To loading bay three.",
+      "questionZh": "第 7 組第 3 題",
+      "optionsZh": [
+        "To loading bay three",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "To loading bay three: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_08_1",
+      "type": "part4",
+      "passage": "part4-8",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Welcome to the Grand View Hotel. Breakfast is served in the Garden Room from six thirty to ten. Guests who need airport transportation should reserve seats at the front desk.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where are listeners?",
+      "options": [
+        "At a hotel",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: At a hotel.",
+      "questionZh": "第 8 組第 1 題",
+      "optionsZh": [
+        "At a hotel",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "At a hotel: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_08_2",
+      "type": "part4",
+      "passage": "part4-8",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Welcome to the Grand View Hotel. Breakfast is served in the Garden Room from six thirty to ten. Guests who need airport transportation should reserve seats at the front desk.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where is breakfast served?",
+      "options": [
+        "In the Garden Room",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: In the Garden Room.",
+      "questionZh": "第 8 組第 2 題",
+      "optionsZh": [
+        "In the Garden Room",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "In the Garden Room: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_08_3",
+      "type": "part4",
+      "passage": "part4-8",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Welcome to the Grand View Hotel. Breakfast is served in the Garden Room from six thirty to ten. Guests who need airport transportation should reserve seats at the front desk.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What should guests reserve at the front desk?",
+      "options": [
+        "Airport transportation seats",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Airport transportation seats.",
+      "questionZh": "第 8 組第 3 題",
+      "optionsZh": [
+        "Airport transportation seats",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Airport transportation seats: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_09_1",
+      "type": "part4",
+      "passage": "part4-9",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "The library will close thirty minutes early this Friday for staff training. All checked-out laptops must be returned by five o'clock. The outdoor book drop will remain open.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Why will the library close early?",
+      "options": [
+        "For staff training",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: For staff training.",
+      "questionZh": "第 9 組第 1 題",
+      "optionsZh": [
+        "For staff training",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "For staff training: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_09_2",
+      "type": "part4",
+      "passage": "part4-9",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "The library will close thirty minutes early this Friday for staff training. All checked-out laptops must be returned by five o'clock. The outdoor book drop will remain open.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What must be returned by five o'clock?",
+      "options": [
+        "Checked-out laptops",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: Checked-out laptops.",
+      "questionZh": "第 9 組第 2 題",
+      "optionsZh": [
+        "Checked-out laptops",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Checked-out laptops: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_09_3",
+      "type": "part4",
+      "passage": "part4-9",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "The library will close thirty minutes early this Friday for staff training. All checked-out laptops must be returned by five o'clock. The outdoor book drop will remain open.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "What will remain open?",
+      "options": [
+        "The outdoor book drop",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: The outdoor book drop.",
+      "questionZh": "第 9 組第 3 題",
+      "optionsZh": [
+        "The outdoor book drop",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "The outdoor book drop: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_10_1",
+      "type": "part4",
+      "passage": "part4-10",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Patients with appointments this afternoon should check in at the temporary desk near the main entrance. The regular reception area is being repainted and will reopen tomorrow.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Who is the announcement for?",
+      "options": [
+        "Patients with afternoon appointments",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states or implies: Patients with afternoon appointments.",
+      "questionZh": "第 10 組第 1 題",
+      "optionsZh": [
+        "Patients with afternoon appointments",
+        "At a bank",
+        "In a private home",
+        "On a factory line"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "Patients with afternoon appointments: 符合音檔內容。",
+        "At a bank: 音檔未提到或與音檔細節不一致。",
+        "In a private home: 音檔未提到或與音檔細節不一致。",
+        "On a factory line: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_10_2",
+      "type": "part4",
+      "passage": "part4-10",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Patients with appointments this afternoon should check in at the temporary desk near the main entrance. The regular reception area is being repainted and will reopen tomorrow.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Where should listeners check in?",
+      "options": [
+        "At the temporary desk",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: At the temporary desk.",
+      "questionZh": "第 10 組第 2 題",
+      "optionsZh": [
+        "At the temporary desk",
+        "The speaker's name",
+        "A payment deadline",
+        "A hiring policy"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "At the temporary desk: 符合音檔內容。",
+        "The speaker's name: 音檔未提到或與音檔細節不一致。",
+        "A payment deadline: 音檔未提到或與音檔細節不一致。",
+        "A hiring policy: 音檔未提到或與音檔細節不一致。"
+      ]
+    },
+    {
+      "id": "part4_local_10_3",
+      "type": "part4",
+      "passage": "part4-10",
+      "transcript": {
+        "segments": [
+          {
+            "speaker": "NARRATOR",
+            "text": "Patients with appointments this afternoon should check in at the temporary desk near the main entrance. The regular reception area is being repainted and will reopen tomorrow.",
+            "accent": "us",
+            "gender": "female"
+          }
+        ]
+      },
+      "question": "Why is the regular reception area closed?",
+      "options": [
+        "It is being repainted",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "answer": 0,
+      "difficulty": "gold",
+      "explanation": "The talk states: It is being repainted.",
+      "questionZh": "第 10 組第 3 題",
+      "optionsZh": [
+        "It is being repainted",
+        "A signed contract",
+        "A replacement badge",
+        "An annual report"
+      ],
+      "trapExplanationZh": "請抓住說話者的目的、原因、下一步或具體細節。",
+      "optionReviewZh": [
+        "It is being repainted: 符合音檔內容。",
+        "A signed contract: 音檔未提到或與音檔細節不一致。",
+        "A replacement badge: 音檔未提到或與音檔細節不一致。",
+        "An annual report: 音檔未提到或與音檔細節不一致。"
+      ]
+    }
+  ]
+}

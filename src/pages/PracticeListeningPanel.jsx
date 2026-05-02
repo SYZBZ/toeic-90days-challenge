@@ -11,10 +11,12 @@ import {
   updateSummary,
   upsertMistake,
 } from "../lib/firestoreService";
+import { loadQuestionPart } from "../lib/localData";
 import { getTargetLabel, normalizeTargetSettings } from "../lib/targetDifficulty";
-import { archiveConsumedPool, dequeueFromPoolFIFO, getPoolStock } from "../lib/questionPoolService";
+import { archiveConsumedPool, dequeueFromPoolFIFO, getPoolStock, seedQuestionPoolFromLocal } from "../lib/questionPoolService";
 import { analyzeListeningBatch, expandListeningPool } from "../lib/listeningEngine";
 import { audioManager, useAudioCleanupOnUnmount } from "../lib/audioManager";
+import { speakEnglishSegments, stopEnglishSpeech } from "../lib/speech";
 import { Banner } from "../ui/Banner";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -199,6 +201,34 @@ export default function PracticeListeningPanel() {
     return stock;
   }
 
+  async function ensureSeededListeningPool(preferredPart = "") {
+    if (!user?.uid) return null;
+    const stock = await getPoolStock(user.uid, { targetLevel: target.targetLevel });
+    const parts = ["part1", "part2", "part3", "part4"];
+    const needsSeed = parts.filter((key) => {
+      if (preferredPart && key !== preferredPart) return false;
+      return Number(stock[key] || 0) === 0;
+    });
+
+    if (!needsSeed.length) {
+      setPoolStock(stock);
+      return stock;
+    }
+
+    setAnalysisProgress("正在初始化本地聽力題庫...");
+    const loaded = await Promise.all(needsSeed.map(async (key) => [key, await loadQuestionPart(Number(key.replace("part", "")))]));
+    const localByPart = Object.fromEntries(loaded);
+    const seeded = await seedQuestionPoolFromLocal(user.uid, localByPart, { currentTargetLevel: target.targetLevel });
+    const latest = await getPoolStock(user.uid, { targetLevel: target.targetLevel });
+    setPoolStock(latest);
+    setAnalysisProgress("");
+
+    if (seeded.addedQuestions > 0) {
+      pushToast(`本地聽力題庫已補入 ${seeded.addedQuestions} 題。`, "success");
+    }
+    return latest;
+  }
+
   useEffect(() => {
     setPart((prev) => normalizePart(prev));
     setPreset((prev) => normalizePreset(normalizePart(part), prev));
@@ -225,7 +255,7 @@ export default function PracticeListeningPanel() {
       const list = await fetchExamAttempts(user.uid, 20);
       if (!active) return;
       setHistory(list.filter((x) => String(x.mode || "").startsWith("listening-")));
-      await refreshPool();
+      await ensureSeededListeningPool();
     }
     load();
     return () => { active = false; };
@@ -255,11 +285,16 @@ export default function PracticeListeningPanel() {
   }, [currentIndex, status]);
 
   async function playCurrentAudio() {
-    if (!currentQuestion?.audioUrl) return;
+    if (!currentQuestion?.audioUrl && !currentQuestion?.transcript?.segments?.length) return;
     try {
       setIsPlaying(true);
-      audioManager.onEnded(() => setIsPlaying(false));
-      await audioManager.playUrl(currentQuestion.audioUrl);
+      if (currentQuestion.audioUrl) {
+        audioManager.onEnded(() => setIsPlaying(false));
+        await audioManager.playUrl(currentQuestion.audioUrl);
+      } else {
+        await speakEnglishSegments(currentQuestion.transcript?.segments || []);
+        setIsPlaying(false);
+      }
     } catch (err) {
       setError(err?.message || "音訊播放失敗");
       setIsPlaying(false);
@@ -268,6 +303,7 @@ export default function PracticeListeningPanel() {
 
   function stopAudio() {
     audioManager.stopAll();
+    stopEnglishSpeech();
     setIsPlaying(false);
   }
 
@@ -340,6 +376,8 @@ export default function PracticeListeningPanel() {
         targetScore: target.targetScore,
         targetLevel: target.targetLevel,
       });
+
+      await ensureSeededListeningPool(part);
 
       const sessionId = makeSessionId();
       const planned = await dispatchQuestions(sessionId);
@@ -725,10 +763,12 @@ export default function PracticeListeningPanel() {
 
           <div className="review-list">
             {(status === STATUS.REVIEW ? (reviewAttempt?.questions || []) : questions).map((q, idx) => {
-              const extras = (q.audioUrl || q.imageUrl) ? (
+              const extras = (q.audioUrl || q.imageUrl || q.transcript?.segments?.length) ? (
                 <div className="review-media">
                   {q.audioUrl ? (
                     <Button variant="ghost" onClick={() => audioManager.playUrl(q.audioUrl)}>重播此題音檔</Button>
+                  ) : q.transcript?.segments?.length ? (
+                    <Button variant="ghost" onClick={() => speakEnglishSegments(q.transcript.segments)}>重播此題語音</Button>
                   ) : null}
                   {q.imageUrl ? (
                     <div className="review-image">

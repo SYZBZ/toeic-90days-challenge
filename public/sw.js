@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = "toeic90-static-v2";
+const CACHE_NAME = "toeic90-static-v3";
 const BASE = "/toeic-90days-challenge/";
 const PRECACHE = [
   `${BASE}`,
@@ -8,6 +8,10 @@ const PRECACHE = [
   `${BASE}icons/icon-512.svg`,
   `${BASE}data/vocabulary.json`,
   `${BASE}data/grammar.json`,
+  `${BASE}data/questions-part1.json`,
+  `${BASE}data/questions-part2.json`,
+  `${BASE}data/questions-part3.json`,
+  `${BASE}data/questions-part4.json`,
   `${BASE}data/questions-part5.json`,
   `${BASE}data/questions-part6.json`,
   `${BASE}data/questions-part7.json`,

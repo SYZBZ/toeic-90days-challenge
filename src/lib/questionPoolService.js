@@ -60,6 +60,8 @@ function normalizeQuestionForPool(raw = {}, part, fallbackLevel = "gold") {
     passage_zh: String(raw.passage_zh || raw.passageZh || ""),
     audioUrl: String(raw.audioUrl || ""),
     imageUrl: String(raw.imageUrl || ""),
+    imageId: String(raw.imageId || ""),
+    imageSource: raw.imageSource && typeof raw.imageSource === "object" ? raw.imageSource : null,
     transcript: raw.transcript && typeof raw.transcript === "object" ? raw.transcript : null,
     scriptSsml: String(raw.scriptSsml || ""),
   };
@@ -164,6 +166,8 @@ function toPassageGroups(part, docs = [], fallbackLevel = "gold") {
           options_zh: q.options_zh,
           audioUrl: q.audioUrl,
           imageUrl: q.imageUrl,
+          imageId: q.imageId,
+          imageSource: q.imageSource,
           transcript: q.transcript,
           scriptSsml: q.scriptSsml,
           id: q.id,
@@ -302,6 +306,8 @@ function flattenPayloadToQuestions(poolDoc) {
   const passageZh = payload.passage_zh || "";
   const audioUrl = payload.audioUrl || "";
   const imageUrl = payload.imageUrl || "";
+  const imageId = payload.imageId || "";
+  const imageSource = payload.imageSource || null;
   const transcript = payload.transcript || null;
   const scriptSsml = payload.scriptSsml || "";
   return (payload.questions || []).map((q) => ({
@@ -312,6 +318,8 @@ function flattenPayloadToQuestions(poolDoc) {
     passage_zh: passageZh,
     audioUrl,
     imageUrl,
+    imageId,
+    imageSource,
     transcript,
     scriptSsml,
   }));
@@ -550,26 +558,17 @@ export async function archiveConsumedPool(uid, consumedDocs, sessionId) {
 export async function seedQuestionPoolFromLocal(uid, localByPart, options = {}) {
   const currentTargetLevel = normalizeLevel(options?.currentTargetLevel || options?.level, "gold");
 
-  const part5 = await appendToQuestionPool(uid, "part5", localByPart.part5 || [], {
-    source: "seed",
-    level: currentTargetLevel,
-    currentTargetLevel,
-  });
-  const part6 = await appendToQuestionPool(uid, "part6", localByPart.part6 || [], {
-    source: "seed",
-    level: currentTargetLevel,
-    currentTargetLevel,
-  });
-  const part7 = await appendToQuestionPool(uid, "part7", localByPart.part7 || [], {
-    source: "seed",
-    level: currentTargetLevel,
-    currentTargetLevel,
-  });
+  const out = {};
+  for (const part of PARTS) {
+    out[part] = await appendToQuestionPool(uid, part, localByPart[part] || [], {
+      source: "seed",
+      level: currentTargetLevel,
+      currentTargetLevel,
+    });
+  }
 
   return {
-    part5,
-    part6,
-    part7,
-    addedQuestions: part5.addedQuestions + part6.addedQuestions + part7.addedQuestions,
+    ...out,
+    addedQuestions: PARTS.reduce((sum, part) => sum + out[part].addedQuestions, 0),
   };
 }
